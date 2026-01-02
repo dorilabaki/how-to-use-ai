@@ -10,7 +10,7 @@ function parseInlineMarkdown(text: string): ReactNode[] {
 
   while (remaining.length > 0) {
     // Match bold text **text**
-    const boldMatch = remaining.match(/^(.*?)\*\*(.+?)\*\*(.*)/s);
+    const boldMatch = remaining.match(/^(.*?)\*\*(.+?)\*\*(.*)/);
     if (boldMatch) {
       if (boldMatch[1]) {
         parts.push(<Fragment key={key++}>{boldMatch[1]}</Fragment>);
@@ -21,7 +21,7 @@ function parseInlineMarkdown(text: string): ReactNode[] {
     }
 
     // Match inline code `code`
-    const codeMatch = remaining.match(/^(.*?)`(.+?)`(.*)/s);
+    const codeMatch = remaining.match(/^(.*?)`(.+?)`(.*)/);
     if (codeMatch) {
       if (codeMatch[1]) {
         parts.push(<Fragment key={key++}>{codeMatch[1]}</Fragment>);
