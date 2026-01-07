@@ -17,7 +17,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://howdoiuseai.com"),
+  metadataBase: new URL("https://howdoiuse.ai"),
   title: {
     default: "How Do I Use AI - Learn AI, ChatGPT Tutorials & Prompt Engineering",
     template: "%s | How Do I Use AI",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://howdoiuseai.com",
+    url: "https://howdoiuse.ai",
     siteName: "How Do I Use AI",
     title: "How Do I Use AI - Learn AI, ChatGPT & Prompt Engineering",
     description:
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://howdoiuseai.com",
+    canonical: "https://howdoiuse.ai",
   },
 };
 
@@ -88,8 +88,8 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "How Do I Use AI",
-    url: "https://howdoiuseai.com",
-    logo: "https://howdoiuseai.com/logo.jpeg",
+    url: "https://howdoiuse.ai",
+    logo: "https://howdoiuse.ai/logo.jpeg",
     description:
       "How Do I Use AI helps beginners and professionals unlock the power of artificial intelligence through tutorials, tips, and guides on ChatGPT, AI tools, and prompt engineering.",
     sameAs: ["https://www.linkedin.com/company/how-do-i-use-ai"],
@@ -105,7 +105,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "How Do I Use AI",
-    url: "https://howdoiuseai.com",
+    url: "https://howdoiuse.ai",
     description:
       "Learn how to use AI with beginner-friendly tutorials on ChatGPT, prompt engineering, and AI tools.",
     publisher: {
@@ -116,7 +116,7 @@ export default function RootLayout({
       "@type": "SearchAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: "https://howdoiuseai.com/search?q={search_term_string}",
+        urlTemplate: "https://howdoiuse.ai/search?q={search_term_string}",
       },
       "query-input": "required name=search_term_string",
     },

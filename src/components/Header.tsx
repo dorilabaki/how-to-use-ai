@@ -32,7 +32,7 @@ export default function Header() {
                 className="object-cover"
               />
             </div>
-            <span className="font-bold text-lg text-text-primary hidden sm:block">
+            <span className="font-bold text-sm sm:text-lg text-text-primary leading-tight">
               How Do I Use AI
             </span>
           </Link>

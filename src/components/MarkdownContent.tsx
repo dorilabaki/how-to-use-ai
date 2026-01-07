@@ -66,7 +66,7 @@ export default function MarkdownContent({ content }: { content: string }) {
 
     if (line.startsWith('## ')) {
       elements.push(
-        <h2 key={i} className="text-2xl font-bold text-text-primary mt-12 mb-4">
+        <h2 key={i} className="text-[1.75rem] font-bold text-text-primary mt-12 mb-6">
           {line.replace('## ', '')}
         </h2>
       );
@@ -76,7 +76,7 @@ export default function MarkdownContent({ content }: { content: string }) {
 
     if (line.startsWith('### ')) {
       elements.push(
-        <h3 key={i} className="text-xl font-semibold text-text-primary mt-8 mb-3">
+        <h3 key={i} className="text-[1.375rem] font-semibold text-text-primary mt-10 mb-4">
           {line.replace('### ', '')}
         </h3>
       );
@@ -86,7 +86,7 @@ export default function MarkdownContent({ content }: { content: string }) {
 
     if (line.startsWith('#### ')) {
       elements.push(
-        <h4 key={i} className="text-lg font-semibold text-text-primary mt-6 mb-2">
+        <h4 key={i} className="text-lg font-semibold text-text-primary mt-8 mb-3">
           {line.replace('#### ', '')}
         </h4>
       );
@@ -100,14 +100,14 @@ export default function MarkdownContent({ content }: { content: string }) {
       while (i < lines.length && lines[i].match(/^\d+\. /)) {
         const itemText = lines[i].replace(/^\d+\. /, '');
         listItems.push(
-          <li key={i} className="text-text-secondary mb-2">
+          <li key={i} className="text-text-secondary mb-3 leading-[1.75]">
             {parseInlineMarkdown(itemText)}
           </li>
         );
         i++;
       }
       elements.push(
-        <ol key={`ol-${i}`} className="list-decimal list-inside ml-4 my-4 space-y-1">
+        <ol key={`ol-${i}`} className="list-decimal pl-6 my-8 space-y-2">
           {listItems}
         </ol>
       );
@@ -120,14 +120,14 @@ export default function MarkdownContent({ content }: { content: string }) {
       while (i < lines.length && lines[i].startsWith('- ')) {
         const itemText = lines[i].replace('- ', '');
         listItems.push(
-          <li key={i} className="text-text-secondary mb-2">
+          <li key={i} className="text-text-secondary mb-3 leading-[1.75]">
             {parseInlineMarkdown(itemText)}
           </li>
         );
         i++;
       }
       elements.push(
-        <ul key={`ul-${i}`} className="list-disc list-inside ml-4 my-4 space-y-1">
+        <ul key={`ul-${i}`} className="list-disc pl-6 my-8 space-y-2">
           {listItems}
         </ul>
       );
@@ -166,7 +166,7 @@ export default function MarkdownContent({ content }: { content: string }) {
 
     // Regular paragraph with inline parsing
     elements.push(
-      <p key={i} className="text-text-secondary leading-relaxed mb-4">
+      <p key={i} className="text-text-secondary leading-[1.8] mb-6">
         {parseInlineMarkdown(line)}
       </p>
     );
