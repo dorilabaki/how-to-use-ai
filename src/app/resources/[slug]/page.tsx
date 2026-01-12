@@ -62,13 +62,13 @@ export default async function ArticlePage({ params }: PageProps) {
       name: 'How Do I Use AI',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://howdoiuseai.com/logo.png',
+        url: 'https://howdoiuse.ai/logo.png',
       },
     },
     datePublished: article.publishedAt,
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://howdoiuseai.com/resources/${article.slug}`,
+      '@id': `https://howdoiuse.ai/resources/${article.slug}`,
     },
   };
 

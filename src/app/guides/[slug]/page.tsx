@@ -57,13 +57,13 @@ export default async function GuidePage({ params }: PageProps) {
       name: 'How Do I Use AI',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://howdoiuseai.com/logo.png',
+        url: 'https://howdoiuse.ai/logo.png',
       },
     },
     datePublished: guide.publishedAt,
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://howdoiuseai.com/guides/${guide.slug}`,
+      '@id': `https://howdoiuse.ai/guides/${guide.slug}`,
     },
     articleSection: guide.chapters.map((c) => c.title),
   };

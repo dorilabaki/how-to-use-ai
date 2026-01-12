@@ -61,7 +61,7 @@ export default function AboutPage() {
       '@type': 'Organization',
       name: 'How Do I Use AI',
       description: 'How Do I Use AI helps beginners and professionals unlock the power of artificial intelligence through tutorials, tips, and guides.',
-      url: 'https://howdoiuseai.com',
+      url: 'https://howdoiuse.ai',
       sameAs: ['https://www.linkedin.com/company/how-do-i-use-ai'],
     },
   };

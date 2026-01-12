@@ -18,7 +18,7 @@ export default function GuidesPage() {
     '@type': 'CollectionPage',
     name: 'AI Guides',
     description: 'Comprehensive guides to help you master AI.',
-    url: 'https://howdoiuseai.com/guides',
+    url: 'https://howdoiuse.ai/guides',
     mainEntity: {
       '@type': 'ItemList',
       numberOfItems: guides.length,
@@ -29,7 +29,7 @@ export default function GuidesPage() {
           '@type': 'Article',
           name: guide.title,
           description: guide.description,
-          url: `https://howdoiuseai.com/guides/${guide.slug}`,
+          url: `https://howdoiuse.ai/guides/${guide.slug}`,
         },
       })),
     },

@@ -116,7 +116,7 @@ export default function PromptsPage() {
     '@type': 'CollectionPage',
     name: 'AI Prompt Library',
     description: 'Ready-to-use prompt templates for ChatGPT and other AI tools.',
-    url: 'https://howdoiuseai.com/prompts',
+    url: 'https://howdoiuse.ai/prompts',
     mainEntity: {
       '@type': 'ItemList',
       numberOfItems: prompts.length,

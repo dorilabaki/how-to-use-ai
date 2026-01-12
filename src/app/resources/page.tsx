@@ -20,7 +20,7 @@ export default function ResourcesPage() {
     '@type': 'CollectionPage',
     name: 'AI Resources & Blog',
     description: 'Explore our collection of AI tutorials, tips, and guides.',
-    url: 'https://howdoiuseai.com/resources',
+    url: 'https://howdoiuse.ai/resources',
     mainEntity: {
       '@type': 'ItemList',
       numberOfItems: articles.length,
@@ -31,7 +31,7 @@ export default function ResourcesPage() {
           '@type': 'Article',
           name: article.title,
           description: article.description,
-          url: `https://howdoiuseai.com/resources/${article.slug}`,
+          url: `https://howdoiuse.ai/resources/${article.slug}`,
         },
       })),
     },

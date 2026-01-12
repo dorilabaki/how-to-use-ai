@@ -18,12 +18,12 @@ export default function GlossaryPage() {
     '@type': 'DefinedTermSet',
     name: 'AI Glossary',
     description: 'Comprehensive glossary of artificial intelligence terms and definitions.',
-    url: 'https://howdoiuseai.com/glossary',
+    url: 'https://howdoiuse.ai/glossary',
     hasDefinedTerm: glossaryTerms.map((term) => ({
       '@type': 'DefinedTerm',
       name: term.term,
       description: term.shortDefinition,
-      url: `https://howdoiuseai.com/glossary/${term.slug}`,
+      url: `https://howdoiuse.ai/glossary/${term.slug}`,
     })),
   };
 

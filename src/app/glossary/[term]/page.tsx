@@ -44,11 +44,11 @@ export default async function GlossaryTermPage({ params }: PageProps) {
     '@type': 'DefinedTerm',
     name: term.term,
     description: term.shortDefinition,
-    url: `https://howdoiuseai.com/glossary/${term.slug}`,
+    url: `https://howdoiuse.ai/glossary/${term.slug}`,
     inDefinedTermSet: {
       '@type': 'DefinedTermSet',
       name: 'AI Glossary',
-      url: 'https://howdoiuseai.com/glossary',
+      url: 'https://howdoiuse.ai/glossary',
     },
   };
 
