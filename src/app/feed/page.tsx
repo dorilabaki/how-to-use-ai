@@ -1,161 +1,94 @@
-import { Metadata } from 'next';
+'use client';
+
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { Section, SectionHeader } from '@/components/Section';
 import Button from '@/components/Button';
-import { articles } from '@/data/articles';
-import { guides } from '@/data/guides';
-import { glossaryTerms } from '@/data/glossary';
-
-export const metadata: Metadata = {
-  title: 'Content Feed',
-  description: 'All the latest AI content from How Do I Use AI. Guides, articles, and glossary terms all in one place.',
-  openGraph: {
-    title: 'Content Feed | How Do I Use AI',
-    description: 'All the latest AI content from How Do I Use AI.',
-  },
-};
-
-type FeedItem = {
-  type: 'article' | 'guide' | 'glossary';
-  title: string;
-  description: string;
-  href: string;
-  date?: string;
-  tag?: string;
-};
+import { feedPosts, feedConfig } from '@/data/feed';
 
 export default function FeedPage() {
-  // Combine all content
-  const guideItems: FeedItem[] = guides.map((guide) => ({
-    type: 'guide',
-    title: guide.title,
-    description: guide.description,
-    href: `/guides/${guide.slug}`,
-    date: guide.publishedAt,
-    tag: 'Guide',
-  }));
-
-  const articleItems: FeedItem[] = articles.map((article) => ({
-    type: 'article',
-    title: article.title,
-    description: article.description,
-    href: `/resources/${article.slug}`,
-    date: article.publishedAt,
-    tag: article.category,
-  }));
-
-  const glossaryItems: FeedItem[] = glossaryTerms.map((term) => ({
-    type: 'glossary',
-    title: term.term,
-    description: term.shortDefinition,
-    href: `/glossary/${term.slug}`,
-    tag: 'Glossary',
-  }));
-
-  const feedItems: FeedItem[] = [...guideItems, ...articleItems, ...glossaryItems].sort((a, b) => {
-    if (a.date && b.date) {
-      return new Date(b.date).getTime() - new Date(a.date).getTime();
-    }
-    return 0;
-  });
-
   return (
     <Section className="pt-24">
       <SectionHeader
-        eyebrow="Everything"
-        title="Content Feed"
-        description="All our AI learning content in one place"
+        eyebrow="LinkedIn"
+        title="Top Posts"
+        description={`${feedConfig.description} ${feedConfig.followers} followers.`}
       />
 
       <div className="max-w-3xl mx-auto">
-        {/* Filter Pills */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
-          <Link
-            href="/guides"
-            className="px-4 py-2 bg-dark-800 text-text-secondary rounded-full text-sm font-medium hover:bg-dark-700 transition-colors"
-          >
-            Guides ({guides.length})
-          </Link>
-          <Link
-            href="/resources"
-            className="px-4 py-2 bg-dark-800 text-text-secondary rounded-full text-sm font-medium hover:bg-dark-700 transition-colors"
-          >
-            Articles ({articles.length})
-          </Link>
-          <Link
-            href="/glossary"
-            className="px-4 py-2 bg-dark-800 text-text-secondary rounded-full text-sm font-medium hover:bg-dark-700 transition-colors"
-          >
-            Glossary ({glossaryTerms.length})
-          </Link>
-          <Link
-            href="/prompts"
-            className="px-4 py-2 bg-dark-800 text-text-secondary rounded-full text-sm font-medium hover:bg-dark-700 transition-colors"
-          >
-            Prompts (10)
-          </Link>
-        </div>
-
         {/* Feed */}
-        <div className="space-y-4">
-          {feedItems.map((item, i) => (
-            <Link
-              key={i}
-              href={item.href}
-              className="block p-6 bg-dark-800 border border-dark-700 rounded-2xl hover:border-primary-500/50 transition-colors group"
+        <div className="space-y-6 mb-12">
+          {feedPosts.map((post, i) => (
+            <motion.article
+              key={post.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1 }}
+              className="p-6 bg-dark-800 border border-dark-700 rounded-2xl"
             >
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span
-                      className={`px-2 py-0.5 text-xs font-medium rounded-full ${
-                        item.type === 'guide'
-                          ? 'bg-primary-500/10 text-primary-400'
-                          : item.type === 'glossary'
-                          ? 'bg-accent-500/10 text-accent-400'
-                          : 'bg-purple-500/10 text-purple-400'
-                      }`}
-                    >
-                      {item.tag}
-                    </span>
-                    {item.date && (
-                      <span className="text-xs text-text-muted">
-                        {new Date(item.date).toLocaleDateString('en-US', {
-                          month: 'short',
-                          day: 'numeric',
-                          year: 'numeric',
-                        })}
-                      </span>
-                    )}
-                  </div>
-                  <h3 className="text-lg font-semibold text-text-primary group-hover:text-primary-400 transition-colors mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-text-muted line-clamp-2">
-                    {item.description}
+              {/* Header */}
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center text-white font-bold">
+                  AI
+                </div>
+                <div>
+                  <p className="font-semibold text-text-primary">{feedConfig.pageName}</p>
+                  <p className="text-sm text-text-muted">
+                    {new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                   </p>
                 </div>
-                <svg
-                  className="w-5 h-5 text-text-muted group-hover:text-primary-400 group-hover:translate-x-1 transition-all flex-shrink-0 mt-1"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
               </div>
-            </Link>
+
+              {/* Content */}
+              <div className="whitespace-pre-line text-text-secondary leading-relaxed mb-6">
+                {post.content}
+              </div>
+
+              {/* Engagement */}
+              <div className="flex items-center gap-6 pt-4 border-t border-dark-600 text-sm text-text-muted">
+                <span className="flex items-center gap-2">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                  </svg>
+                  {post.likes.toLocaleString()}
+                </span>
+                <span className="flex items-center gap-2">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                  </svg>
+                  {post.comments.toLocaleString()}
+                </span>
+                {post.reposts && (
+                  <span className="flex items-center gap-2">
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                    </svg>
+                    {post.reposts.toLocaleString()}
+                  </span>
+                )}
+                <a
+                  href={post.linkedInUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ml-auto flex items-center gap-2 text-[#0A66C2] hover:text-[#5BA4E6] transition-colors font-medium"
+                >
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                  </svg>
+                  View on LinkedIn
+                </a>
+              </div>
+            </motion.article>
           ))}
         </div>
 
         {/* CTA */}
-        <div className="mt-12 text-center">
+        <div className="text-center">
           <p className="text-text-muted mb-4">
             Want more AI content? Follow us for daily tips!
           </p>
           <Button
-            href="https://www.linkedin.com/company/how-do-i-use-ai"
+            href={feedConfig.linkedInUrl}
             external
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
