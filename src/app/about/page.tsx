@@ -98,8 +98,39 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* Mission */}
+      {/* Story */}
       <Section className="bg-dark-900">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="text-primary-400 font-medium mb-2 uppercase tracking-wide text-sm">Our Story</p>
+            <h2 className="text-3xl font-bold text-text-primary mb-6">
+              The Question Everyone Was Asking
+            </h2>
+          </div>
+          <div className="prose prose-invert max-w-3xl mx-auto text-text-secondary space-y-4 mb-12">
+            <p>
+              In late 2022, ChatGPT launched and everything changed. Within weeks, our LinkedIn
+              feed was flooded with one question: &quot;How do I actually use this?&quot;
+            </p>
+            <p>
+              People saw the potential but felt lost. Marketing teams wanted to write better copy.
+              Developers wanted to code faster. Students wanted to learn smarter. But most AI
+              content was either too technical or too vague to be useful.
+            </p>
+            <p>
+              So we started answering the question directly. One tutorial at a time. Real prompts.
+              Real use cases. Real results. No jargon, no hype.
+            </p>
+            <p>
+              102,000+ followers later, How Do I Use AI has become the trusted resource for anyone
+              who wants to use AI tools without needing a computer science degree.
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      {/* Mission */}
+      <Section>
         <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -182,6 +213,134 @@ export default function AboutPage() {
                 {area}
               </span>
             ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* Testimonials */}
+      <Section className="bg-dark-900">
+        <SectionHeader
+          eyebrow="Community Voices"
+          title="What Our Followers Say"
+          description="Real feedback from AI practitioners in our 102,000+ community"
+        />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="p-6 bg-dark-800 border border-dark-700 rounded-2xl">
+            <p className="text-sm text-text-muted mb-4 italic">&quot;This kind of clarity is exactly what most business owners and marketers need right now. There&apos;s so much noise around AI tools that knowing which one to use for a specific outcome makes all the difference. ChatGPT + Make has been a game-changer for streamlining client workflows.&quot;</p>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-primary-500/20 rounded-full flex items-center justify-center text-primary-400 font-bold text-sm">DH</div>
+              <div>
+                <p className="font-medium text-text-primary text-sm">Darlene Hohn</p>
+                <p className="text-xs text-text-muted">Digital Marketing & SEO Strategist</p>
+              </div>
+            </div>
+          </div>
+          <div className="p-6 bg-dark-800 border border-dark-700 rounded-2xl">
+            <p className="text-sm text-text-muted mb-4 italic">&quot;Most teams struggle not because AI is unclear but because tool choice is misaligned with the job. Clear use-case mapping like this saves months of trial and error for founders and operators.&quot;</p>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-primary-500/20 rounded-full flex items-center justify-center text-primary-400 font-bold text-sm">HM</div>
+              <div>
+                <p className="font-medium text-text-primary text-sm">Hassan Mansoor</p>
+                <p className="text-xs text-text-muted">Founder, StartupsAdvisory.ai</p>
+              </div>
+            </div>
+          </div>
+          <div className="p-6 bg-dark-800 border border-dark-700 rounded-2xl">
+            <p className="text-sm text-text-muted mb-4 italic">&quot;The value isn&apos;t in picking the &apos;most hyped&apos; solution but in matching each tool&apos;s strengths to real use cases. This use-case centric approach helps organizations avoid months of trial and error.&quot;</p>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-primary-500/20 rounded-full flex items-center justify-center text-primary-400 font-bold text-sm">FG</div>
+              <div>
+                <p className="font-medium text-text-primary text-sm">Félix García</p>
+                <p className="text-xs text-text-muted">Lean Six Sigma Black Belt</p>
+              </div>
+            </div>
+          </div>
+          <div className="p-6 bg-dark-800 border border-dark-700 rounded-2xl">
+            <p className="text-sm text-text-muted mb-4 italic">&quot;We are no longer just competing on content, but on the systems behind our content. The mix of creativity, workflow, and smart tools has quietly become the new baseline, even for solo creators.&quot;</p>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-primary-500/20 rounded-full flex items-center justify-center text-primary-400 font-bold text-sm">YV</div>
+              <div>
+                <p className="font-medium text-text-primary text-sm">Yoganath V</p>
+                <p className="text-xs text-text-muted">Head of Design, Product-Led Startups</p>
+              </div>
+            </div>
+          </div>
+          <div className="p-6 bg-dark-800 border border-dark-700 rounded-2xl">
+            <p className="text-sm text-text-muted mb-4 italic">&quot;Paid AI services aren&apos;t automatically better than free ones. The real value comes from the mix and from choosing tools that fit your specific workflows. AI works best when it supports how you solve problems.&quot;</p>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-primary-500/20 rounded-full flex items-center justify-center text-primary-400 font-bold text-sm">KB</div>
+              <div>
+                <p className="font-medium text-text-primary text-sm">Kim Bødtker</p>
+                <p className="text-xs text-text-muted">Workforce Manager, Alm. Brand Group</p>
+              </div>
+            </div>
+          </div>
+          <div className="p-6 bg-dark-800 border border-dark-700 rounded-2xl">
+            <p className="text-sm text-text-muted mb-4 italic">&quot;Your bank account shouldn&apos;t have to bleed for your AI to lead. The tool is a commodity; your talent is the real ROI.&quot;</p>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-primary-500/20 rounded-full flex items-center justify-center text-primary-400 font-bold text-sm">KS</div>
+              <div>
+                <p className="font-medium text-text-primary text-sm">Karthik SS</p>
+                <p className="text-xs text-text-muted">Founder, Creative Pulse Films</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* Case Studies */}
+      <Section>
+        <SectionHeader
+          eyebrow="AI in Action"
+          title="Real-World Results"
+          description="How businesses and professionals are using AI to get ahead"
+        />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="p-6 bg-dark-800 border border-dark-700 rounded-2xl">
+            <div className="text-sm text-primary-400 font-medium mb-2">Agency Efficiency</div>
+            <h3 className="text-lg font-semibold text-text-primary mb-3">
+              LeverBrands: 30% Faster Content Delivery
+            </h3>
+            <p className="text-sm text-text-muted mb-4">
+              LeverBrands, a personal branding agency, integrated AI writing assistants into
+              their content workflow. By using AI for first drafts and research summaries,
+              they reduced content production time by 30% while maintaining their editorial
+              quality standards. Their clients now receive deliverables faster without
+              sacrificing the human touch.
+            </p>
+            <p className="text-xs text-text-muted">
+              Key tool: ChatGPT for drafting, Claude for editing
+            </p>
+          </div>
+          <div className="p-6 bg-dark-800 border border-dark-700 rounded-2xl">
+            <div className="text-sm text-primary-400 font-medium mb-2">Service Business</div>
+            <h3 className="text-lg font-semibold text-text-primary mb-3">
+              Gentz: AI-Powered Booking in Dubai
+            </h3>
+            <p className="text-sm text-text-muted mb-4">
+              Gentz, a mobile barber service in Dubai, used AI chatbots to handle booking
+              inquiries and appointment scheduling. The result: 24/7 customer service without
+              additional staff, 45% reduction in missed appointments through automated
+              reminders, and happier customers who can book at any hour.
+            </p>
+            <p className="text-xs text-text-muted">
+              Key tool: AI chatbot for scheduling automation
+            </p>
+          </div>
+          <div className="p-6 bg-dark-800 border border-dark-700 rounded-2xl">
+            <div className="text-sm text-primary-400 font-medium mb-2">Enterprise Scale</div>
+            <h3 className="text-lg font-semibold text-text-primary mb-3">
+              Klarna: AI Replaces 700 Customer Service Agents
+            </h3>
+            <p className="text-sm text-text-muted mb-4">
+              In 2024, Klarna reported their AI assistant handled 2.3 million conversations
+              in its first month, doing the work equivalent of 700 full-time agents. Customer
+              satisfaction scores remained stable while resolution time dropped from 11
+              minutes to under 2 minutes.
+            </p>
+            <p className="text-xs text-text-muted">
+              Source: Klarna Press Release, February 2024
+            </p>
           </div>
         </div>
       </Section>
