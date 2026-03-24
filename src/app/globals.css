@@ -35,7 +35,7 @@
   /* Text Colors */
   --color-text-primary: #f9fafb;
   --color-text-secondary: #9ca3af;
-  --color-text-muted: #6b7280;
+  --color-text-muted: #8b92a3; /* Lightened from #6b7280 for WCAG AA compliance (4.5:1 on dark-800) */
 
   /* Semantic Colors */
   --color-success: #10b981;
@@ -293,7 +293,7 @@ body {
   padding-left: 1.5rem;
   margin: 2rem 0;
   font-style: italic;
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary);
 }
 
 .prose-custom code {

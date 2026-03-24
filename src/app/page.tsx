@@ -6,6 +6,7 @@ import Hero from '@/components/Hero';
 import { Section, SectionHeader } from '@/components/Section';
 import Card from '@/components/Card';
 import Button from '@/components/Button';
+import LeadMagnetBanner from '@/components/LeadMagnetBanner';
 import { articles } from '@/data/articles';
 import { guides } from '@/data/guides';
 import { prompts } from '@/data/prompts';
@@ -260,6 +261,9 @@ export default function HomePage() {
           </Button>
         </div>
       </Section>
+
+      {/* Lead Magnet Banner */}
+      <LeadMagnetBanner />
 
       {/* Newsletter CTA */}
       <Section>

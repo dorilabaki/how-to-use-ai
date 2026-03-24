@@ -57,7 +57,7 @@ export default async function GuidePage({ params }: PageProps) {
       name: 'How Do I Use AI',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://howdoiuse.ai/logo.png',
+        url: 'https://howdoiuse.ai/logo.jpeg',
       },
     },
     datePublished: guide.publishedAt,
@@ -68,6 +68,16 @@ export default async function GuidePage({ params }: PageProps) {
     articleSection: guide.chapters.map((c) => c.title),
   };
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://howdoiuse.ai' },
+      { '@type': 'ListItem', position: 2, name: 'Guides', item: 'https://howdoiuse.ai/guides' },
+      { '@type': 'ListItem', position: 3, name: guide.title, item: `https://howdoiuse.ai/guides/${guide.slug}` },
+    ],
+  };
+
   const otherGuide = guides.find((g) => g.slug !== guide.slug);
 
   return (
@@ -75,6 +85,10 @@ export default async function GuidePage({ params }: PageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       <article>

@@ -52,6 +52,16 @@ export default async function GlossaryTermPage({ params }: PageProps) {
     },
   };
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://howdoiuse.ai' },
+      { '@type': 'ListItem', position: 2, name: 'Glossary', item: 'https://howdoiuse.ai/glossary' },
+      { '@type': 'ListItem', position: 3, name: term.term, item: `https://howdoiuse.ai/glossary/${term.slug}` },
+    ],
+  };
+
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -80,6 +90,10 @@ export default async function GlossaryTermPage({ params }: PageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       <article>
@@ -123,55 +137,82 @@ export default async function GlossaryTermPage({ params }: PageProps) {
 
             {/* Full Definition */}
             <div className="prose-custom">
-              {term.fullDefinition.split('\n').map((line, i) => {
-                if (line.startsWith('## ')) {
-                  return (
-                    <h2 key={i} className="text-2xl font-bold text-text-primary mt-12 mb-4">
-                      {line.replace('## ', '')}
-                    </h2>
-                  );
-                }
-                if (line.startsWith('### ')) {
-                  return (
-                    <h3 key={i} className="text-xl font-semibold text-text-primary mt-8 mb-3">
-                      {line.replace('### ', '')}
-                    </h3>
-                  );
-                }
-                if (line.startsWith('**') && line.endsWith('**')) {
-                  return (
-                    <p key={i} className="font-semibold text-text-primary my-4">
-                      {line.replace(/\*\*/g, '')}
+              {(() => {
+                const lines = term.fullDefinition.split('\n');
+                const elements: React.ReactNode[] = [];
+                let i = 0;
+                while (i < lines.length) {
+                  const line = lines[i];
+                  if (line.startsWith('## ')) {
+                    elements.push(
+                      <h2 key={i} className="text-2xl font-bold text-text-primary mt-12 mb-4">
+                        {line.replace('## ', '')}
+                      </h2>
+                    );
+                    i++;
+                    continue;
+                  }
+                  if (line.startsWith('### ')) {
+                    elements.push(
+                      <h3 key={i} className="text-xl font-semibold text-text-primary mt-8 mb-3">
+                        {line.replace('### ', '')}
+                      </h3>
+                    );
+                    i++;
+                    continue;
+                  }
+                  if (line.startsWith('**') && line.endsWith('**')) {
+                    elements.push(
+                      <p key={i} className="font-semibold text-text-primary my-4">
+                        {line.replace(/\*\*/g, '')}
+                      </p>
+                    );
+                    i++;
+                    continue;
+                  }
+                  // Collect consecutive list items into a <ul>
+                  if (line.startsWith('- ')) {
+                    const listItems: React.ReactNode[] = [];
+                    const startIdx = i;
+                    while (i < lines.length && lines[i].startsWith('- ')) {
+                      const itemLine = lines[i];
+                      const boldMatch = itemLine.match(/^- \*\*(.+?)\*\*:?\s*(.*)$/);
+                      if (boldMatch) {
+                        listItems.push(
+                          <li key={i} className="text-text-secondary mb-2">
+                            <strong className="text-text-primary">{boldMatch[1]}</strong>
+                            {boldMatch[2] && `: ${boldMatch[2]}`}
+                          </li>
+                        );
+                      } else {
+                        listItems.push(
+                          <li key={i} className="text-text-secondary mb-2">
+                            {itemLine.replace(/^- /, '')}
+                          </li>
+                        );
+                      }
+                      i++;
+                    }
+                    elements.push(
+                      <ul key={`ul-${startIdx}`} className="list-disc pl-6 my-4 space-y-1">
+                        {listItems}
+                      </ul>
+                    );
+                    continue;
+                  }
+                  if (line.trim() === '') {
+                    i++;
+                    continue;
+                  }
+                  elements.push(
+                    <p key={i} className="text-text-secondary leading-relaxed mb-4">
+                      {line}
                     </p>
                   );
+                  i++;
                 }
-                if (line.startsWith('- **')) {
-                  const match = line.match(/^- \*\*(.+?)\*\*:?\s*(.*)$/);
-                  if (match) {
-                    return (
-                      <li key={i} className="ml-6 text-text-secondary mb-2">
-                        <strong className="text-text-primary">{match[1]}</strong>
-                        {match[2] && `: ${match[2]}`}
-                      </li>
-                    );
-                  }
-                }
-                if (line.startsWith('- ')) {
-                  return (
-                    <li key={i} className="ml-6 text-text-secondary mb-2">
-                      {line.replace('- ', '')}
-                    </li>
-                  );
-                }
-                if (line.trim() === '') {
-                  return null;
-                }
-                return (
-                  <p key={i} className="text-text-secondary leading-relaxed mb-4">
-                    {line}
-                  </p>
-                );
-              })}
+                return elements;
+              })()}
             </div>
 
             {/* Examples */}

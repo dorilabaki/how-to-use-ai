@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
-import { Section, SectionHeader } from '@/components/Section';
-import Card from '@/components/Card';
 import { articles } from '@/data/articles';
+import ResourcesContent from './ResourcesContent';
 
 export const metadata: Metadata = {
   title: 'AI Resources & Blog',
@@ -11,8 +10,6 @@ export const metadata: Metadata = {
     description: 'Explore our collection of AI tutorials, tips, and guides.',
   },
 };
-
-const categories = [...new Set(articles.map(a => a.category))];
 
 export default function ResourcesPage() {
   const schemaOrg = {
@@ -43,43 +40,7 @@ export default function ResourcesPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
       />
-
-      <Section className="pt-24">
-        <SectionHeader
-          eyebrow="Resources"
-          title="AI Tutorials & Guides"
-          description="Practical articles to help you master artificial intelligence"
-        />
-
-        {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
-          <span className="px-4 py-2 bg-primary-500/10 text-primary-400 rounded-full text-sm font-medium">
-            All
-          </span>
-          {categories.map((category) => (
-            <span
-              key={category}
-              className="px-4 py-2 bg-dark-800 text-text-secondary rounded-full text-sm font-medium hover:bg-dark-700 cursor-pointer transition-colors"
-            >
-              {category}
-            </span>
-          ))}
-        </div>
-
-        {/* Articles Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {articles.map((article) => (
-            <Card
-              key={article.slug}
-              title={article.title}
-              description={article.description}
-              href={`/resources/${article.slug}`}
-              tag={article.category}
-              readTime={article.readTime}
-            />
-          ))}
-        </div>
-      </Section>
+      <ResourcesContent />
     </>
   );
 }

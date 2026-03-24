@@ -62,7 +62,7 @@ export default async function ArticlePage({ params }: PageProps) {
       name: 'How Do I Use AI',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://howdoiuse.ai/logo.png',
+        url: 'https://howdoiuse.ai/logo.jpeg',
       },
     },
     datePublished: article.publishedAt,
@@ -72,6 +72,16 @@ export default async function ArticlePage({ params }: PageProps) {
     },
   };
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://howdoiuse.ai' },
+      { '@type': 'ListItem', position: 2, name: 'Resources', item: 'https://howdoiuse.ai/resources' },
+      { '@type': 'ListItem', position: 3, name: article.title, item: `https://howdoiuse.ai/resources/${article.slug}` },
+    ],
+  };
+
   const otherArticles = articles.filter((a) => a.slug !== article.slug).slice(0, 3);
 
   return (
@@ -79,6 +89,10 @@ export default async function ArticlePage({ params }: PageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       <article>

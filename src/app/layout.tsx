@@ -115,14 +115,6 @@ export default function RootLayout({
       "@type": "Organization",
       name: "How Do I Use AI",
     },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: "https://howdoiuse.ai/search?q={search_term_string}",
-      },
-      "query-input": "required name=search_term_string",
-    },
   };
 
   return (
@@ -142,7 +134,7 @@ export default function RootLayout({
           `}
         </Script>
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" href="/apple-icon.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -159,8 +151,14 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-dark-950 text-text-primary`}
       >
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:bg-primary-600 focus:text-white focus:rounded-lg focus:font-medium"
+        >
+          Skip to main content
+        </a>
         <Header />
-        <main className="min-h-screen pt-16">{children}</main>
+        <main id="main-content" className="min-h-screen pt-16">{children}</main>
         <Footer />
       </body>
     </html>

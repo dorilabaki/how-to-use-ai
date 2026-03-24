@@ -134,16 +134,48 @@ export default function MarkdownContent({ content }: { content: string }) {
       continue;
     }
 
-    // Handle tables
+    // Handle tables — collect all consecutive table lines
     if (line.startsWith('| ')) {
+      const tableLines: string[] = [];
+      while (i < lines.length && lines[i].startsWith('| ')) {
+        tableLines.push(lines[i]);
+        i++;
+      }
+      // First row = header, second row = separator (---), rest = body
+      const headerRow = tableLines[0];
+      const bodyRows = tableLines.slice(2); // skip separator row
+      const parseCells = (row: string) =>
+        row.split('|').map((c) => c.trim()).filter((c) => c !== '');
+      const headerCells = parseCells(headerRow);
       elements.push(
-        <div key={i} className="overflow-x-auto my-4">
-          <div className="text-sm text-text-muted font-mono bg-dark-800 px-4 py-2 rounded">
-            {line}
-          </div>
+        <div key={`table-${i}`} className="overflow-x-auto my-6">
+          <table className="w-full text-sm border-collapse">
+            <thead>
+              <tr>
+                {headerCells.map((cell, ci) => (
+                  <th
+                    key={ci}
+                    className="px-4 py-2 text-left font-semibold text-text-primary bg-dark-700 border border-dark-600 first:rounded-tl-lg last:rounded-tr-lg"
+                  >
+                    {cell}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {bodyRows.map((row, ri) => (
+                <tr key={ri} className="even:bg-dark-800/50">
+                  {parseCells(row).map((cell, ci) => (
+                    <td key={ci} className="px-4 py-2 text-text-secondary border border-dark-600">
+                      {cell}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       );
-      i++;
       continue;
     }
 

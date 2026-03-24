@@ -64,9 +64,9 @@ export default function GlossaryPage() {
               id={term.term.charAt(0).toUpperCase()}
             >
               <div className="h-full p-6 bg-dark-800 border border-dark-700 rounded-2xl card-hover group-hover:border-primary-500/50">
-                <h2 className="text-xl font-bold text-text-primary group-hover:text-primary-400 transition-colors mb-3">
+                <h3 className="text-xl font-bold text-text-primary group-hover:text-primary-400 transition-colors mb-3">
                   {term.term}
-                </h2>
+                </h3>
                 <p className="text-text-secondary text-sm line-clamp-3">
                   {term.shortDefinition}
                 </p>

@@ -84,5 +84,34 @@ The best AI results come from conversation, not commands.`,
     reposts: 389,
     date: "2024-01-05",
   },
+  // --- Scraped 2026-03-24 ---
+  {
+    id: "4",
+    linkedInUrl: "https://www.linkedin.com/company/how-do-i-use-ai/posts/",
+    content: `I used Claude AI to build two HR dashboards in 10 minutes.
+
+No code. No designer. No back-and-forth with IT.
+
+Just clear prompts and the right context — and I had two fully functional dashboards ready to share.
+
+The tools are here. It's time to use them.`,
+    likes: 26,
+    comments: 3,
+    date: "2026-03-24",
+  },
+  {
+    id: "5",
+    linkedInUrl: "https://www.linkedin.com/company/how-do-i-use-ai/posts/",
+    content: `Those avoiding AI today will be irrelevant tomorrow.
+
+That's not a threat. It's a pattern.
+
+Every major technology shift left behind those who waited too long.
+
+The question isn't whether to learn AI. It's how fast you start.`,
+    likes: 0,
+    comments: 0,
+    date: "2026-03-24",
+  },
   // Add more posts here...
 ]
