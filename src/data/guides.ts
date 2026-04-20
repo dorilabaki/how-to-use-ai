@@ -640,6 +640,179 @@ The most important thing is to start. Every prompt is practice. Every refinement
 
 You now have the framework. The rest is application.
 `
+  },
+  {
+    slug: 'complete-guide-to-ai-powered-research',
+    title: 'The Complete Guide to AI-Powered Research for Business Professionals',
+    description: 'A practical, end-to-end guide to using AI tools for research that holds up under scrutiny: choosing the right tool, structuring your queries, verifying sources, and avoiding hallucinations.',
+    readTime: '28 min read',
+    publishedAt: '2026-04-20',
+    author: 'How Do I Use AI',
+    chapters: [
+      { id: 'why-ai-research', title: 'Why AI Research Is Different' },
+      { id: 'choosing-the-tool', title: 'Choosing the Right Tool' },
+      { id: 'framing-the-question', title: 'Framing the Question' },
+      { id: 'scaffolding-a-research-session', title: 'Scaffolding a Research Session' },
+      { id: 'sources-and-citations', title: 'Sources and Citations' },
+      { id: 'avoiding-hallucinations', title: 'Avoiding Hallucinations' },
+      { id: 'synthesis-and-writing', title: 'Synthesis and Writing' },
+      { id: 'workflows-and-templates', title: 'Workflows and Templates' },
+    ],
+    content: `
+## Why AI Research Is Different {#why-ai-research}
+
+Research before AI looked like this. You opened a browser, typed keywords, skimmed the first five results, opened a few promising ones in tabs, read them carefully, and synthesised by hand. The skill was query crafting, source vetting, and the patience to read.
+
+Research with AI looks different, and not always in the ways people think. AI has not replaced search. It has added a new layer on top: a synthesiser that can summarise, compare, extract, and structure information at a speed no human can match. It has not replaced the need for source verification. In some ways, it has made verification more important, because AI outputs can be confidently wrong in ways that are difficult to detect without going back to primary sources.
+
+The implication for a working professional is that AI research is not "search, but easier." It is a different practice with different inputs, different steps, and different failure modes. This guide walks through that practice.
+
+## Choosing the Right Tool {#choosing-the-tool}
+
+The tools available for AI-assisted research fall into a handful of categories. Each has strengths, weaknesses, and appropriate use cases.
+
+**General-purpose chatbots** like ChatGPT, Claude, and Gemini are powerful general reasoners. They excel at synthesising known information, explaining complex concepts, and structuring your thinking. They are weak at anything requiring real-time information and can generate plausible-sounding but incorrect facts when asked about specifics outside their training data.
+
+Use them for: frameworks, explanations, brainstorming, writing assistance, and reasoning through problems.
+
+Avoid them for: current events, specific statistics, exact quotes, and anything where the factual accuracy of a specific claim matters and cannot be verified.
+
+**Search-enabled assistants** like Perplexity, ChatGPT with browsing, and Claude with web search combine a language model with live web search. They retrieve current information and cite sources, which changes the research dynamic significantly.
+
+Use them for: current information, statistics that need verification, comparative research across sources, and anything where you need citations.
+
+Avoid them for: tasks where you just need to think, where live search adds friction without adding value.
+
+**Deep research tools** like ChatGPT's Deep Research mode, Perplexity Pro's research mode, and Google's Deep Research are newer entrants that conduct extended, multi-step research over twenty to forty minutes, reading dozens of sources before producing a report.
+
+Use them for: substantial research questions where the trade-off of waiting half an hour for a well-sourced ten-page report is worthwhile.
+
+Avoid them for: quick lookups, where the setup cost exceeds the benefit.
+
+**Domain-specific tools** cover specialised use cases. Consensus for scientific literature. Elicit for academic papers. Scite for citation analysis. These are narrow but deep.
+
+Use them for: the specific domain they cover, where specialised indexing produces better results than general-purpose tools.
+
+The practical upshot is that the right tool depends on the question. A broad "explain X concept" goes to ChatGPT. A "what are the current market statistics for Y" goes to Perplexity. A "do a comprehensive review of Z" goes to Deep Research. Treating one tool as the answer to every question is leaving most of the value on the table.
+
+## Framing the Question {#framing-the-question}
+
+The single largest improvement you can make to AI research output is to reframe your question before you type it.
+
+Weak framing: "Tell me about customer retention strategies."
+
+Stronger framing: "I work in B2B SaaS. I'm trying to reduce involuntary churn specifically — customers who leave because of payment failures, not because of dissatisfaction. Give me the frameworks and tactics that specifically address involuntary churn, with concrete examples of what different companies have done. Focus on mid-market SaaS, not consumer or enterprise."
+
+The stronger framing includes four things the weaker one omits: the industry context, the specific sub-problem, the type of answer wanted (frameworks and tactics with examples), and the scope constraint (mid-market, not consumer or enterprise).
+
+This is not about "prompting." It's about answering the question "what do I actually want to learn?" before asking it. The clarity that produces is valuable regardless of the tool.
+
+A useful discipline is to write the question three times before hitting send. The first version is usually what you typed without thinking. The second is better. The third usually captures what you actually want.
+
+## Scaffolding a Research Session {#scaffolding-a-research-session}
+
+A research session of any substance benefits from a lightweight structure. Not a formal research plan, but a handful of checkpoints that keep you from wandering.
+
+**Define the output first.** Before starting the research, describe what the finished work looks like. "A one-pager I can send to my manager summarising the three most promising options, with a recommendation and brief pros-and-cons for each." This constrains the research to what you actually need to produce.
+
+**List what you already know.** Fifteen seconds of reflection on your current understanding tells you where to focus. AI outputs are more useful when they build on your existing knowledge rather than explaining the basics you already have.
+
+**Draft the open questions.** Three to seven specific questions the research needs to answer. This becomes your checklist — you know you're done when each question has an answer you're confident in.
+
+**Pick the tool.** General chatbot, search-enabled assistant, deep research, or domain-specific. Match the tool to the question type.
+
+**Run the first pass.** Ask the question, get the output, read critically. The first pass is almost never the final answer.
+
+**Verify the key claims.** Any specific numbers, studies, or names that will appear in your output need to be verified at a primary source. More on this in the hallucinations chapter.
+
+**Iterate or expand.** Based on the first pass, either refine the question to dig deeper, or expand into a related area you hadn't considered.
+
+**Synthesise into the output.** The AI helps with this too, but the structure should come from you.
+
+This framework reliably produces better research than a more ad-hoc approach, even though it adds maybe ten minutes of setup. The ten minutes are bought back in reduced wheel-spinning.
+
+## Sources and Citations {#sources-and-citations}
+
+Sources matter more in AI-assisted research than in traditional research, not less. This is counter-intuitive, since AI tools can produce well-phrased summaries quickly. The reason sources still matter is that the AI might be wrong, and the only way to know is to check.
+
+**Always prefer tools that cite sources.** For any research where accuracy matters, use a search-enabled assistant rather than a base chatbot. The citations let you verify claims before using them.
+
+**Open the actual source, not just the citation.** A citation list is reassuring, but it's not verification. Click through to at least the most consequential sources and confirm the AI's summary is accurate. AI tools occasionally mis-summarise or over-generalise from the source.
+
+**Weight the sources.** A peer-reviewed study in a respected journal carries different weight than a blog post by a consultant. AI tools don't always make this distinction clear; you have to bring that judgement.
+
+**Prefer primary sources over secondary ones.** If the AI cites a news article that quotes a study, try to find the study. News coverage of research frequently distorts or simplifies findings in ways that matter.
+
+**Note the date.** Information ages. A 2019 best practice may be outdated. The AI won't always flag this.
+
+A useful habit: for any research that will go into a deliverable, maintain a separate notes file with the verified sources for each key claim. This takes a few minutes and saves hours if anyone later questions the work.
+
+## Avoiding Hallucinations {#avoiding-hallucinations}
+
+Hallucinations are AI outputs that are factually wrong but presented with confidence. They are the single largest reliability issue with AI research.
+
+The important thing to understand is that hallucinations are not random. They occur in predictable patterns, and understanding those patterns makes them much easier to catch.
+
+**Specific numbers are the highest-risk category.** When you ask for statistics, percentages, dates, or quantities, the risk of fabrication is high, especially from base chatbots without search. If the AI tells you "42% of companies do X" or "the market was worth $8.3 billion in 2023," treat that number as unverified until you find the original source.
+
+**Quotes are the second-highest risk.** AI tools will sometimes generate quotes attributed to real people that the person never actually said. This is not deliberate deception; it's a failure mode of how language models work. Any quote that will appear in your output must be verified against a primary source.
+
+**Study citations are the third-highest risk.** AI tools sometimes invent plausible-sounding study names and author combinations. "A 2021 study by Smith and Chen found..." is a pattern that sounds authoritative and is often fictional. Verify by searching for the study directly.
+
+**Very recent events are risky.** If you're researching something that happened last month and your tool doesn't have live search, the output may be hallucinated entirely.
+
+**Obscure topics are risky.** The further you get from well-documented mainstream topics, the more the model is filling in from approximation rather than knowledge.
+
+Practical rules of thumb:
+
+For any claim that will matter in your output — a specific number, a person's name, a study title, a quote — verify it at a primary source. The AI's confidence level is not a reliable signal of truth.
+
+If the AI can't give you a citable source when asked, treat the claim as unverified regardless of how plausible it sounds.
+
+When in doubt, ask the AI directly: "How confident are you in this claim? What might be wrong?" Good tools will give nuanced answers. The act of asking also primes you to look more critically at the response.
+
+## Synthesis and Writing {#synthesis-and-writing}
+
+Once you have verified research material, synthesising it into your deliverable is where AI provides enormous leverage — and where a handful of failure modes still apply.
+
+The core technique is to separate research from synthesis. Use one chat or session to gather and verify information. Use a different chat or session, with the verified information pasted in, to produce the output. This prevents the output AI from inventing new facts during synthesis.
+
+**Paste in your verified notes, then ask for the draft.** "Here are my notes on topic X, gathered from [sources]. Write a two-page brief that covers [structure]."
+
+**Ask for structure before prose.** A one-line outline is cheaper to iterate on than a five-page draft. Nail the structure, then expand.
+
+**Iterate in layers.** First pass: get the full draft. Second pass: fix structural issues. Third pass: tighten language. Fourth pass: check every claim against your source notes. This is faster than trying to perfect everything in one shot.
+
+**Read the output skeptically.** If the AI introduced a number or a claim that wasn't in your notes, that claim needs to be verified or cut. The output AI will sometimes add plausible-sounding embellishments.
+
+**Use your voice, not the AI's.** The default output style of most models is fluent but slightly generic. Give explicit style instructions, or heavily edit the output. A finished document should sound like you, not like a chatbot.
+
+## Workflows and Templates {#workflows-and-templates}
+
+A few workflows, once set up, produce outsized returns when reused.
+
+**The market research workflow.** Define the market. Use a search-enabled assistant to find the three to five most-cited reports. Open each one. Extract the key data points into your notes. Use a chatbot to identify themes and contradictions across sources. Produce the synthesis from verified data.
+
+**The competitive analysis workflow.** List competitors. For each, use a search-enabled tool to gather product offering, positioning, pricing, and recent news. Structure the output as a comparison table. Use a chatbot to identify patterns and strategic implications.
+
+**The technical research workflow.** Describe the problem. Use a general chatbot to identify the relevant concepts and terminology. Use a domain-specific tool (academic search, documentation search) to find specific solutions. Use a search-enabled assistant to find worked examples. Synthesise.
+
+**The decision prep workflow.** Name the decision. List the options. For each option, research pros, cons, and comparable cases. Use a chatbot to stress-test each option ("what's the strongest case against X?"). Produce a one-pager with a recommendation.
+
+**The content briefing workflow.** Define the audience. Use a search-enabled tool to identify the top five pieces of content already written on the topic. Extract what they cover and what they miss. Draft a brief that covers the gaps.
+
+Each of these workflows can be turned into a reusable prompt template. Save them in a notes app or as custom GPTs. The second time you use a workflow, it takes half the time of the first.
+
+## The Long Picture
+
+AI research is a skill that compounds. The first month of serious use produces incremental improvements. The sixth month produces workflows that are genuinely different from how you researched before. The second year produces habits of verification, structuring, and synthesis that carry over to work even when you're not using AI.
+
+The trap is assuming the tools are doing the work for you. The tools are doing part of the work — a large part — but the parts that still require you are the parts that matter most: framing the question, judging the sources, and producing the output that actually ships. Those parts are the job. The AI just makes them easier.
+
+For a companion piece on applying these techniques at the desk, see our article on [how to build custom GPTs that actually save you time](/resources/how-to-build-custom-gpts-that-save-time). And for the broader context of making AI part of a productive workday, [Office Productivity Hacks](https://officeproductivityhacks.com) covers the tools and workflows that sit around AI in the everyday office.
+
+You now have the framework. The rest is the same thing it always is: practice, over months, on real problems.
+`
   }
 ];
 

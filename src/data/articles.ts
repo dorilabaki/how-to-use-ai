@@ -1007,6 +1007,120 @@ For non-developers, the practical takeaway is simple: MCP means your AI tools wi
 
 If you're interested in how AI integrates with your daily workflow tools, [Office Productivity Hacks](https://officeproductivityhacks.com) covers practical setups for Excel Copilot, Google Sheets, and other office tools that are adopting similar connectivity patterns.
 `
+  },
+  {
+    slug: 'how-to-build-custom-gpts-that-save-time',
+    title: 'How to Build Custom GPTs That Actually Save You Time',
+    description: 'Most custom GPTs get abandoned within a week. This guide walks through the design principles that make one genuinely stick — from scoping the task to writing instructions that hold up over time.',
+    category: 'ChatGPT',
+    readTime: '10 min read',
+    publishedAt: '2026-04-20',
+    author: 'How Do I Use AI',
+    content: `
+## Why Most Custom GPTs Get Abandoned
+
+Custom GPTs look like a power user feature, but most people build one, use it twice, and forget it exists. The reason is almost always the same: the GPT does not do anything meaningfully different from what a well-written prompt in a fresh chat would do.
+
+A custom GPT earns its place on your home screen when it removes a recurring friction. That usually means it combines three things: a specific, repeatable task; context you would otherwise re-paste; and a style or structure you want enforced without having to remember it. If your idea for a GPT doesn't have all three, it's a prompt, not a GPT.
+
+## Step One: Scope the Task
+
+Before you open the GPT builder, write down the task in one sentence. Then write down how often you do it. Then write down what goes wrong when you do it casually in a new chat.
+
+For example: "I review pull requests and want consistent feedback on readability, naming, and error handling. I do this maybe twice a week. Without a GPT, I either skip the review or give it thirty seconds of attention." That is a GPT-sized task — narrow, recurring, and with a clear failure mode.
+
+Compare that with "I want an assistant that helps me be more productive." That is not a task; it is an aspiration. You cannot build instructions against it.
+
+## Step Two: Decide What the GPT Knows
+
+A custom GPT gives you three ways to bake knowledge into the model: the instructions field, the knowledge file uploads, and the conversation starters. Use them differently.
+
+Instructions are for rules that always apply: the role the GPT plays, the format of its output, what it must never do, how it handles ambiguity. Think of this as the job description.
+
+Knowledge files are for content the model needs to reference but doesn't need to memorise. A style guide, a product brief, a list of customer personas, a glossary. The GPT retrieves from these files at conversation time. Files should be clean, well-named, and focused. A 200-page PDF dump of your Notion workspace will produce worse results than a 10-page curated document.
+
+Conversation starters are for common entry points. They lower the friction of actually using the GPT. The most-used GPTs have three to five starters, each phrased as the first sentence the user would naturally type.
+
+## Step Three: Write Instructions That Hold Up
+
+The instructions field is where most custom GPTs fail. People treat it like a mission statement. Treat it like a contract.
+
+A durable instruction block has four sections:
+
+**Role and Goal.** One paragraph. Who the GPT is, what it helps with, and who the user is assumed to be. Keep this short. The model does not need poetry; it needs a job title and a user description.
+
+**Process.** A numbered list of what the GPT does when it receives a request. This is where structure lives. "First, ask for X if the user hasn't provided it. Then, do Y. Then, produce output in format Z." The model will follow ordered lists more reliably than paragraphs.
+
+**Style and Format.** What the output looks like. Length, tone, structure, headings, code blocks, whatever matters. Be specific. "Use plain prose, no bullet lists, under 300 words" is a useful instruction. "Be concise and clear" is not.
+
+**Boundaries.** What the GPT must not do. If it should decline to answer questions outside its scope, say so explicitly. If it should never invent data, say so explicitly. The model respects negative instructions reasonably well when they are specific.
+
+## Step Four: Test Like a Sceptic
+
+Every GPT should be tested against its hardest likely inputs before you start using it for real. Run at least these five scenarios:
+
+The empty prompt: the user types nothing, or "hi", or "help". Does the GPT behave reasonably?
+
+The vague prompt: the user gives a fragment of a request. Does the GPT ask a clarifying question, or does it charge ahead with assumptions?
+
+The adversarial prompt: the user asks something outside the GPT's scope. Does it decline gracefully?
+
+The long prompt: the user pastes a large block of text. Does the GPT use it well, or get overwhelmed?
+
+The repeat prompt: the user runs the same request twice. Are the outputs roughly consistent, or wildly different?
+
+Fix the instructions based on what you find. Most GPTs need three or four rounds of iteration before they are usable. If you publish one on the first try, you will probably end up rebuilding it later.
+
+## Step Five: Decide About Tools
+
+OpenAI's builder exposes a handful of capabilities that can be toggled on and off. Web browsing lets the GPT search the internet. Code interpreter lets it run Python in a sandbox. Image generation hooks into the model's image tools.
+
+The default instinct is to turn them all on. Resist it. More tools make the GPT slower and more likely to go off on tangents. A GPT with only code interpreter enabled is often better at spreadsheet tasks than a GPT with everything enabled, because it has fewer ways to misinterpret the request.
+
+A good rule: enable only the tools the task genuinely requires, and mention in the instructions when the GPT should use each one. "If the user provides a CSV, use code interpreter to analyse it" is clearer than hoping the model figures out the workflow on its own.
+
+## Step Six: The First Week of Real Use
+
+Once your GPT is live, use it for a week and keep a scratchpad of everything that annoys you about its behaviour. Not "bugs" exactly — more like "it keeps repeating the question back to me," or "it uses bullet points when I asked for paragraphs." Each of these is a small instruction to add to the next revision.
+
+At the end of the week, open the configuration and spend twenty minutes revising. The gap between a week-one GPT and a week-two GPT is usually larger than between a week-two and a week-ten GPT. Most of your usability gains come from fixing the first round of friction.
+
+## The Patterns That Actually Stick
+
+Across thousands of community-shared GPTs, a handful of patterns are consistently useful enough to survive long-term:
+
+**The reviewer.** Takes your work — writing, code, a slide outline — and gives structured feedback against a specific rubric. Works because it encodes a mental checklist you would otherwise skip.
+
+**The rewriter.** Takes draft prose and rewrites it to a specific style or audience. Works because style consistency is hard to maintain manually and the GPT enforces it.
+
+**The extractor.** Takes unstructured input (meeting notes, emails, call transcripts) and produces a structured output (action items, CRM updates, summaries in a specific template). Works because the formatting work is boring and repeatable.
+
+**The tutor.** Takes a topic you want to learn and walks you through it at your level, with questions. Works because it scales a one-on-one experience that would otherwise be expensive.
+
+**The decision framer.** Takes a decision you are facing, asks clarifying questions, and structures the considerations. Works because the format — not the answer — is what actually helps.
+
+Notice what none of these are. None are "general assistants." None are "creative collaborators." The ones that stick do one thing, and they do it the same way every time.
+
+## What to Avoid
+
+A handful of anti-patterns will waste your time:
+
+**Kitchen-sink GPTs** that try to handle every possible request about a domain. They perform worse than a well-written one-off prompt, because their instructions are too diffuse to be useful.
+
+**Persona GPTs** built primarily for a character or voice rather than a task. These are fun for a day and abandoned by the weekend.
+
+**Instruction-bloat GPTs** where the instructions are two thousand words of policies, caveats, and exceptions. The model gets worse at following instructions past a certain length; your carefully worded clause on line 47 is just diluting the stuff on line 1.
+
+**Confidential data GPTs** where you upload sensitive information to a tool you don't control. Any document you put in the knowledge files should be fine to hand to a stranger. If it isn't, use a different approach, such as a local workflow or a Projects feature where available.
+
+## The Short Version
+
+A custom GPT is worth building when the task is specific, recurring, and suffers from inconsistent results when you handle it ad hoc. The instruction block should read like a contract, not a mission statement. Tools should be enabled only when needed. The first week of real use is when the GPT actually gets good.
+
+Build fewer, better ones. A user who maintains three GPTs they actually use every week is more productive than one who has published twenty that sit untouched.
+
+For broader workflows that connect your GPT to business systems, see our piece on [MCP and AI connectivity](/resources/mcp-ai-connectivity-explained). And if your GPT is meant to automate spreadsheet work, [Office Productivity Hacks](https://officeproductivityhacks.com) has practical patterns for combining AI with Excel and Google Sheets.
+`
   }
 ];
 
