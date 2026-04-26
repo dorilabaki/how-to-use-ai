@@ -1237,6 +1237,135 @@ It is not a reason to stop curating your context. Use the long window when the t
 
 For tasks that pair long-context reasoning with spreadsheet data analysis, [Office Productivity Hacks](https://officeproductivityhacks.com) covers how to combine Copilot's Excel tooling with AI workflows. And if you're building prompts that take advantage of the longer window, our [prompt frameworks guide](/resources/prompt-frameworks-better-ai-outputs) has patterns that scale well as inputs grow.
 `
+  },
+  {
+    slug: 'claude-opus-4-7-task-budgets-xhigh-effort',
+    title: 'Claude Opus 4.7 Task Budgets and the New "xhigh" Effort Level: A Practical Guide',
+    description: 'Anthropic shipped Opus 4.7 on April 16, 2026 with two features that change how you build agentic workflows: task budgets that cap total token spend across a loop, and an xhigh reasoning effort level. Here is how to use both, with code, costs, and the cases where each pays off.',
+    category: 'Advanced',
+    readTime: '11 min read',
+    publishedAt: '2026-04-26',
+    author: 'How Do I Use AI',
+    content: `
+## What Anthropic Shipped on April 16
+
+Claude Opus 4.7 reached general availability on April 16, 2026, at the same $5 per million input tokens and $25 per million output tokens pricing as Opus 4.6. The release notes flag three new things worth understanding if you build with Claude: a higher reasoning effort level called "xhigh," a public-beta feature called "task budgets," and tightened instruction-following at the lower effort levels.
+
+If you only use Claude through the chat interface, none of this is directly relevant. If you build agents, automate workflows, or write code that calls the Claude API, all three matter. This guide walks through what each feature does, how to turn it on, when it pays off, and when it doesn't.
+
+## The Effort Parameter, Briefly Recapped
+
+Before Opus 4.7, the Claude API exposed a reasoning effort parameter with values that controlled how much compute the model spent on intermediate reasoning before producing a response. The trade-off is straightforward: higher effort produces better answers on hard problems and worse latency and cost on easy ones.
+
+Opus 4.7 adds a new value, "xhigh," that sits above the previous high tier and below max. It is intended for problems where the marginal accuracy from more reasoning is worth a meaningful additional latency and token cost. Coding tasks at the harder end of the SWE-bench distribution are the canonical case Anthropic flagged in the release notes.
+
+The default behaviour, if you don't set effort explicitly, is unchanged from Opus 4.6. You only see xhigh's behaviour if you ask for it.
+
+A second change in Opus 4.7 is that the model now follows instructions more literally at the lower effort levels. The release notes explicitly state that Claude will not silently generalise an instruction from one item to another. If you tell it to do X for item A and then ask about item B, Opus 4.7 is more likely to do exactly that and ask about B without re-applying X by default. This is a behavioural shift that may affect existing prompts. If you have prompts written for Opus 4.6 that depend on the model inferring extension across items, you may need to make those instructions explicit in 4.7.
+
+## Task Budgets: What They Solve
+
+Task budgets are the more substantive feature. The setting names and beta header are public: you opt in by adding the beta header \`task-budgets-2026-03-13\` and setting an \`output_config\` with \`effort\` and \`task_budget\` fields.
+
+The problem task budgets solve is specific and worth describing precisely. In an agentic workflow, the model produces a sequence of thinking tokens, tool calls, tool results coming back, more thinking, more tool calls, and eventually a final output. A long loop can burn far more tokens than an analogous single-turn response, and there is no clean way for the developer to bound the total spend without either capping max_tokens too aggressively (which cuts off mid-action) or letting the loop run unbounded (which produces unpredictable costs).
+
+A task budget gives the model a soft target for total tokens across the entire agentic loop. The model sees a running countdown of how much budget remains. It uses this to prioritise. As the budget approaches zero, the model is biased toward wrapping up gracefully rather than starting another tool call. The result is that the loop ends with a complete answer rather than a half-finished action.
+
+This is the difference between cutting off an analyst mid-sentence and asking them to write a one-paragraph summary in the time they have left. The first is what max_tokens does. The second is what task budgets do.
+
+## A Working Example
+
+Here is the minimal API call that demonstrates both features together.
+
+\`\`\`python
+import anthropic
+
+client = anthropic.Anthropic()
+
+response = client.beta.messages.create(
+    model="claude-opus-4-7",
+    max_tokens=128000,
+    output_config={
+        "effort": "xhigh",
+        "task_budget": {"type": "tokens", "total": 64000},
+    },
+    messages=[
+        {"role": "user", "content": "Refactor the attached module..."}
+    ],
+    betas=["task-budgets-2026-03-13"],
+)
+\`\`\`
+
+A few things to notice:
+
+The \`task_budget.total\` of 64,000 is the cap across the entire agentic loop including thinking, tool calls, tool results, and the final output. This is different from \`max_tokens\`, which caps the response itself. The model will see the 64,000 figure decrement as it uses tokens.
+
+The \`effort\` is set to \`"xhigh"\` for this example because the task is non-trivial. For simpler tasks, lower effort levels produce faster and cheaper results without meaningful accuracy loss.
+
+The beta header \`task-budgets-2026-03-13\` is required while the feature is in public beta. When it goes GA, the header will no longer be needed.
+
+## When Task Budgets Pay Off
+
+Task budgets earn their place in three specific situations.
+
+### 1. Agentic Coding Tasks With Variable Complexity
+
+If you run an agent that codes against a repo, the same kind of task can have very different token costs depending on the codebase. Refactoring a 200-line module is not the same as refactoring a 20,000-line module, even if your prompt is identical. Without a task budget, the agent will burn through tokens on the larger codebase until it either finishes or hits max_tokens mid-edit. With a task budget, you cap the spend, and the agent prioritises the highest-value edits in the time it has.
+
+### 2. Background Agents With Per-Run Cost Targets
+
+If you run agents on a schedule, processing inputs as they arrive, the per-run cost matters as much as the per-run quality. A task budget of 30,000 tokens gives you a predictable cost ceiling at roughly $0.75 per run on Opus 4.7, regardless of how complex the input is. This kind of predictability is what makes background agents financially viable at scale.
+
+### 3. User-Facing Agents With Latency Targets
+
+Token budgets correlate roughly with latency, so a task budget functions as a soft latency cap. If your users tolerate 30 seconds for a response but not 90, capping the budget at a level that produces a 30-second p95 keeps the user experience consistent. Without the cap, occasional long-running responses will frustrate users who expected a faster reply.
+
+## When Task Budgets Hurt
+
+There are also cases where task budgets are the wrong tool.
+
+The first is when accuracy matters more than cost. If you are running Opus on a one-off problem where the answer's correctness is worth far more than the marginal tokens, capping the budget too tightly forces the model to wrap up before it has fully solved the problem. The release notes are explicit that "if the model is given a task budget that is too restrictive for a given task, it may complete the task less thoroughly or refuse to do the task entirely." That is the right behaviour from the model's side. It is also a cost you should be aware of.
+
+The second is when the task is genuinely single-turn. Task budgets are designed for agentic loops with multiple tool calls. For a normal chat completion with no tool use, max_tokens is the right control and task_budget adds complexity without value.
+
+The third is when you don't yet know how long your task should take. Calibration matters. The first time you run a new agent on a new task, run it without a budget, observe how many tokens it actually uses, and set the budget at a meaningful percentile of that distribution. Setting it blindly tends to produce too-low or too-high values, both of which are worse than no budget.
+
+## Calibration: How to Pick a Budget Number
+
+A useful procedure for picking a task budget number, refined from common mistakes:
+
+1. Run the agent without a budget on a representative sample of tasks (10 to 50, depending on task variability). Record the total tokens used per run.
+
+2. Look at the distribution. The 50th percentile is what you would naively budget against. The 95th percentile is the bar you would set if you wanted nearly every task to complete fully. The right answer is somewhere in between, depending on how much you are willing to truncate the long-tail tasks.
+
+3. Set the budget at the 75th to 85th percentile by default. This means roughly 15 to 25 percent of runs will hit the budget and wrap up early. The runs that wrap up early still produce useful output because the model knows it is wrapping up.
+
+4. Watch for runs that hit the budget and produce noticeably worse output. If you see this consistently, the budget is too tight. Raise it.
+
+This calibration matters because budgets are a coarse instrument and the cost of a too-tight budget is silent quality degradation. You won't see errors in your logs. You will see a slow drift in user satisfaction.
+
+## What This Means for the Workflows You Already Have
+
+If you have an existing agent built on Opus 4.6, the migration to 4.7 with task budgets is incremental. You can update the model string to claude-opus-4-7 and continue running the agent unchanged at the same price point. The literal-instruction-following change at lower effort levels may surface a few prompts that need to be made explicit, but most workflows will run as before.
+
+The decision to add task budgets is a separate choice. They produce real value for agentic loops with variable cost or latency profiles. They produce no value for simple chat completions. The right answer is to add them where they pay off and skip them elsewhere, not to add them everywhere because they are new.
+
+The decision to use xhigh is similar. For genuinely hard problems where the additional reasoning budget translates into measurable accuracy gains, xhigh is worth the latency. For most tasks, default or high effort produces equivalent results faster.
+
+## A Final Note on the Pricing Model
+
+Pricing on Opus 4.7 is unchanged from 4.6: $5 per million input tokens, $25 per million output tokens. Output is what task budgets primarily affect, because thinking and tool-result tokens count as output. A 64,000-token task budget at xhigh effort is therefore a worst-case spend of roughly $1.60 per run if fully consumed. Most runs will use less.
+
+This pricing context is what makes task budgets a useful financial tool rather than just an engineering feature. The difference between a 40-cent run and a $1.60 run, multiplied across thousands of runs per day, adds up. Task budgets give you the controls to make that trade-off explicitly rather than leave it to the variance of individual prompts.
+
+## Where to Go From Here
+
+For the broader picture of what Claude can do across different model tiers, our piece on [ChatGPT vs Claude vs Gemini](/resources/chatgpt-vs-claude-vs-gemini) covers the full landscape. For developers building with the longer Claude context window, the [Claude 1M context window practical guide](/resources/claude-1m-context-window-practical-guide) walks through the trade-offs of long-input tasks. And if you are pairing AI workflows with spreadsheets, [Office Productivity Hacks](https://officeproductivityhacks.com) covers the integration patterns that work well in practice.
+
+---
+
+*Sources: Anthropic Release Notes (support.claude.com/articles/12138966-release-notes), Claude API Docs on Task Budgets (platform.claude.com/docs/en/build-with-claude/task-budgets), Claude API Docs on Effort (platform.claude.com/docs/en/build-with-claude/effort), GitHub Changelog April 16, 2026.*
+`
   }
 ];
 
