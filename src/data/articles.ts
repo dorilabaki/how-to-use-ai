@@ -1366,6 +1366,230 @@ For the broader picture of what Claude can do across different model tiers, our 
 
 *Sources: Anthropic Release Notes (support.claude.com/articles/12138966-release-notes), Claude API Docs on Task Budgets (platform.claude.com/docs/en/build-with-claude/task-budgets), Claude API Docs on Effort (platform.claude.com/docs/en/build-with-claude/effort), GitHub Changelog April 16, 2026.*
 `
+  },
+  {
+    slug: 'evaluating-ai-outputs-without-being-an-expert',
+    title: 'How to Evaluate an AI Answer When You Are Not the Expert',
+    description: 'The hardest part of using AI is judging output in domains where you do not already know the right answer. This article walks through five concrete techniques drawn from the literature on calibration, evaluation, and metacognition that work even when you cannot grade the substance directly.',
+    category: 'Best Practices',
+    readTime: '10 min read',
+    publishedAt: '2026-04-27',
+    author: 'How Do I Use AI',
+    content: `
+## The Problem No Prompt Engineering Course Solves
+
+Most advice on getting better results from AI is about writing better prompts. That is useful as far as it goes. But every prompt eventually produces an answer, and someone has to decide whether that answer is good enough to act on.
+
+If you are an expert in the domain, this is straightforward. You read the response, your knowledge tells you whether it is right, and you move on. If you are not the expert, the situation flips entirely. The whole reason you asked the model is that you do not have the answer yourself. How are you supposed to grade it?
+
+This is the central problem of using AI for tasks at the edge of your competence. It is also the area where users get into the most trouble, because plausible-sounding answers from a confident-sounding model are easy to accept by default. The techniques in this article are practical heuristics for catching errors when you cannot evaluate the substance directly.
+
+## Why "Just Trust It" Is the Wrong Default
+
+Modern language models, by design, optimise for plausibility. They are trained to produce responses that read as fluent and confident. Fluency and confidence are not the same as accuracy.
+
+A useful frame, drawn from the broader research on epistemic calibration, is to separate two questions. First, is the answer well-formed? That is, does it look like an answer, with the right structure, vocabulary, and surface features? Second, is the answer correct? Models are reliably good at the first question. They are unreliably good at the second.
+
+The risk is that humans tend to use the first as a proxy for the second. We treat well-formed answers as evidence of competence. The fluent paragraph that includes confident technical terms feels like it must come from understanding, even when it does not.
+
+The five techniques below are designed to break that link. They give you ways to test whether a model's confident output is actually grounded, without requiring you to already know the answer yourself.
+
+## Technique One: Ask the Model to Cite
+
+The simplest move, and the first one to try on any factual claim, is to ask the model to point to specific sources, document sections, or evidence for what it just said.
+
+The phrasing matters. "What is your source?" often produces a generic answer. More effective phrasings include:
+
+- "Quote the specific passage that supports the claim that X."
+- "Which section of the document does this come from?"
+- "If I want to verify this, where would I look?"
+
+If the model produces specific, locatable references, you can check them. If it produces vague gestures or invented citations, that itself is the signal. Inability to cite specifically is correlated with inability to verify, which is correlated with inability to know.
+
+The caveat is that some models will hallucinate citations, especially for legal or academic content. The fix is to actually look up the cited source. If a Claude or ChatGPT response cites a paper or court case, search for it directly. The act of verification, not the citation alone, is what produces evidence.
+
+## Technique Two: Ask for the Reasoning Trace
+
+A model that has produced an answer through reasoning can usually reproduce that reasoning if you ask. A model that has produced an answer by pattern-matching on surface features often cannot.
+
+Useful prompts:
+
+- "Walk me through the steps that led to this answer."
+- "What would have to be true for this answer to be correct?"
+- "If someone disagreed with you, what would their strongest counter-argument be?"
+
+The reasoning trace gives you something concrete to evaluate. You may not know whether the final answer is right, but you can often spot whether the steps to get there are sensible. Logical leaps, missing premises, and contradictions between steps are signals you can detect without domain expertise.
+
+A specific variant worth knowing: ask the model to argue against its own answer. The quality of the counter-argument tells you whether the model has actually engaged with the question or has only produced one defensible-looking output. A model that cannot argue against itself convincingly probably did not consider alternatives in the first place.
+
+## Technique Three: Triangulate Across Phrasings
+
+A reliable answer should be stable across paraphrasings of the same question. An unreliable answer often is not.
+
+The technique is to ask the same question two or three times in different ways. Same underlying meaning, different surface form. Compare the answers. If they agree on the substance, your confidence in the answer should rise. If they disagree, you have found a place where the model is uncertain even if it sounded confident in any individual response.
+
+This is easier than it sounds. A few examples of paraphrasing strategies:
+
+- Switch the framing from positive to negative. "What are the advantages of X?" becomes "What are the disadvantages of X?"
+- Switch from general to specific or vice versa. "How does Y work?" becomes "Walk me through a concrete example of Y."
+- Change the audience. "Explain Z to a beginner" becomes "Explain Z to a domain expert."
+
+Where the answers converge is where the model has stable knowledge. Where they diverge is where you should be cautious.
+
+## Technique Four: Ask for the Domain's Conventional Wisdom Before You Ask Your Question
+
+This is a more subtle technique and arguably the most useful one. Before you ask a model your real question, ask it what the standard view of the domain is.
+
+The reason this works is that most domains have well-established positions on common questions, and the model knows them. By eliciting the standard view first, you set up an external reference point. Then, when you ask your real question, you can compare the model's specific answer against that reference.
+
+Concretely:
+
+- "What is the conventional approach to X in software engineering?" before asking "Should I do X for my project?"
+- "What does the medical literature generally say about Y?" before asking "Is Y a good treatment for my situation?"
+- "What is the standard framework lawyers use to analyse Z?" before asking "How should I think about Z in my case?"
+
+This is a form of self-calibration. If the model's answer to your specific question is wildly inconsistent with the conventional wisdom it stated moments before, that is a signal. The discrepancy might be justified, but it requires explanation, and you can ask for it.
+
+## Technique Five: Identify the Stakes Before You Use the Output
+
+Not every AI answer needs the same level of scrutiny. The level of effort you put into evaluation should scale with what happens if the answer is wrong.
+
+A practical taxonomy:
+
+- Low stakes: drafts that you will rewrite anyway, brainstorming, formatting tasks, summaries you will fact-check against the source. Use the output and move on.
+- Medium stakes: anything that will leave your machine. Public-facing writing, code that will run, advice you will give to someone else. Apply at least one of the techniques above before relying on the answer.
+- High stakes: anything where being wrong has lasting consequences. Legal, financial, medical, safety-critical decisions. Treat the AI output as one input among several. Triangulate against authoritative sources or qualified humans before acting.
+
+The mistake users make is treating all outputs as equivalent. A casual question and a high-stakes question look the same in the chat interface, but the cost of error is wildly different. Adjusting your evaluation effort to the stakes is, by itself, the single most important habit for using AI well.
+
+## What the Research Says About AI Calibration
+
+The technical literature on AI evaluation reinforces the practical points above. A few findings worth knowing:
+
+Calibration, that is, the relationship between a model's stated confidence and its actual accuracy, has improved substantially over the past several years but remains imperfect. Confidence is not a reliable proxy for correctness, especially in long-tail topics where the model has seen less training data.
+
+Reasoning-augmented models, including the chain-of-thought and reasoning-effort variants from Anthropic, OpenAI, and Google, are measurably more accurate on tasks that benefit from extended deliberation. They are also more likely to produce traces you can audit. If you are doing serious work, prefer the model variants that show you their reasoning.
+
+Hallucination rates vary across domains. Models tend to be most accurate on topics that are heavily represented in training data, including general knowledge, mainstream code, and well-documented public information. They tend to be least reliable on niche academic claims, recent events, specific legal or medical details, and obscure technical specifications. Adjust your trust accordingly.
+
+## Building the Habit
+
+The techniques above are meant to be habits, not rituals. The point is not to apply all five to every AI interaction. The point is to develop reflexes for catching the kinds of errors that matter.
+
+A reasonable starting practice. For any AI output you intend to use beyond a casual draft, ask yourself: do I know how to verify this? If yes, verify it. If no, apply at least one of the techniques to surface signals about whether the answer is reliable. Over time this becomes automatic, and the calibration of your trust in AI starts matching the actual quality of the outputs.
+
+The honest statement of the problem is that AI is producing more confident-sounding text than the average person can grade. The honest response is to build the small set of habits that let you grade it anyway.
+
+For a deeper look at structuring prompts to produce more verifiable outputs, see our [prompt frameworks guide](/resources/prompt-frameworks-better-ai-outputs). For working with AI in spreadsheet workflows specifically, [Office Productivity Hacks](https://officeproductivityhacks.com) covers practical patterns for combining Excel and AI without surrendering review to the model.
+`
+  },
+  {
+    slug: 'context-engineering-vs-prompt-engineering',
+    title: 'Context Engineering vs Prompt Engineering: What the 2026 Shift Actually Means for Your Work',
+    description: 'Prompt engineering tells you how to ask. Context engineering tells you what the model gets to see while it answers. As models have improved, the second skill has overtaken the first as the limiting factor in real AI work. This article explains the distinction, the four levers context engineering pulls, and the practical changes a non-engineer can make today.',
+    category: 'Best Practices',
+    readTime: '11 min read',
+    publishedAt: '2026-04-28',
+    author: 'How Do I Use AI',
+    content: `
+## The Quiet Vocabulary Shift
+
+If you have followed AI advice for any length of time, you have read a lot of articles about prompt engineering. Be specific. Give a role. Provide examples. Specify the output format. The advice is real and still useful.
+
+Through 2025 and into 2026, a different term started appearing alongside it: context engineering. Anthropic published an engineering note on the topic. Google, OpenAI, and a long list of practitioner blogs followed. The shift was not marketing. It reflected a real change in where AI work succeeds or fails.
+
+The short version: prompts are still important, but the harder problem is no longer how you ask. It is what the model has access to while it is answering. This article explains the distinction in plain terms, the four levers context engineering actually controls, and what a non-engineer can do about it today.
+
+## Defining the Two Skills
+
+Prompt engineering is the craft of writing the request itself. The instruction sentence, the role, the examples, the output specification. It treats the model as a function that takes a string and returns a string, and asks: what string do I send to get the output I want?
+
+Context engineering is the craft of designing the entire information environment the model operates in. The system prompt, the documents in the context window, the tool definitions, the prior conversation, the schemas, the formats those documents are in, what gets included and what gets dropped, how state is carried from one step to the next. It treats the model as a system component and asks: what does the whole information picture look like, and is the model seeing what it needs?
+
+The two are not opposed. Context engineering includes prompt engineering as one layer. The change is what the limiting factor has become.
+
+## Why The Limiting Factor Moved
+
+Three things happened in parallel through 2024 and 2025 that pushed the limiting factor away from prompt phrasing.
+
+Models got materially better at following imperfectly phrased instructions. Frontier models from Anthropic, OpenAI, and Google now produce reasonable output from sloppy prompts that would have produced nonsense a few years earlier. The penalty for an unclear request is smaller. The advice "be specific" still helps, but it helps less than it used to.
+
+Context windows got dramatically larger. Models that could once hold a few thousand tokens now hold hundreds of thousands and, in some cases, more than a million. That changed the question from "what is the perfect single sentence to send" to "what should fit in this much larger envelope, and in what order, and in what format."
+
+Tool use, file access, and agent workflows became standard. Modern AI systems do not just answer one prompt and stop. They look at files you upload, call APIs, search the web, query databases, and chain together multi-step actions. Each of those steps depends on what the model can see and remember at that step. The picture stopped being "user message, model response" and became a streaming document of context that the system manages over time.
+
+Once those three changes had happened, the question of how the model is asked stopped being the bottleneck. The question of what it has to work with took its place.
+
+## The Four Levers Context Engineering Pulls
+
+Context engineering, stripped of jargon, is the management of four things.
+
+What information is included. Not every relevant document needs to be in the context. Including too much makes the model worse, not better, because attention is finite and irrelevant material crowds out the relevant pieces. Including too little starves the model of what it needs. Choosing well is the first skill.
+
+How that information is structured. Two documents with the same words in different orders or different formats produce different results. A clean schema beats a wall of prose. Section headers beat unmarked text. A table beats sentences listing the same data. The structure tells the model where to look.
+
+What is dropped or summarised over time. In a long conversation or a long-running agent, the early context becomes less relevant. Letting it sit there wastes window space and confuses focus. Summarising it, dropping it, or replacing it with a compact reference is part of the job.
+
+How state moves between steps. When an AI workflow has multiple steps, each step needs to know what previous steps decided, found, or recorded. Without an explicit mechanism for state, each step starts from scratch and the system as a whole loses coherence.
+
+These are not engineering-only concerns. A user writing a careful conversation with Claude is doing all four, whether or not they know the term.
+
+## What This Means for the Person Sitting at Their Desk
+
+If you are not building an agent, the practical changes to your daily AI use are smaller than the discourse suggests, but they are real.
+
+First, what you upload matters more than how you phrase your message. If you are asking the model to analyse a document, the cleanliness, completeness, and structure of that document is doing most of the work. A messy PDF with embedded images of text will produce worse results than the same content as clean text, regardless of how well the prompt is written. Spend the extra minute to extract the right pages, remove the headers and footers, and paste in just the section that matters.
+
+Second, give the model the right reference points before asking your question. If you are asking about a topic where there are conventions, examples, or prior decisions, include them. If you are asking the model to write in a particular style, paste in a few examples of that style. If you are asking it to produce output in a particular format, show the format with a real example, not just a description. We covered this in detail in our [prompt frameworks guide](/resources/prompt-frameworks-better-ai-outputs); the techniques there are squarely a context engineering practice.
+
+Third, manage the conversation as a document, not a chat. The full text of a long conversation is in the context. Anything you said early on is still influencing the model's responses now. If a conversation has drifted in a direction you did not want, do not try to nudge it back. Start a fresh conversation with a clean prompt that includes only what you actually need carried forward. Trying to recover a polluted context window is almost always slower than starting fresh.
+
+Fourth, when using AI in tools that have memory, files, or projects (Claude Projects, ChatGPT custom instructions, Cursor and similar coding tools, Notion AI, and so on), invest in the setup. The system prompt and project files are doing more work than any individual message. A well-configured project produces better answers from worse prompts than a poorly configured project produces from clever ones.
+
+## A Concrete Example
+
+Imagine asking an AI to draft a project update email for a stakeholder.
+
+The pure prompt engineering approach: "Write a project update email for a stakeholder. The project is a website redesign. Include status, blockers, and next steps. Tone should be professional but warm."
+
+The context engineering approach: paste in the previous three emails sent to that stakeholder for tone calibration, paste in the most recent project status notes verbatim, paste in a list of decisions made in the last sprint, and then write a much shorter prompt: "Draft the next update email in the style of the prior ones, using the status notes and recent decisions as content."
+
+The second version is shorter as a prompt but contains far more information in total. The output will be substantially closer to what the user actually wants, because the model is no longer guessing at tone, status, or recency. It is interpolating between known reference points.
+
+The skill on display in the second version is not a clever phrasing. It is the judgement of what to include, what to leave out, and how to structure the included material. That is context engineering in miniature.
+
+## What Stays the Same
+
+Three pieces of older advice still hold and are not displaced by the new framing.
+
+Clarity of intent still matters. The model can recover from a sloppy phrasing, but it cannot recover from genuine ambiguity about what you are trying to do. Stating the goal explicitly is still the cheapest improvement available.
+
+Output format specification still matters. Saying "respond as a JSON object with keys X, Y, Z" or "respond as bullet points, no preamble" is still doing real work. Models follow format instructions reliably; the cost of including them is near zero.
+
+Examples still beat adjectives. If you can show the model what you want with one or two real examples, that does more than any number of descriptive sentences. This is true at the prompt level and at the context level.
+
+What context engineering adds is not a replacement for these. It is the recognition that all of them sit inside a larger system, and the larger system has its own design problems that none of them solve.
+
+## The Honest Limit of the New Framing
+
+It is fair to be a little sceptical of the speed at which "context engineering" has become a buzzword. Some of what is published under the name is rebranded prompt engineering. Some is genuinely new. The useful filter is whether the advice is about the request itself (prompt) or about the entire information environment around the request (context).
+
+If a piece of advice is about phrasing, role assignment, or output format, it is prompt engineering. If it is about file structure, retrieval, memory, tool definitions, schema design, or conversation management, it is context engineering. Both are real disciplines. Conflating them produces bad advice; treating them as opposed produces bad mental models.
+
+For most users, the practical takeaway is simple. Keep doing the prompt engineering you already know. Add to it a habit of asking, before you send the next message: what does the model have access to right now, and is that the right material? That second question is the one that has been quietly becoming more important.
+
+## What to Practice Next
+
+If you want to develop this skill deliberately, three exercises pay off quickly.
+
+Take a recent AI conversation that did not go as well as you hoped. Read it as a document. What was in the context that should not have been? What was missing? What was buried in a wall of prose that would have been clearer in a table or a numbered list? Most of the time, the failure was not in the final prompt; it was in the accumulated context surrounding it.
+
+The next time you start a project that will involve repeated AI interactions, spend ten minutes setting up the workspace before sending a single message. A project description. A few canonical example outputs. The relevant reference documents in clean form. The ten minutes of setup pays back over every subsequent conversation.
+
+When working with AI on data tasks, including the kind covered in our [Office Productivity Hacks](https://officeproductivityhacks.com) sister guides, treat the data file itself as part of the prompt. A well-structured spreadsheet with clear headers, no merged cells, and consistent formats produces dramatically better AI output than the same data in a messy file. The cleaning is the prompt engineering.
+
+The shift from prompt engineering to context engineering is not a clean break. It is a widening of attention from one part of the system to all of it. The models have made the original part easier; the rest is now where the work lives.
+`
   }
 ];
 
