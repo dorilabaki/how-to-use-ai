@@ -1590,6 +1590,114 @@ When working with AI on data tasks, including the kind covered in our [Office Pr
 
 The shift from prompt engineering to context engineering is not a clean break. It is a widening of attention from one part of the system to all of it. The models have made the original part easier; the rest is now where the work lives.
 `
+  },
+  {
+    slug: 'when-ai-tools-slow-you-down-stack-audit',
+    title: 'When AI Tools Slow You Down: How to Audit Your Stack Before Adding Another One',
+    description: 'Recent research shows that workers running too many AI tools end up slower, not faster. A BCG study of 1,488 workers found "AI brain fry" affects 14 percent of regular users. This article walks through a practical audit to decide which AI tools to keep, which to drop, and why three is the typical ceiling.',
+    category: 'Productivity',
+    readTime: '12 min read',
+    publishedAt: '2026-05-01',
+    author: 'How Do I Use AI',
+    content: `
+## The Counterintuitive Finding That Reframes the Conversation
+
+The default story about AI at work has been simple. More AI tools, more time saved, more output. The pitch from every vendor in 2024 and 2025 leaned on that arithmetic, and most professionals took it at face value. By the time anyone started measuring carefully, a lot of people were running five, eight, sometimes a dozen AI tools across their week. The assumption was that the productivity gains compounded.
+
+The 2026 data tells a different story. Several large studies published between February and April of this year point to the same conclusion. Stacking AI tools past a small number does not compound benefits. It compounds friction. A March 2026 BCG study of 1,488 knowledge workers identified what the researchers called "AI brain fry," a measurable cognitive overload pattern that affects 14 percent of regular AI users overall and 26 percent of users in marketing roles. The same study found 33 percent more decision fatigue, 39 percent more major errors, and a 39 percent higher intent to quit among workers experiencing this overload pattern.
+
+A separate Workday-cited analysis found that 67 percent of workers who adopted AI tools in 2025 reported working more hours by the end of the year, not fewer. A METR study published in mid-2025 and updated in early 2026 found that experienced open-source developers using modern AI assistants completed tasks roughly 19 percent slower than they did without those tools, despite reporting that they felt faster. The gap between perceived and measured productivity in that study is one of the more carefully documented findings in the field.
+
+None of this means AI tools are useless. It means the curve is not linear. There is a productive zone, and there is a zone past it where the additional tools start eating the gains they were supposed to deliver. The job of the user is to figure out where that line sits for their own work.
+
+## Why More Tools Make You Slower
+
+Three mechanisms explain the slowdown. They are mostly invisible until you start measuring.
+
+The first is interface tax. Every AI tool has its own login, its own mental model, its own shortcut conventions, its own quirks. Running ten tools means context-switching across ten interfaces. The 2026 BCG study estimated that workers using high-AI-oversight workflows expended roughly 14 percent more mental effort per task than workers without. That overhead has to come from somewhere, and it usually comes out of the work itself.
+
+The second is verification load. Every AI output needs to be checked. The fewer tools you use, the more familiar you become with each one's failure modes, and the faster verification gets. Spread across many tools, you never build that fluency for any of them. The UC Berkeley research published in February 2026 specifically called out task-switching across AI tools as a verified productivity drain, citing prior multitasking studies that put the cost at 20 to 40 percent.
+
+The third is content shuttling. A lot of real-world AI workflows look like this: copy from one tool, paste into another, ask a third tool to summarise, paste the result somewhere else. Each shuttle is a small cost. Across a day, the small costs add up. The Fortune analysis citing internal research from major employers in March 2026 estimated that only 8 percent of the time saved by AI tools is reinvested into work that actually benefits the worker. The rest is absorbed by either organisational pressure to produce more or by the overhead of moving content between tools.
+
+The combined effect of these three mechanisms is that the productivity curve plateaus quickly and then bends down. The plateau, in most of the 2026 data, sits around three concurrent AI tools.
+
+## Why Three
+
+The number three is not magic. It comes out of the data because three is roughly the number of tools a knowledge worker can integrate into their workflow well enough to use without friction. One tool for writing and synthesis (typically Claude or ChatGPT). One tool for retrieval and live information (typically Perplexity or a search-augmented model). One tool embedded in the system you actually work in (Microsoft Copilot inside Office, GitHub Copilot inside an editor, Notion AI inside Notion).
+
+That stack covers most of the use cases that AI is genuinely good at right now: drafting and refining text, looking up information with citations, and assisting with the work already happening in the tool you are using. Add a fourth tool only when there is a clearly distinct use case that the first three cannot cover well. Add a fifth only when you have evidence the fourth is paying off. Stop earlier than you think you should.
+
+Practitioners who report the highest productivity gains from AI in the 2026 data tend to share two patterns. They use a small number of tools deeply, and they have well-developed habits around when to reach for which tool. The pattern that correlates with brain fry, by contrast, is many tools used shallowly with no clear allocation between them.
+
+## The Stack Audit
+
+The audit takes about 45 minutes and is best done at the end of a work week, when your week's actual usage is fresh. It has four steps.
+
+### Step 1: List Every AI Tool You Used This Week
+
+Open a blank document and write down every AI tool or AI-powered feature you actually used in the last seven days. Be honest. Include the obvious tools (ChatGPT, Claude, Copilot) and the embedded features you might forget about (the AI rewrite button in Gmail, the summary feature in your meeting tool, the autocomplete in your code editor).
+
+Most professionals find this list is longer than they expected. A list of eight to twelve is common. A list of fifteen or more is not unusual for someone who has been adopting AI features as they appear.
+
+### Step 2: For Each Tool, Estimate Time Spent and Time Saved
+
+This is where the audit gets real. For each tool on your list, write two numbers. First, the rough number of minutes you spent on that tool this week, including time spent fixing or verifying its output. Second, your honest estimate of how much time it saved you compared to doing the same work without it.
+
+The METR finding about developers feeling faster while being measurably slower is worth holding in mind here. People are not good at estimating their own productivity. Where you can, anchor your estimate to a specific deliverable. "I drafted a 600-word brief in 25 minutes using Claude. Without Claude, the same brief usually takes me 60 minutes" is a useful estimate. "I felt productive using this tool" is not.
+
+For embedded features (autocomplete, autosummarise), default to a conservative estimate. The research is fairly clear that small AI features often save tiny amounts of time at the cost of small amounts of attention. The net effect can be neutral or slightly negative even when the feature feels helpful.
+
+### Step 3: Rank by Net Time Saved
+
+Sort the list by net minutes saved (time saved minus time spent). The top of the list is your high-value AI stack. The bottom is candidates for removal.
+
+In typical audits, two to four tools account for roughly 80 percent of the actual productivity gain. The rest produce small or zero gains and absorb attention. This pattern is consistent enough across the 2026 data that it is worth treating as a default assumption rather than a surprise.
+
+### Step 4: Cut Aggressively
+
+Remove or stop using everything below your top three or four. This is the hardest step because the lower-ranked tools usually feel useful. They are not. The audit is showing you that they are not.
+
+Removal can mean different things. For a standalone tool, it means closing the tab and not opening it again for the next two weeks. For an embedded feature, it means turning the feature off in settings or, where that is not possible, consciously not using it. The two-week period is important because the goal is to break the habit, not just pause it.
+
+After two weeks, run a short version of the audit again. Ask yourself whether you missed any of the removed tools enough that putting one back would change a real outcome. The answer is usually no. The missing tools tend to feel missed in the abstract but not missed in the concrete.
+
+## What Counts as a High-Value Tool
+
+Across the 2026 productivity research, certain use cases consistently produce real time savings, and certain use cases consistently do not.
+
+Use cases where AI tools reliably save time include drafting structured text where you have clear inputs (status updates, summaries of meetings you attended, first drafts of documents where you know the content), pattern-matching against a corpus you are already familiar with (finding the relevant section of a long document, locating an example that matches a description), and translating between formats you know well (turning bullet notes into a paragraph, turning a paragraph into bullet notes).
+
+Use cases where AI tools often produce illusory time savings include any task where verifying the output takes nearly as long as doing the task yourself (specialised technical work, anything where getting the details wrong has real cost), creative work where the AI's defaults pull toward generic output (so the editing time exceeds the drafting time saved), and decisions where the AI's confidence does not match its accuracy (research questions where the model produces fluent but wrong answers and you do not have the expertise to spot the error).
+
+A useful filter when adding any new tool is to ask whether the use case sits in the first category or the second. If you cannot articulate clearly why the new tool fits the first category, default to not adding it.
+
+## When the Audit Recommends Adding a Tool
+
+The audit is not just for cutting. Sometimes it reveals a real gap.
+
+If your audit shows your top tool is producing meaningful gains but is missing one specific capability you actually need (a coding-specific assistant, a meeting transcription tool, a specific data analysis interface), and if you have a concrete weekly use case for it, adding a tool is the right call. The gating question is whether you have a specific recurring task that you can name and that the existing tools cannot do well.
+
+What the audit will protect you from is adding tools speculatively. The 2025 to 2026 pattern that produced the brain fry numbers was almost entirely speculative adoption. People added tools because the tools were new, because their company recommended trying them, or because of vendor marketing. Speculative adoption rarely converts into real time savings, and it reliably increases verification load.
+
+## The Honest Caveat
+
+The studies cited above are not all perfectly comparable. The BCG sample of 1,488 workers is sizable but skews toward marketing and knowledge work. The METR developer study is small and specific. The Workday survey is self-reported. The HBR February 2026 piece is an analysis essay rather than primary research. Anyone reading this should know that the headline number "three tools is the ceiling" is a synthesis of overlapping findings, not a single rigorous result.
+
+What the studies share is direction. The marginal returns to additional AI tools fall fast, and after some small number the returns turn negative. The exact ceiling will depend on your role, your workflow, and how cleanly the tools you have integrate with your existing systems. The audit above is designed to find your number, not to prescribe it.
+
+## What This Looks Like in Practice
+
+A useful test of any framework like this is what changes after you apply it.
+
+In typical cases, professionals who run the audit drop from eight to ten active AI tools to three or four. They report that the first week feels strange because they reach for tools that are no longer there. By the second week, the reaching has stopped, and by the third week, they are spending less time managing AI workflows and more time on the work itself. The output quality usually goes up, not down, because the remaining tools are being used more deliberately.
+
+This is not a counsel of asceticism. AI tools are genuinely useful. The point of the audit is to keep them useful, not to keep them. The 2026 research suggests that the failure mode of "too many tools" has become more common than the failure mode of "too few tools," and the cost of the former is now showing up in measurable ways.
+
+For a deeper look at what makes one AI prompt or context produce better results than another, our guide on [context engineering versus prompt engineering](/resources/context-engineering-vs-prompt-engineering) covers the framing in detail. For practical examples of how the same audit logic applies to spreadsheet and office tool stacks, our sister site [Office Productivity Hacks](https://officeproductivityhacks.com) has the equivalent breakdown for the kind of recurring data work where AI features have proliferated fastest.
+
+The simple rule, if a single rule is what you want, is this. Three tools, used deliberately, beat ten tools used reflexively. The 2026 numbers say so consistently enough that it is worth taking seriously, even if the specific number for your work turns out to be two or four.
+`
   }
 ];
 
