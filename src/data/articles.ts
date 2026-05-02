@@ -1580,7 +1580,7 @@ For most users, the practical takeaway is simple. Keep doing the prompt engineer
 
 ## What to Practice Next
 
-If you want to develop this skill deliberately, three exercises pay off quickly.
+If you want to develop this skill deliberately, three exercises pay off quickly. The framing matters here. Skill at this scale follows the same pattern as any other deliberate-practice domain: a clear target, a feedback signal, and repetition with adjustment. Our sister site Growth Mindset has a careful piece on the [deliberate practice mindset beyond growth](https://growthmindset.academy/resources/deliberate-practice-mindset-beyond-growth) that applies to AI skill development almost without modification.
 
 Take a recent AI conversation that did not go as well as you hoped. Read it as a document. What was in the context that should not have been? What was missing? What was buried in a wall of prose that would have been clearer in a table or a numbered list? Most of the time, the failure was not in the final prompt; it was in the accumulated context surrounding it.
 
