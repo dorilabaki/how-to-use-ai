@@ -1239,466 +1239,205 @@ For tasks that pair long-context reasoning with spreadsheet data analysis, [Offi
 `
   },
   {
-    slug: 'claude-opus-4-7-task-budgets-xhigh-effort',
-    title: 'Claude Opus 4.7 Task Budgets and the New "xhigh" Effort Level: A Practical Guide',
-    description: 'Anthropic shipped Opus 4.7 on April 16, 2026 with two features that change how you build agentic workflows: task budgets that cap total token spend across a loop, and an xhigh reasoning effort level. Here is how to use both, with code, costs, and the cases where each pays off.',
-    category: 'Advanced',
-    readTime: '11 min read',
-    publishedAt: '2026-04-26',
+    slug: 'using-ai-as-a-learning-coach-six-prompts-that-work',
+    title: 'Using AI as a Learning Coach: Six Prompts That Beat Passive Tutoring',
+    description: 'Most people use AI to summarise material. The deeper benefit is using it as an interactive coach that tests, structures, and exposes blind spots. Six evidence-based prompts grounded in active recall, spaced retrieval, and the Feynman technique.',
+    category: 'Tutorials',
+    readTime: '9 min read',
+    publishedAt: '2026-05-04',
     author: 'How Do I Use AI',
     content: `
-## What Anthropic Shipped on April 16
+## Why Most People Use AI Wrong for Learning
 
-Claude Opus 4.7 reached general availability on April 16, 2026, at the same $5 per million input tokens and $25 per million output tokens pricing as Opus 4.6. The release notes flag three new things worth understanding if you build with Claude: a higher reasoning effort level called "xhigh," a public-beta feature called "task budgets," and tightened instruction-following at the lower effort levels.
+Ask the average ChatGPT or Claude user how they learn with AI, and they will describe a workflow that is genuinely useful but learning-shallow. Paste an article. Ask for a summary. Read the summary. Move on. That workflow saves time. It does not produce learning that sticks.
 
-If you only use Claude through the chat interface, none of this is directly relevant. If you build agents, automate workflows, or write code that calls the Claude API, all three matter. This guide walks through what each feature does, how to turn it on, when it pays off, and when it doesn't.
+The cognitive science here is well established. The 2006 Roediger and Karpicke studies on the testing effect, replicated dozens of times since, show that retrieving information from memory produces stronger long-term retention than re-reading the same information, by margins that are not subtle. A single retrieval test produces roughly 60% recall after a week, compared to 40% for repeated reading. That gap widens with longer delays.
 
-## The Effort Parameter, Briefly Recapped
+Summarisation is closer to re-reading than to retrieval. The model does the cognitive work, and you do the comprehension work passively. What you remember from a summary is mostly the parts that were already familiar. What you needed to learn most — the unfamiliar parts — slides through.
 
-Before Opus 4.7, the Claude API exposed a reasoning effort parameter with values that controlled how much compute the model spent on intermediate reasoning before producing a response. The trade-off is straightforward: higher effort produces better answers on hard problems and worse latency and cost on easy ones.
+The fix is not to abandon AI for learning. It is to flip the prompt structure so the model becomes the coach instead of the encyclopedia. Six prompts, all grounded in established cognitive science, do most of the work.
 
-Opus 4.7 adds a new value, "xhigh," that sits above the previous high tier and below max. It is intended for problems where the marginal accuracy from more reasoning is worth a meaningful additional latency and token cost. Coding tasks at the harder end of the SWE-bench distribution are the canonical case Anthropic flagged in the release notes.
+## Prompt 1: The Structured Plan
 
-The default behaviour, if you don't set effort explicitly, is unchanged from Opus 4.6. You only see xhigh's behaviour if you ask for it.
+The first prompt is for the start of any new topic. The point is not to learn the topic — it is to map the territory before you walk into it.
 
-A second change in Opus 4.7 is that the model now follows instructions more literally at the lower effort levels. The release notes explicitly state that Claude will not silently generalise an instruction from one item to another. If you tell it to do X for item A and then ask about item B, Opus 4.7 is more likely to do exactly that and ask about B without re-applying X by default. This is a behavioural shift that may affect existing prompts. If you have prompts written for Opus 4.6 that depend on the model inferring extension across items, you may need to make those instructions explicit in 4.7.
+> "I want to learn [topic]. I have [X hours] across [Y weeks]. Build a learning plan that progresses from beginner to advanced, with five-to-seven milestones. For each milestone, list (a) what I should be able to do at the end, (b) the two or three resources you would prioritise, and (c) the most common beginner mistake at that stage."
 
-## Task Budgets: What They Solve
+Why this works: the structure forces the model to articulate a curriculum, which exposes scope you would not have anticipated. Most beginners massively underestimate the breadth of a field and overestimate the depth of any single concept. Mapping the territory once, before diving in, is the lowest-cost intervention in the whole sequence.
 
-Task budgets are the more substantive feature. The setting names and beta header are public: you opt in by adding the beta header \`task-budgets-2026-03-13\` and setting an \`output_config\` with \`effort\` and \`task_budget\` fields.
+What to do with the output: do not follow it religiously. The plan is a skeleton, not a script. The point is to have a coherent picture of what you are trying to learn before you start, so that everything you do can be located on the map.
 
-The problem task budgets solve is specific and worth describing precisely. In an agentic workflow, the model produces a sequence of thinking tokens, tool calls, tool results coming back, more thinking, more tool calls, and eventually a final output. A long loop can burn far more tokens than an analogous single-turn response, and there is no clean way for the developer to bound the total spend without either capping max_tokens too aggressively (which cuts off mid-action) or letting the loop run unbounded (which produces unpredictable costs).
+## Prompt 2: Active Recall Quiz
 
-A task budget gives the model a soft target for total tokens across the entire agentic loop. The model sees a running countdown of how much budget remains. It uses this to prioritise. As the budget approaches zero, the model is biased toward wrapping up gracefully rather than starting another tool call. The result is that the loop ends with a complete answer rather than a half-finished action.
+This is the core retrieval-practice prompt. Use it after every study session, every chapter, every video.
 
-This is the difference between cutting off an analyst mid-sentence and asking them to write a one-paragraph summary in the time they have left. The first is what max_tokens does. The second is what task budgets do.
+> "I just learned about [specific subtopic]. Quiz me with five questions of increasing difficulty. After I answer each one, tell me whether I am right, what I missed, and one follow-up question that probes the same concept from a different angle. Do not give me the answers in advance."
 
-## A Working Example
+Why this works: the testing effect requires actual retrieval, not recognition. Multiple-choice tests are weaker than free-recall tests, because recognition can be done without retrieval. The prompt insists on free recall, then immediately offers feedback, which is the form of testing that produces the strongest retention gains in the literature.
 
-Here is the minimal API call that demonstrates both features together.
+The follow-up question is doing extra work. The 2008 Karpicke and Blunt studies on retrieval-induced learning show that the second-order question — "okay, you got that one, now apply it to a new context" — produces transfer learning that the first-order question cannot. Transfer is the test of whether you actually understood the concept versus pattern-matched the question.
 
-\`\`\`python
-import anthropic
+## Prompt 3: The Feynman Test
 
-client = anthropic.Anthropic()
+The Feynman technique, named for the physicist Richard Feynman, is the practice of explaining a concept in plain language without using its technical vocabulary. If you cannot, you do not understand it.
 
-response = client.beta.messages.create(
-    model="claude-opus-4-7",
-    max_tokens=128000,
-    output_config={
-        "effort": "xhigh",
-        "task_budget": {"type": "tokens", "total": 64000},
-    },
-    messages=[
-        {"role": "user", "content": "Refactor the attached module..."}
-    ],
-    betas=["task-budgets-2026-03-13"],
-)
-\`\`\`
+> "I am going to explain [concept] to you in plain English, as if you were a smart 12-year-old. After I finish, point out (a) where I used technical terms without defining them, (b) where my analogy broke down, and (c) one specific question you would still have if I were really 12."
 
-A few things to notice:
+Why this works: the prompt converts a vague self-test into a concrete one with three measurable failure modes. Most people, when self-testing, do not catch their own jargon, because the jargon is invisible to them — that is what jargon is. The model catches it because it is reading literally.
 
-The \`task_budget.total\` of 64,000 is the cap across the entire agentic loop including thinking, tool calls, tool results, and the final output. This is different from \`max_tokens\`, which caps the response itself. The model will see the 64,000 figure decrement as it uses tokens.
+The "smart 12-year-old" framing matters. Easier framings (a 5-year-old) push you toward oversimplification. Harder framings (a peer) let you hide behind shared vocabulary. The middle target — articulate adolescent — is where the comprehension test is strictest.
 
-The \`effort\` is set to \`"xhigh"\` for this example because the task is non-trivial. For simpler tasks, lower effort levels produce faster and cheaper results without meaningful accuracy loss.
+## Prompt 4: The Compare-and-Contrast Probe
 
-The beta header \`task-budgets-2026-03-13\` is required while the feature is in public beta. When it goes GA, the header will no longer be needed.
+This prompt is for any topic where you have learned more than one related concept and need to know whether you can tell them apart.
 
-## When Task Budgets Pay Off
+> "I have just learned about [Concept A] and [Concept B], which can be confused. Give me three scenarios where it would be easy to mistake one for the other, and ask me which one applies. Then explain the distinction in two sentences."
 
-Task budgets earn their place in three specific situations.
+Why this works: the comparative-discrimination literature, going back to Eleanor Rosch's prototype theory work in the 1970s, shows that the boundary between related concepts is where understanding actually lives. You do not understand inheritance versus composition in software design until you can name when each applies. You do not understand sympathetic versus parasympathetic nervous activation until you can identify which one is happening in a specific situation.
 
-### 1. Agentic Coding Tasks With Variable Complexity
+The model is good at generating discrimination scenarios because it has been trained on enormous amounts of comparative material. Use it.
 
-If you run an agent that codes against a repo, the same kind of task can have very different token costs depending on the codebase. Refactoring a 200-line module is not the same as refactoring a 20,000-line module, even if your prompt is identical. Without a task budget, the agent will burn through tokens on the larger codebase until it either finishes or hits max_tokens mid-edit. With a task budget, you cap the spend, and the agent prioritises the highest-value edits in the time it has.
+## Prompt 5: The "Find My Blind Spots" Probe
 
-### 2. Background Agents With Per-Run Cost Targets
+Use this prompt after you feel confident on a topic. It is specifically engineered to surface what you do not know that you do not know.
 
-If you run agents on a schedule, processing inputs as they arrive, the per-run cost matters as much as the per-run quality. A task budget of 30,000 tokens gives you a predictable cost ceiling at roughly $0.75 per run on Opus 4.7, regardless of how complex the input is. This kind of predictability is what makes background agents financially viable at scale.
+> "I have been studying [topic] for [X time]. Based on what an expert in this field would consider essential, what are five things you would expect me to know that I have probably not encountered yet? For each, tell me why an expert would consider it essential and where I should learn it."
 
-### 3. User-Facing Agents With Latency Targets
+Why this works: this prompt operationalises the Dunning-Kruger curve in reverse. The 1999 Dunning and Kruger paper showed that beginners systematically overestimate their competence because they lack the meta-knowledge to recognise what they do not know. Asking the model to map your blind spots from the perspective of an expert is the cheapest available correction.
 
-Token budgets correlate roughly with latency, so a task budget functions as a soft latency cap. If your users tolerate 30 seconds for a response but not 90, capping the budget at a level that produces a 30-second p95 keeps the user experience consistent. Without the cap, occasional long-running responses will frustrate users who expected a faster reply.
+Treat the output skeptically. Models can hallucinate "essential" topics that are actually niche. Cross-reference at least one item against a textbook, a syllabus, or a recognised expert in the field before adding it to your study plan.
 
-## When Task Budgets Hurt
+## Prompt 6: The Spaced-Retrieval Refresher
 
-There are also cases where task budgets are the wrong tool.
+The final prompt is for keeping what you have learned. It runs at intervals, not after every session.
 
-The first is when accuracy matters more than cost. If you are running Opus on a one-off problem where the answer's correctness is worth far more than the marginal tokens, capping the budget too tightly forces the model to wrap up before it has fully solved the problem. The release notes are explicit that "if the model is given a task budget that is too restrictive for a given task, it may complete the task less thoroughly or refuse to do the task entirely." That is the right behaviour from the model's side. It is also a cost you should be aware of.
+> "Three weeks ago, I learned [topic]. Without giving me any answers, ask me to recall (a) the three most important concepts, (b) the most common mistake people make, and (c) how I would explain one of these concepts in plain language. After I respond, tell me what I missed."
 
-The second is when the task is genuinely single-turn. Task budgets are designed for agentic loops with multiple tool calls. For a normal chat completion with no tool use, max_tokens is the right control and task_budget adds complexity without value.
+Why this works: the spacing effect, documented across more than a hundred years of research starting with Hermann Ebbinghaus in 1885, shows that information retrieved at increasing intervals decays much more slowly than information retrieved repeatedly in a short window. The optimal spacing depends on how long you want to remember the material — for permanent retention, the intervals stretch from days to weeks to months.
 
-The third is when you don't yet know how long your task should take. Calibration matters. The first time you run a new agent on a new task, run it without a budget, observe how many tokens it actually uses, and set the budget at a meaningful percentile of that distribution. Setting it blindly tends to produce too-low or too-high values, both of which are worse than no budget.
+The prompt does not need to be perfect. The crucial element is that the retrieval is happening at a delay, not the day after the original learning. Anki, RemNote, and other spaced-repetition apps automate this. If you are not using one, this prompt is the manual version.
 
-## Calibration: How to Pick a Budget Number
+## What to Avoid
 
-A useful procedure for picking a task budget number, refined from common mistakes:
+Two failure modes show up consistently when people try to use AI for learning.
 
-1. Run the agent without a budget on a representative sample of tasks (10 to 50, depending on task variability). Record the total tokens used per run.
+**Failure mode one: outsourcing the thinking.** "Explain this concept to me" is not learning. It is consumption. The point of these prompts is to keep your brain doing the retrieval, the explaining, and the comparison. The model's job is to test, not to teach. If you are reading more than you are answering, the workflow has drifted.
 
-2. Look at the distribution. The 50th percentile is what you would naively budget against. The 95th percentile is the bar you would set if you wanted nearly every task to complete fully. The right answer is somewhere in between, depending on how much you are willing to truncate the long-tail tasks.
+**Failure mode two: trusting hallucinations.** Models confidently produce wrong information, especially in technical domains and especially about specific facts (dates, statistics, citations). For high-stakes learning, the rule is: any specific factual claim from the model needs a second source. The model is reliable as a coach. It is unreliable as a primary source for facts you have not verified.
 
-3. Set the budget at the 75th to 85th percentile by default. This means roughly 15 to 25 percent of runs will hit the budget and wrap up early. The runs that wrap up early still produce useful output because the model knows it is wrapping up.
+## Putting It Together
 
-4. Watch for runs that hit the budget and produce noticeably worse output. If you see this consistently, the budget is too tight. Raise it.
+A single learning session, run with these prompts, looks roughly like this. Twenty-five minutes reading the original material. Five minutes generating questions for yourself with prompt 2. Ten minutes attempting the Feynman test in prompt 3. Five minutes on a discrimination probe with prompt 4. Total: 45 minutes.
 
-This calibration matters because budgets are a coarse instrument and the cost of a too-tight budget is silent quality degradation. You won't see errors in your logs. You will see a slow drift in user satisfaction.
+A week later, prompt 6 runs in fifteen minutes. A month later, prompt 6 runs again, in ten. The total time investment for durable learning of a substantial subtopic is roughly two hours, spread across a month.
 
-## What This Means for the Workflows You Already Have
-
-If you have an existing agent built on Opus 4.6, the migration to 4.7 with task budgets is incremental. You can update the model string to claude-opus-4-7 and continue running the agent unchanged at the same price point. The literal-instruction-following change at lower effort levels may surface a few prompts that need to be made explicit, but most workflows will run as before.
-
-The decision to add task budgets is a separate choice. They produce real value for agentic loops with variable cost or latency profiles. They produce no value for simple chat completions. The right answer is to add them where they pay off and skip them elsewhere, not to add them everywhere because they are new.
-
-The decision to use xhigh is similar. For genuinely hard problems where the additional reasoning budget translates into measurable accuracy gains, xhigh is worth the latency. For most tasks, default or high effort produces equivalent results faster.
-
-## A Final Note on the Pricing Model
-
-Pricing on Opus 4.7 is unchanged from 4.6: $5 per million input tokens, $25 per million output tokens. Output is what task budgets primarily affect, because thinking and tool-result tokens count as output. A 64,000-token task budget at xhigh effort is therefore a worst-case spend of roughly $1.60 per run if fully consumed. Most runs will use less.
-
-This pricing context is what makes task budgets a useful financial tool rather than just an engineering feature. The difference between a 40-cent run and a $1.60 run, multiplied across thousands of runs per day, adds up. Task budgets give you the controls to make that trade-off explicitly rather than leave it to the variance of individual prompts.
-
-## Where to Go From Here
-
-For the broader picture of what Claude can do across different model tiers, our piece on [ChatGPT vs Claude vs Gemini](/resources/chatgpt-vs-claude-vs-gemini) covers the full landscape. For developers building with the longer Claude context window, the [Claude 1M context window practical guide](/resources/claude-1m-context-window-practical-guide) walks through the trade-offs of long-input tasks. And if you are pairing AI workflows with spreadsheets, [Office Productivity Hacks](https://officeproductivityhacks.com) covers the integration patterns that work well in practice.
+That is the version of AI-assisted learning that works. The summarisation workflow is faster, but it is not learning. It is information passing through.
 
 ---
 
-*Sources: Anthropic Release Notes (support.claude.com/articles/12138966-release-notes), Claude API Docs on Task Budgets (platform.claude.com/docs/en/build-with-claude/task-budgets), Claude API Docs on Effort (platform.claude.com/docs/en/build-with-claude/effort), GitHub Changelog April 16, 2026.*
-`
+*Sources: Roediger and Karpicke, "Test-Enhanced Learning," Psychological Science (2006); Karpicke and Blunt, "Retrieval Practice Produces More Learning Than Elaborative Studying with Concept Mapping," Science (2011); Hermann Ebbinghaus, "Memory: A Contribution to Experimental Psychology" (1885); Dunning and Kruger, "Unskilled and Unaware of It," Journal of Personality and Social Psychology (1999); Cepeda et al. meta-analysis on the spacing effect, Psychological Bulletin (2006). For the Feynman technique, see Richard Feynman, "Surely You're Joking, Mr. Feynman!" (1985).*
+
+---
+
+*Join 132,000+ professionals at How Do I Use AI for evidence-based AI tutorials and frameworks.*
+    `,
   },
   {
-    slug: 'evaluating-ai-outputs-without-being-an-expert',
-    title: 'How to Evaluate an AI Answer When You Are Not the Expert',
-    description: 'The hardest part of using AI is judging output in domains where you do not already know the right answer. This article walks through five concrete techniques drawn from the literature on calibration, evaluation, and metacognition that work even when you cannot grade the substance directly.',
-    category: 'Best Practices',
-    readTime: '10 min read',
-    publishedAt: '2026-04-27',
+    slug: 'adaptive-thinking-claude-46-when-to-use',
+    title: "Adaptive Thinking in Claude 4.6: When the Model Should Slow Down (and When It Shouldn't)",
+    description: 'Claude 4.6 introduced adaptive thinking, where the model decides for itself how deeply to reason on a given prompt. A practical guide to what it actually does, when it earns its latency cost, and the prompt patterns that make it work for you.',
+    category: 'Tutorials',
+    readTime: '8 min read',
+    publishedAt: '2026-05-05',
     author: 'How Do I Use AI',
     content: `
-## The Problem No Prompt Engineering Course Solves
+## What Adaptive Thinking Actually Is
 
-Most advice on getting better results from AI is about writing better prompts. That is useful as far as it goes. But every prompt eventually produces an answer, and someone has to decide whether that answer is good enough to act on.
+Anthropic released Claude Opus 4.6 on February 5, 2026, and Sonnet 4.6 on February 17, 2026. The headline feature in both was adaptive thinking. The model now decides for itself how much extended reasoning to use on each prompt, rather than thinking at a fixed budget set by the developer or by a slider.
 
-If you are an expert in the domain, this is straightforward. You read the response, your knowledge tells you whether it is right, and you move on. If you are not the expert, the situation flips entirely. The whole reason you asked the model is that you do not have the answer yourself. How are you supposed to grade it?
+The mechanism, according to Anthropic's official documentation on the Claude Platform, works like this. When you submit a prompt, the model evaluates the complexity of the task. For routine questions, it answers directly with little or no extended thinking. For multi-step or ambiguous requests, it spends more tokens reasoning through the problem before producing the final answer. The effort parameter, available in the API and in Claude Code, guides this decision but is not a hard budget. The model can think more or less than the parameter suggests if the task warrants it.
 
-This is the central problem of using AI for tasks at the edge of your competence. It is also the area where users get into the most trouble, because plausible-sounding answers from a confident-sounding model are easy to accept by default. The techniques in this article are practical heuristics for catching errors when you cannot evaluate the substance directly.
+The practical effect, in everyday use of Claude Sonnet 4.6 and Opus 4.6 inside Claude.ai, Claude Cowork, Claude in Excel, or Claude in Chrome, is that you get faster responses on simple questions and more reliable answers on hard ones. You no longer have to manually decide whether to enable extended thinking. The model does it for you.
 
-## Why "Just Trust It" Is the Wrong Default
+Whether that is a feature or a problem depends on whether you understand the patterns under the hood.
 
-Modern language models, by design, optimise for plausibility. They are trained to produce responses that read as fluent and confident. Fluency and confidence are not the same as accuracy.
+## The Three Things That Trigger Deeper Thinking
 
-A useful frame, drawn from the broader research on epistemic calibration, is to separate two questions. First, is the answer well-formed? That is, does it look like an answer, with the right structure, vocabulary, and surface features? Second, is the answer correct? Models are reliably good at the first question. They are unreliably good at the second.
+Across hundreds of prompts in production usage, three signals consistently push Claude into deeper adaptive thinking. Knowing them lets you write prompts that get the right depth of response.
 
-The risk is that humans tend to use the first as a proxy for the second. We treat well-formed answers as evidence of competence. The fluent paragraph that includes confident technical terms feels like it must come from understanding, even when it does not.
+**Signal one: explicit ambiguity.** When the prompt contains conflicting constraints, multiple valid interpretations, or asks the model to compare options, adaptive thinking activates more aggressively. "Should I use SQL or BigQuery for this?" reliably produces deeper reasoning than "What is BigQuery?" The first requires weighing trade-offs. The second is a definition lookup.
 
-The five techniques below are designed to break that link. They give you ways to test whether a model's confident output is actually grounded, without requiring you to already know the answer yourself.
+**Signal two: multi-step structure.** Prompts that require chaining several decisions trigger deeper thinking. "Plan the migration from Postgres 14 to Postgres 16 for a production system handling 50,000 requests per minute" engages adaptive thinking far more than "Tell me about the differences between Postgres 14 and 16." The dependency between steps is what cues the model that simple recall will not be enough.
 
-## Technique One: Ask the Model to Cite
+**Signal three: novelty.** When the prompt combines elements in ways that are not common in the training distribution (cross-domain analogies, edge-case scenarios, original problems), adaptive thinking spends more tokens. The model is essentially searching its knowledge graph harder, rather than retrieving a pre-formed answer.
 
-The simplest move, and the first one to try on any factual claim, is to ask the model to point to specific sources, document sections, or evidence for what it just said.
+The inverse also holds. Prompts that ask for a single fact, a definition, a quick translation, or a one-shot transformation will get shallow thinking, regardless of how you phrase the urgency.
 
-The phrasing matters. "What is your source?" often produces a generic answer. More effective phrasings include:
+## When Adaptive Thinking Earns Its Latency
 
-- "Quote the specific passage that supports the claim that X."
-- "Which section of the document does this come from?"
-- "If I want to verify this, where would I look?"
+The honest framing on adaptive thinking is that it costs latency for the questions where it actually helps. According to Anthropic's published guidance on extended thinking, deeper reasoning adds wall-clock time and should only be used when it will meaningfully improve answer quality. Adaptive thinking is the model trying to make that trade-off automatically. It is not perfect.
 
-If the model produces specific, locatable references, you can check them. If it produces vague gestures or invented citations, that itself is the signal. Inability to cite specifically is correlated with inability to verify, which is correlated with inability to know.
+**High value scenarios.** Coding problems with non-obvious failure modes. Architecture decisions where the wrong call costs weeks. Research questions that require synthesizing across multiple sources. Anything where the cost of a wrong answer is meaningfully larger than the cost of waiting an extra 15 to 60 seconds.
 
-The caveat is that some models will hallucinate citations, especially for legal or academic content. The fix is to actually look up the cited source. If a Claude or ChatGPT response cites a paper or court case, search for it directly. The act of verification, not the citation alone, is what produces evidence.
+**Low value scenarios.** Quick lookups. Format conversions. Drafting tasks where you will iterate anyway. Conversational exchanges where momentum matters more than precision. Anything where you can tell from the response in two seconds whether it is right or wrong.
 
-## Technique Two: Ask for the Reasoning Trace
+The Resolve.ai engineering team, in their published evaluation of Claude Sonnet 4.6 on production AI agents, recommends starting with effort set to medium and adjusting from there. They also flag a practical constraint that catches many developers off guard: thinking and output tokens share the same budget. Setting a low max_tokens limit can cause the model to hit the ceiling mid-reasoning and cut off abruptly, with no graceful degradation. Their default of 32k max_tokens, tuned down only for simpler subagent tasks, is a sensible starting point.
 
-A model that has produced an answer through reasoning can usually reproduce that reasoning if you ask. A model that has produced an answer by pattern-matching on surface features often cannot.
+## Prompt Patterns That Get the Right Depth
 
-Useful prompts:
+Three prompt patterns reliably produce the depth of thinking that matches the task. They work because they signal complexity to the model in ways that align with how adaptive thinking is calibrated.
 
-- "Walk me through the steps that led to this answer."
-- "What would have to be true for this answer to be correct?"
-- "If someone disagreed with you, what would their strongest counter-argument be?"
+**Pattern one: state the constraints explicitly.** Instead of "help me write this email," try "help me write this email to a customer who churned three months ago, where the goal is to surface a new feature that addresses their original complaint, but I want to avoid sounding like I am asking them to come back." The constraints make the thinking depth match the actual difficulty.
 
-The reasoning trace gives you something concrete to evaluate. You may not know whether the final answer is right, but you can often spot whether the steps to get there are sensible. Logical leaps, missing premises, and contradictions between steps are signals you can detect without domain expertise.
+**Pattern two: ask for the reasoning, not just the answer.** Adding "walk me through how you would think about this before giving me the answer" pulls the model into deeper adaptive thinking, because it is now generating the reasoning chain as part of the response. This is especially useful for technical decisions where you want to verify the logic, not just the conclusion.
 
-A specific variant worth knowing: ask the model to argue against its own answer. The quality of the counter-argument tells you whether the model has actually engaged with the question or has only produced one defensible-looking output. A model that cannot argue against itself convincingly probably did not consider alternatives in the first place.
+**Pattern three: name the failure modes you want to avoid.** "Suggest a refactor of this function. Avoid changes that would break backward compatibility, increase memory usage, or require new dependencies." The negative constraints force adaptive thinking to evaluate options against multiple criteria rather than producing the first plausible answer.
 
-## Technique Three: Triangulate Across Phrasings
+What does not work, contrary to what some prompt guides claim, is prefixing prompts with "think carefully" or "use deep reasoning." The model has been trained to evaluate task complexity from the structure of the prompt itself, not from instruction phrases. Saying "think hard" without giving the model anything hard to think about is the conversational equivalent of telling a person to "concentrate" on a multiplication problem they have already memorised. Nothing changes.
 
-A reliable answer should be stable across paraphrasings of the same question. An unreliable answer often is not.
+## The Trust Calibration Problem
 
-The technique is to ask the same question two or three times in different ways. Same underlying meaning, different surface form. Compare the answers. If they agree on the substance, your confidence in the answer should rise. If they disagree, you have found a place where the model is uncertain even if it sounded confident in any individual response.
+The biggest failure mode with adaptive thinking is not the model being wrong. It is users adjusting their trust incorrectly to the model's confidence.
 
-This is easier than it sounds. A few examples of paraphrasing strategies:
+When the model thinks for a long time and then produces an answer, most users assume the answer is more reliable. This is sometimes true and sometimes not. Long thinking can also indicate the model is unsure and exploring many paths, none of which it can verify. Anthropic's adaptive thinking documentation notes this directly: extended thinking improves reasoning on hard problems, but does not eliminate hallucination, especially on factual claims about specific dates, statistics, or citations.
 
-- Switch the framing from positive to negative. "What are the advantages of X?" becomes "What are the disadvantages of X?"
-- Switch from general to specific or vice versa. "How does Y work?" becomes "Walk me through a concrete example of Y."
-- Change the audience. "Explain Z to a beginner" becomes "Explain Z to a domain expert."
+The practical heuristic is the same one that applies to any AI output. Specific factual claims need a second source, regardless of how long the model thought. The model's reasoning chain is reliable as a record of what it considered. It is not reliable as evidence that the considerations were complete.
 
-Where the answers converge is where the model has stable knowledge. Where they diverge is where you should be cautious.
+## How Adaptive Thinking Pairs With Tools and Agents
 
-## Technique Four: Ask for the Domain's Conventional Wisdom Before You Ask Your Question
+Where adaptive thinking gets genuinely interesting is in agentic workflows. When Claude is operating as an agent, calling tools, executing code, or running multi-step research tasks, adaptive thinking lets it allocate deeper reasoning to the parts of the workflow that need it (deciding which tool to call next, evaluating the output of a previous step) and stay light on the parts that do not (formatting a response, executing a known-good code snippet).
 
-This is a more subtle technique and arguably the most useful one. Before you ask a model your real question, ask it what the standard view of the domain is.
+The Resolve.ai team's evaluation found this was where Sonnet 4.6 outperformed Sonnet 4.5 most clearly: not on raw single-turn benchmarks, but on the back-end decision making inside long-running agent workflows. The model's tendency to think harder when the task got harder, and faster when it got easier, produced better end-to-end performance even when individual turns were not always faster.
 
-The reason this works is that most domains have well-established positions on common questions, and the model knows them. By eliciting the standard view first, you set up an external reference point. Then, when you ask your real question, you can compare the model's specific answer against that reference.
+For users running Claude in Cowork, Claude Code, or any of Anthropic's MCP-enabled integrations, this is the practical takeaway. The model is making good calls about reasoning depth in the background. Your job is to write prompts whose structure correctly communicates the complexity, so the model's calibration matches what you actually need.
 
-Concretely:
+## The Same Pattern, Inside Excel
 
-- "What is the conventional approach to X in software engineering?" before asking "Should I do X for my project?"
-- "What does the medical literature generally say about Y?" before asking "Is Y a good treatment for my situation?"
-- "What is the standard framework lawyers use to analyse Z?" before asking "How should I think about Z in my case?"
+If the "describe before doing" idea sounds familiar, that is because Microsoft has now built the user-facing version of it directly into Excel. Plan Mode in Copilot for Excel, shipped in April 2026, makes the model write out its intended edits before touching the workbook. You read the plan, approve or amend it, then watch it execute.
 
-This is a form of self-calibration. If the model's answer to your specific question is wildly inconsistent with the conventional wisdom it stated moments before, that is a signal. The discrepancy might be justified, but it requires explanation, and you can ask for it.
+The two patterns rhyme deliberately. Both are responses to the same underlying observation: the cheapest reliable correction in AI-assisted work is making the model's intent visible at the boundary where it meets the user's intent. Adaptive thinking surfaces depth automatically. Plan Mode surfaces intent explicitly. They are different points on the same design spectrum.
 
-## Technique Five: Identify the Stakes Before You Use the Output
+For a deeper walkthrough of how Plan Mode works in practice, see [our companion piece on Plan Mode in Excel Copilot](https://officeproductivityhacks.com/resources/excel-copilot-plan-mode-guide) over at Office Productivity Hacks.
 
-Not every AI answer needs the same level of scrutiny. The level of effort you put into evaluation should scale with what happens if the answer is wrong.
+## Putting It Into Practice This Week
 
-A practical taxonomy:
+Three concrete moves to run this week:
 
-- Low stakes: drafts that you will rewrite anyway, brainstorming, formatting tasks, summaries you will fact-check against the source. Use the output and move on.
-- Medium stakes: anything that will leave your machine. Public-facing writing, code that will run, advice you will give to someone else. Apply at least one of the techniques above before relying on the answer.
-- High stakes: anything where being wrong has lasting consequences. Legal, financial, medical, safety-critical decisions. Treat the AI output as one input among several. Triangulate against authoritative sources or qualified humans before acting.
+1. **Pick the five hardest prompts you ran in the last week.** Re-run them on Claude Sonnet 4.6 or Opus 4.6 with the constraints stated explicitly and the failure modes named. Compare the answer quality to your original responses.
+2. **Stop typing "think carefully" into prompts.** Spend the same effort writing a clearer task description instead. The model will think as hard as the task warrants if the task is described well.
+3. **For long agentic workflows, set max_tokens to at least 32k.** If you are running Claude through the API or in a custom agent setup, this single change prevents the most common adaptive-thinking failure mode: getting cut off mid-reasoning with no clean answer.
 
-The mistake users make is treating all outputs as equivalent. A casual question and a high-stakes question look the same in the chat interface, but the cost of error is wildly different. Adjusting your evaluation effort to the stakes is, by itself, the single most important habit for using AI well.
+Adaptive thinking is doing the hard work of allocating reasoning depth in the background. The leverage is in writing prompts whose structure lets it allocate correctly.
 
-## What the Research Says About AI Calibration
+---
 
-The technical literature on AI evaluation reinforces the practical points above. A few findings worth knowing:
+*Sources: Anthropic, "Introducing Claude Opus 4.6" (February 5, 2026); Anthropic, "Claude Sonnet 4.6 release notes" (February 17, 2026); Anthropic Claude Platform documentation, "Adaptive thinking" and "Building with extended thinking" (2026); Resolve.ai engineering blog, "Testing Claude Sonnet 4.6 Adaptive Thinking on Production AI Agents" (2026); AWS Bedrock documentation, "Adaptive thinking" (2026).*
 
-Calibration, that is, the relationship between a model's stated confidence and its actual accuracy, has improved substantially over the past several years but remains imperfect. Confidence is not a reliable proxy for correctness, especially in long-tail topics where the model has seen less training data.
+---
 
-Reasoning-augmented models, including the chain-of-thought and reasoning-effort variants from Anthropic, OpenAI, and Google, are measurably more accurate on tasks that benefit from extended deliberation. They are also more likely to produce traces you can audit. If you are doing serious work, prefer the model variants that show you their reasoning.
-
-Hallucination rates vary across domains. Models tend to be most accurate on topics that are heavily represented in training data, including general knowledge, mainstream code, and well-documented public information. They tend to be least reliable on niche academic claims, recent events, specific legal or medical details, and obscure technical specifications. Adjust your trust accordingly.
-
-## Building the Habit
-
-The techniques above are meant to be habits, not rituals. The point is not to apply all five to every AI interaction. The point is to develop reflexes for catching the kinds of errors that matter.
-
-A reasonable starting practice. For any AI output you intend to use beyond a casual draft, ask yourself: do I know how to verify this? If yes, verify it. If no, apply at least one of the techniques to surface signals about whether the answer is reliable. Over time this becomes automatic, and the calibration of your trust in AI starts matching the actual quality of the outputs.
-
-The honest statement of the problem is that AI is producing more confident-sounding text than the average person can grade. The honest response is to build the small set of habits that let you grade it anyway.
-
-For a deeper look at structuring prompts to produce more verifiable outputs, see our [prompt frameworks guide](/resources/prompt-frameworks-better-ai-outputs). For working with AI in spreadsheet workflows specifically, [Office Productivity Hacks](https://officeproductivityhacks.com) covers practical patterns for combining Excel and AI without surrendering review to the model.
-`
+*Join 132,000+ professionals at How Do I Use AI for evidence-based AI tutorials and frameworks.*
+    `,
   },
-  {
-    slug: 'context-engineering-vs-prompt-engineering',
-    title: 'Context Engineering vs Prompt Engineering: What the 2026 Shift Actually Means for Your Work',
-    description: 'Prompt engineering tells you how to ask. Context engineering tells you what the model gets to see while it answers. As models have improved, the second skill has overtaken the first as the limiting factor in real AI work. This article explains the distinction, the four levers context engineering pulls, and the practical changes a non-engineer can make today.',
-    category: 'Best Practices',
-    readTime: '11 min read',
-    publishedAt: '2026-04-28',
-    author: 'How Do I Use AI',
-    content: `
-## The Quiet Vocabulary Shift
-
-If you have followed AI advice for any length of time, you have read a lot of articles about prompt engineering. Be specific. Give a role. Provide examples. Specify the output format. The advice is real and still useful.
-
-Through 2025 and into 2026, a different term started appearing alongside it: context engineering. Anthropic published an engineering note on the topic. Google, OpenAI, and a long list of practitioner blogs followed. The shift was not marketing. It reflected a real change in where AI work succeeds or fails.
-
-The short version: prompts are still important, but the harder problem is no longer how you ask. It is what the model has access to while it is answering. This article explains the distinction in plain terms, the four levers context engineering actually controls, and what a non-engineer can do about it today.
-
-## Defining the Two Skills
-
-Prompt engineering is the craft of writing the request itself. The instruction sentence, the role, the examples, the output specification. It treats the model as a function that takes a string and returns a string, and asks: what string do I send to get the output I want?
-
-Context engineering is the craft of designing the entire information environment the model operates in. The system prompt, the documents in the context window, the tool definitions, the prior conversation, the schemas, the formats those documents are in, what gets included and what gets dropped, how state is carried from one step to the next. It treats the model as a system component and asks: what does the whole information picture look like, and is the model seeing what it needs?
-
-The two are not opposed. Context engineering includes prompt engineering as one layer. The change is what the limiting factor has become.
-
-## Why The Limiting Factor Moved
-
-Three things happened in parallel through 2024 and 2025 that pushed the limiting factor away from prompt phrasing.
-
-Models got materially better at following imperfectly phrased instructions. Frontier models from Anthropic, OpenAI, and Google now produce reasonable output from sloppy prompts that would have produced nonsense a few years earlier. The penalty for an unclear request is smaller. The advice "be specific" still helps, but it helps less than it used to.
-
-Context windows got dramatically larger. Models that could once hold a few thousand tokens now hold hundreds of thousands and, in some cases, more than a million. That changed the question from "what is the perfect single sentence to send" to "what should fit in this much larger envelope, and in what order, and in what format."
-
-Tool use, file access, and agent workflows became standard. Modern AI systems do not just answer one prompt and stop. They look at files you upload, call APIs, search the web, query databases, and chain together multi-step actions. Each of those steps depends on what the model can see and remember at that step. The picture stopped being "user message, model response" and became a streaming document of context that the system manages over time.
-
-Once those three changes had happened, the question of how the model is asked stopped being the bottleneck. The question of what it has to work with took its place.
-
-## The Four Levers Context Engineering Pulls
-
-Context engineering, stripped of jargon, is the management of four things.
-
-What information is included. Not every relevant document needs to be in the context. Including too much makes the model worse, not better, because attention is finite and irrelevant material crowds out the relevant pieces. Including too little starves the model of what it needs. Choosing well is the first skill.
-
-How that information is structured. Two documents with the same words in different orders or different formats produce different results. A clean schema beats a wall of prose. Section headers beat unmarked text. A table beats sentences listing the same data. The structure tells the model where to look.
-
-What is dropped or summarised over time. In a long conversation or a long-running agent, the early context becomes less relevant. Letting it sit there wastes window space and confuses focus. Summarising it, dropping it, or replacing it with a compact reference is part of the job.
-
-How state moves between steps. When an AI workflow has multiple steps, each step needs to know what previous steps decided, found, or recorded. Without an explicit mechanism for state, each step starts from scratch and the system as a whole loses coherence.
-
-These are not engineering-only concerns. A user writing a careful conversation with Claude is doing all four, whether or not they know the term.
-
-## What This Means for the Person Sitting at Their Desk
-
-If you are not building an agent, the practical changes to your daily AI use are smaller than the discourse suggests, but they are real.
-
-First, what you upload matters more than how you phrase your message. If you are asking the model to analyse a document, the cleanliness, completeness, and structure of that document is doing most of the work. A messy PDF with embedded images of text will produce worse results than the same content as clean text, regardless of how well the prompt is written. Spend the extra minute to extract the right pages, remove the headers and footers, and paste in just the section that matters.
-
-Second, give the model the right reference points before asking your question. If you are asking about a topic where there are conventions, examples, or prior decisions, include them. If you are asking the model to write in a particular style, paste in a few examples of that style. If you are asking it to produce output in a particular format, show the format with a real example, not just a description. We covered this in detail in our [prompt frameworks guide](/resources/prompt-frameworks-better-ai-outputs); the techniques there are squarely a context engineering practice.
-
-Third, manage the conversation as a document, not a chat. The full text of a long conversation is in the context. Anything you said early on is still influencing the model's responses now. If a conversation has drifted in a direction you did not want, do not try to nudge it back. Start a fresh conversation with a clean prompt that includes only what you actually need carried forward. Trying to recover a polluted context window is almost always slower than starting fresh.
-
-Fourth, when using AI in tools that have memory, files, or projects (Claude Projects, ChatGPT custom instructions, Cursor and similar coding tools, Notion AI, and so on), invest in the setup. The system prompt and project files are doing more work than any individual message. A well-configured project produces better answers from worse prompts than a poorly configured project produces from clever ones.
-
-## A Concrete Example
-
-Imagine asking an AI to draft a project update email for a stakeholder.
-
-The pure prompt engineering approach: "Write a project update email for a stakeholder. The project is a website redesign. Include status, blockers, and next steps. Tone should be professional but warm."
-
-The context engineering approach: paste in the previous three emails sent to that stakeholder for tone calibration, paste in the most recent project status notes verbatim, paste in a list of decisions made in the last sprint, and then write a much shorter prompt: "Draft the next update email in the style of the prior ones, using the status notes and recent decisions as content."
-
-The second version is shorter as a prompt but contains far more information in total. The output will be substantially closer to what the user actually wants, because the model is no longer guessing at tone, status, or recency. It is interpolating between known reference points.
-
-The skill on display in the second version is not a clever phrasing. It is the judgement of what to include, what to leave out, and how to structure the included material. That is context engineering in miniature.
-
-## What Stays the Same
-
-Three pieces of older advice still hold and are not displaced by the new framing.
-
-Clarity of intent still matters. The model can recover from a sloppy phrasing, but it cannot recover from genuine ambiguity about what you are trying to do. Stating the goal explicitly is still the cheapest improvement available.
-
-Output format specification still matters. Saying "respond as a JSON object with keys X, Y, Z" or "respond as bullet points, no preamble" is still doing real work. Models follow format instructions reliably; the cost of including them is near zero.
-
-Examples still beat adjectives. If you can show the model what you want with one or two real examples, that does more than any number of descriptive sentences. This is true at the prompt level and at the context level.
-
-What context engineering adds is not a replacement for these. It is the recognition that all of them sit inside a larger system, and the larger system has its own design problems that none of them solve.
-
-## The Honest Limit of the New Framing
-
-It is fair to be a little sceptical of the speed at which "context engineering" has become a buzzword. Some of what is published under the name is rebranded prompt engineering. Some is genuinely new. The useful filter is whether the advice is about the request itself (prompt) or about the entire information environment around the request (context).
-
-If a piece of advice is about phrasing, role assignment, or output format, it is prompt engineering. If it is about file structure, retrieval, memory, tool definitions, schema design, or conversation management, it is context engineering. Both are real disciplines. Conflating them produces bad advice; treating them as opposed produces bad mental models.
-
-For most users, the practical takeaway is simple. Keep doing the prompt engineering you already know. Add to it a habit of asking, before you send the next message: what does the model have access to right now, and is that the right material? That second question is the one that has been quietly becoming more important.
-
-## What to Practice Next
-
-If you want to develop this skill deliberately, three exercises pay off quickly. The framing matters here. Skill at this scale follows the same pattern as any other deliberate-practice domain: a clear target, a feedback signal, and repetition with adjustment. Our sister site Growth Mindset has a careful piece on the [deliberate practice mindset beyond growth](https://growthmindset.academy/resources/deliberate-practice-mindset-beyond-growth) that applies to AI skill development almost without modification.
-
-Take a recent AI conversation that did not go as well as you hoped. Read it as a document. What was in the context that should not have been? What was missing? What was buried in a wall of prose that would have been clearer in a table or a numbered list? Most of the time, the failure was not in the final prompt; it was in the accumulated context surrounding it.
-
-The next time you start a project that will involve repeated AI interactions, spend ten minutes setting up the workspace before sending a single message. A project description. A few canonical example outputs. The relevant reference documents in clean form. The ten minutes of setup pays back over every subsequent conversation.
-
-When working with AI on data tasks, including the kind covered in our [Office Productivity Hacks](https://officeproductivityhacks.com) sister guides, treat the data file itself as part of the prompt. A well-structured spreadsheet with clear headers, no merged cells, and consistent formats produces dramatically better AI output than the same data in a messy file. The cleaning is the prompt engineering.
-
-The shift from prompt engineering to context engineering is not a clean break. It is a widening of attention from one part of the system to all of it. The models have made the original part easier; the rest is now where the work lives.
-`
-  },
-  {
-    slug: 'when-ai-tools-slow-you-down-stack-audit',
-    title: 'When AI Tools Slow You Down: How to Audit Your Stack Before Adding Another One',
-    description: 'Recent research shows that workers running too many AI tools end up slower, not faster. A BCG study of 1,488 workers found "AI brain fry" affects 14 percent of regular users. This article walks through a practical audit to decide which AI tools to keep, which to drop, and why three is the typical ceiling.',
-    category: 'Productivity',
-    readTime: '12 min read',
-    publishedAt: '2026-05-01',
-    author: 'How Do I Use AI',
-    content: `
-## The Counterintuitive Finding That Reframes the Conversation
-
-The default story about AI at work has been simple. More AI tools, more time saved, more output. The pitch from every vendor in 2024 and 2025 leaned on that arithmetic, and most professionals took it at face value. By the time anyone started measuring carefully, a lot of people were running five, eight, sometimes a dozen AI tools across their week. The assumption was that the productivity gains compounded.
-
-The 2026 data tells a different story. Several large studies published between February and April of this year point to the same conclusion. Stacking AI tools past a small number does not compound benefits. It compounds friction. A March 2026 BCG study of 1,488 knowledge workers identified what the researchers called "AI brain fry," a measurable cognitive overload pattern that affects 14 percent of regular AI users overall and 26 percent of users in marketing roles. The same study found 33 percent more decision fatigue, 39 percent more major errors, and a 39 percent higher intent to quit among workers experiencing this overload pattern.
-
-A separate Workday-cited analysis found that 67 percent of workers who adopted AI tools in 2025 reported working more hours by the end of the year, not fewer. A METR study published in mid-2025 and updated in early 2026 found that experienced open-source developers using modern AI assistants completed tasks roughly 19 percent slower than they did without those tools, despite reporting that they felt faster. The gap between perceived and measured productivity in that study is one of the more carefully documented findings in the field.
-
-None of this means AI tools are useless. It means the curve is not linear. There is a productive zone, and there is a zone past it where the additional tools start eating the gains they were supposed to deliver. The job of the user is to figure out where that line sits for their own work.
-
-## Why More Tools Make You Slower
-
-Three mechanisms explain the slowdown. They are mostly invisible until you start measuring.
-
-The first is interface tax. Every AI tool has its own login, its own mental model, its own shortcut conventions, its own quirks. Running ten tools means context-switching across ten interfaces. The 2026 BCG study estimated that workers using high-AI-oversight workflows expended roughly 14 percent more mental effort per task than workers without. That overhead has to come from somewhere, and it usually comes out of the work itself.
-
-The second is verification load. Every AI output needs to be checked. The fewer tools you use, the more familiar you become with each one's failure modes, and the faster verification gets. Spread across many tools, you never build that fluency for any of them. The UC Berkeley research published in February 2026 specifically called out task-switching across AI tools as a verified productivity drain, citing prior multitasking studies that put the cost at 20 to 40 percent.
-
-The third is content shuttling. A lot of real-world AI workflows look like this: copy from one tool, paste into another, ask a third tool to summarise, paste the result somewhere else. Each shuttle is a small cost. Across a day, the small costs add up. The Fortune analysis citing internal research from major employers in March 2026 estimated that only 8 percent of the time saved by AI tools is reinvested into work that actually benefits the worker. The rest is absorbed by either organisational pressure to produce more or by the overhead of moving content between tools.
-
-The combined effect of these three mechanisms is that the productivity curve plateaus quickly and then bends down. The plateau, in most of the 2026 data, sits around three concurrent AI tools.
-
-## Why Three
-
-The number three is not magic. It comes out of the data because three is roughly the number of tools a knowledge worker can integrate into their workflow well enough to use without friction. One tool for writing and synthesis (typically Claude or ChatGPT). One tool for retrieval and live information (typically Perplexity or a search-augmented model). One tool embedded in the system you actually work in (Microsoft Copilot inside Office, GitHub Copilot inside an editor, Notion AI inside Notion).
-
-That stack covers most of the use cases that AI is genuinely good at right now: drafting and refining text, looking up information with citations, and assisting with the work already happening in the tool you are using. Add a fourth tool only when there is a clearly distinct use case that the first three cannot cover well. Add a fifth only when you have evidence the fourth is paying off. Stop earlier than you think you should.
-
-Practitioners who report the highest productivity gains from AI in the 2026 data tend to share two patterns. They use a small number of tools deeply, and they have well-developed habits around when to reach for which tool. The pattern that correlates with brain fry, by contrast, is many tools used shallowly with no clear allocation between them.
-
-## The Stack Audit
-
-The audit takes about 45 minutes and is best done at the end of a work week, when your week's actual usage is fresh. It has four steps.
-
-### Step 1: List Every AI Tool You Used This Week
-
-Open a blank document and write down every AI tool or AI-powered feature you actually used in the last seven days. Be honest. Include the obvious tools (ChatGPT, Claude, Copilot) and the embedded features you might forget about (the AI rewrite button in Gmail, the summary feature in your meeting tool, the autocomplete in your code editor).
-
-Most professionals find this list is longer than they expected. A list of eight to twelve is common. A list of fifteen or more is not unusual for someone who has been adopting AI features as they appear.
-
-### Step 2: For Each Tool, Estimate Time Spent and Time Saved
-
-This is where the audit gets real. For each tool on your list, write two numbers. First, the rough number of minutes you spent on that tool this week, including time spent fixing or verifying its output. Second, your honest estimate of how much time it saved you compared to doing the same work without it.
-
-The METR finding about developers feeling faster while being measurably slower is worth holding in mind here. People are not good at estimating their own productivity. Where you can, anchor your estimate to a specific deliverable. "I drafted a 600-word brief in 25 minutes using Claude. Without Claude, the same brief usually takes me 60 minutes" is a useful estimate. "I felt productive using this tool" is not.
-
-For embedded features (autocomplete, autosummarise), default to a conservative estimate. The research is fairly clear that small AI features often save tiny amounts of time at the cost of small amounts of attention. The net effect can be neutral or slightly negative even when the feature feels helpful.
-
-### Step 3: Rank by Net Time Saved
-
-Sort the list by net minutes saved (time saved minus time spent). The top of the list is your high-value AI stack. The bottom is candidates for removal.
-
-In typical audits, two to four tools account for roughly 80 percent of the actual productivity gain. The rest produce small or zero gains and absorb attention. This pattern is consistent enough across the 2026 data that it is worth treating as a default assumption rather than a surprise.
-
-### Step 4: Cut Aggressively
-
-Remove or stop using everything below your top three or four. This is the hardest step because the lower-ranked tools usually feel useful. They are not. The audit is showing you that they are not.
-
-Removal can mean different things. For a standalone tool, it means closing the tab and not opening it again for the next two weeks. For an embedded feature, it means turning the feature off in settings or, where that is not possible, consciously not using it. The two-week period is important because the goal is to break the habit, not just pause it.
-
-After two weeks, run a short version of the audit again. Ask yourself whether you missed any of the removed tools enough that putting one back would change a real outcome. The answer is usually no. The missing tools tend to feel missed in the abstract but not missed in the concrete.
-
-## What Counts as a High-Value Tool
-
-Across the 2026 productivity research, certain use cases consistently produce real time savings, and certain use cases consistently do not.
-
-Use cases where AI tools reliably save time include drafting structured text where you have clear inputs (status updates, summaries of meetings you attended, first drafts of documents where you know the content), pattern-matching against a corpus you are already familiar with (finding the relevant section of a long document, locating an example that matches a description), and translating between formats you know well (turning bullet notes into a paragraph, turning a paragraph into bullet notes).
-
-Use cases where AI tools often produce illusory time savings include any task where verifying the output takes nearly as long as doing the task yourself (specialised technical work, anything where getting the details wrong has real cost), creative work where the AI's defaults pull toward generic output (so the editing time exceeds the drafting time saved), and decisions where the AI's confidence does not match its accuracy (research questions where the model produces fluent but wrong answers and you do not have the expertise to spot the error).
-
-A useful filter when adding any new tool is to ask whether the use case sits in the first category or the second. If you cannot articulate clearly why the new tool fits the first category, default to not adding it.
-
-## When the Audit Recommends Adding a Tool
-
-The audit is not just for cutting. Sometimes it reveals a real gap.
-
-If your audit shows your top tool is producing meaningful gains but is missing one specific capability you actually need (a coding-specific assistant, a meeting transcription tool, a specific data analysis interface), and if you have a concrete weekly use case for it, adding a tool is the right call. The gating question is whether you have a specific recurring task that you can name and that the existing tools cannot do well.
-
-What the audit will protect you from is adding tools speculatively. The 2025 to 2026 pattern that produced the brain fry numbers was almost entirely speculative adoption. People added tools because the tools were new, because their company recommended trying them, or because of vendor marketing. Speculative adoption rarely converts into real time savings, and it reliably increases verification load.
-
-## The Honest Caveat
-
-The studies cited above are not all perfectly comparable. The BCG sample of 1,488 workers is sizable but skews toward marketing and knowledge work. The METR developer study is small and specific. The Workday survey is self-reported. The HBR February 2026 piece is an analysis essay rather than primary research. Anyone reading this should know that the headline number "three tools is the ceiling" is a synthesis of overlapping findings, not a single rigorous result.
-
-What the studies share is direction. The marginal returns to additional AI tools fall fast, and after some small number the returns turn negative. The exact ceiling will depend on your role, your workflow, and how cleanly the tools you have integrate with your existing systems. The audit above is designed to find your number, not to prescribe it.
-
-## What This Looks Like in Practice
-
-A useful test of any framework like this is what changes after you apply it.
-
-In typical cases, professionals who run the audit drop from eight to ten active AI tools to three or four. They report that the first week feels strange because they reach for tools that are no longer there. By the second week, the reaching has stopped, and by the third week, they are spending less time managing AI workflows and more time on the work itself. The output quality usually goes up, not down, because the remaining tools are being used more deliberately.
-
-This is not a counsel of asceticism. AI tools are genuinely useful. The point of the audit is to keep them useful, not to keep them. The 2026 research suggests that the failure mode of "too many tools" has become more common than the failure mode of "too few tools," and the cost of the former is now showing up in measurable ways.
-
-For a deeper look at what makes one AI prompt or context produce better results than another, our guide on [context engineering versus prompt engineering](/resources/context-engineering-vs-prompt-engineering) covers the framing in detail. For practical examples of how the same audit logic applies to spreadsheet and office tool stacks, our sister site [Office Productivity Hacks](https://officeproductivityhacks.com) has the equivalent breakdown for the kind of recurring data work where AI features have proliferated fastest.
-
-The simple rule, if a single rule is what you want, is this. Three tools, used deliberately, beat ten tools used reflexively. The 2026 numbers say so consistently enough that it is worth taking seriously, even if the specific number for your work turns out to be two or four.
-`
-  }
 ];
 
 export function getArticle(slug: string): Article | undefined {
