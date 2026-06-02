@@ -11,6 +11,118 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'context-windows-2026-why-one-million-tokens-changes-everything',
+    title: 'Context Windows in 2026: Why 1 Million Tokens Changes Everything for AI Prompting',
+    description: 'AI context windows grew 1000x in two years. Five models now handle 1M+ tokens. Learn how this shifts your prompting strategy and what you can actually do with models that remember everything.',
+    category: 'Advanced',
+    readTime: '8 min read',
+    publishedAt: '2026-06-02',
+    author: 'How Do I Use AI',
+    content: `# Context Windows in 2026: Why 1 Million Tokens Changes Everything for AI Prompting
+
+Last year, the longest context window an AI model could handle was 200,000 tokens. That was considered enormous—enough for a 150-page book.
+
+In 2026, five major AI models now handle 1 million tokens. One reaches 2 million. The newest frontier model supports 10 million tokens.
+
+This isn't just bigger. It's a fundamental shift in how you should think about prompting.
+
+## What a Context Window Actually Is
+
+A context window is how much information an AI model can read and understand at once. It's measured in tokens, where one token ≈ four characters of English text.
+
+1 million tokens ≈ 750,000 words ≈ 1,500 pages of text.
+
+Think of it as your AI assistant's working memory. The bigger the window, the more you can show it before asking questions.
+
+## The Scale of the Change
+
+Context windows have grown roughly 1000x in two years.
+
+Current state in June 2026:
+
+- **Claude Opus 4.6, Claude Sonnet 4.6, Google Gemini 3.1 Pro, Llama 4 Maverick**: 1 million tokens
+- **Google Gemini 3 Pro**: 2 million tokens (roughly 1.5 million words)
+- **Meta Llama 4 Scout**: 10 million tokens (roughly 15,000 pages)
+
+But here's the catch: every frontier model advertises a huge context window, but almost none of them are actually great at using all that information effectively. The difference between advertised and effective context is a real constraint you'll hit.
+
+## What You Can Actually Do Now
+
+With a 1-2 million token window, you can:
+
+**Dump entire documents**: Upload a whole technical specification, legal contract, or codebase. Ask follow-up questions. The model still remembers everything.
+
+**Load multiple days of transcripts**: If you recorded meetings or calls, you can load days worth of audio transcripts and ask the model to find patterns or summarize specific topics without losing context.
+
+**Analyze complex folders**: Put an entire project's source code, documentation, and configuration files in the prompt. Ask the model to refactor, identify security issues, or suggest architectural improvements. The model sees the whole system.
+
+**Build research documents**: Dump 10-15 research papers on a topic into the context, plus your draft. Ask for synthesis, counterarguments, or citations to specific papers.
+
+**Conversational continuity**: You can maintain a single conversation thread with an AI assistant across hours of interaction. It won't forget what you discussed at the beginning.
+
+## How This Changes Your Prompting Strategy
+
+With smaller context windows, prompting was about efficiency: fit your entire request into as few tokens as possible. Be concise. Summarize aggressively.
+
+With 1M+ tokens, prompting is becoming about completeness: give the AI all relevant information it could possibly need. Let it dig through details. Trust that it can handle the volume.
+
+Professional engineers are building libraries of "Prompt Fragments"—small, reusable segments that can be assembled on the fly depending on what you're working on.
+
+Instead of: "Summarize this" (which loses detail)
+
+You can now say: "Here's the full context. Answer these specific questions while referencing section 3.2 and cross-referencing with the architecture notes."
+
+## The Pricing Situation
+
+Processing a 1-million-token document costs differently across providers:
+
+- **Claude Opus 4.6**: $5 per million tokens (flat rate, no long-context surcharge anymore)
+- **Google Gemini 3 Pro**: Cheaper than Claude for standard use, more for their free tier limits
+- **Open-source options**: Qwen 3.6 Plus free during preview, then paid tiers
+
+Key shift: Anthropic eliminated long-context surcharges in March 2026. Million-token documents cost the same per token as 10,000-token requests. This removes friction from actually using large context windows.
+
+## The Real Limitation Nobody Talks About
+
+Here's the honest part: bigger context windows don't mean better comprehension of everything in that window.
+
+If you load 100 pages of documentation and ask the model a detailed question about page 47, it might miss the answer. Not because it couldn't fit page 47 in its memory—it could fit 500 pages. But because massive amounts of information create noise.
+
+Effective context—the amount of information a model actually uses well—is often smaller than the advertised window.
+
+What works:
+
+- **Structured organization**: Use headers, sections, and clear marking of important information
+- **Explicit references**: When you ask questions, explicitly point the model to relevant sections: "See the API specification in section 4.2"
+- **Chunking strategies**: For massive documents, consider still breaking them into themed sections and asking targeted questions about each
+
+## Practical Use Case: Complete Codebase Analysis
+
+Here's how a typical use case looks in 2026:
+
+1. You dump your entire project's source code, tests, and documentation into the context window (maybe 300K tokens)
+2. You ask: "Refactor the database layer for performance. Reference the current schema in db/schema.ts and the ORM configuration in config/orm.ts"
+3. The model reads everything, but focuses specifically on the sections you mentioned
+4. It delivers refactored code with explanations of what changed and why
+
+Three years ago, this would've been impossible. Last year, it would've required uploading your code to a specialized service. In 2026, it's a normal Tuesday conversation.
+
+## How to Start Thinking in Bigger Context Windows
+
+Stop assuming you need to be concise in your prompts. Provide full documents instead of summaries. Give complete examples instead of abbreviated snippets.
+
+The cost per token is now low enough that over-providing information is often cheaper than the back-and-forth required to clarify vague prompts.
+
+The models aren't perfect at handling huge contexts yet, but they're good enough. And they're improving faster than the context windows are growing.
+
+**Sources:**
+- [AI Context Window Comparison 2026: 1M to 10M Tokens](https://www.digitalapplied.com/blog/ai-context-window-comparison-2026-1m-to-10m-tokens)
+- [Context Length Comparison: Leading AI Models in 2026](https://www.elvex.com/blog/context-length-comparison-ai-models-2026)
+- [The context window has been shattered: Subquadratic debuts a 12-million-token window](https://thenewstack.io/subquadratic-12-million-context-window/)
+- [AI Context Window Comparison (2026): GPT, Claude, Gemini Token Limits by Model](https://crazyrouter.com/en/blog/context-window-token-limits-ai-models-guide-2026)
+`,
+  },
+  {
     slug: 'how-to-write-your-first-chatgpt-prompt',
     title: 'How to Write Your First ChatGPT Prompt',
     description: 'Learn the fundamentals of writing effective prompts for ChatGPT. This beginner-friendly guide will help you get better responses from AI.',
