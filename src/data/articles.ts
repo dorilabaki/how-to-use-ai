@@ -11,6 +11,81 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'gemini-daily-brief-spark-how-to-use-googles-new-ai-agents',
+    title: "Gemini Daily Brief and Spark: What Google's New AI Agents Actually Do",
+    description: "Google rebuilt the Gemini app at I/O 2026 and shipped two agent features: Daily Brief and Spark. Here's what each one does, who gets access, and how to put them to work without the marketing gloss.",
+    category: 'Tutorials',
+    readTime: '7 min read',
+    publishedAt: '2026-06-12',
+    author: 'How Do I Use AI',
+    content: `# Gemini Daily Brief and Spark: What Google's New AI Agents Actually Do
+
+At Google I/O 2026 on May 19, Google announced the biggest overhaul of the Gemini app since launch. The headline features are two AI agents: Daily Brief, a personalized morning digest, and Gemini Spark, a 24/7 background agent that works even when your phone is locked.
+
+The Gemini app already reaches more than 900 million monthly users across 230+ countries, according to Google. So when Google changes how Gemini works, it changes how a meaningful share of the world uses AI day to day.
+
+Here's what actually shipped, who can use it, and how to get value from it.
+
+## Daily Brief: Your Inbox, Calendar, and Tasks in One Digest
+
+Daily Brief pulls information from your Gmail inbox, your calendar, and your task list, then organizes everything into a single morning overview. Google says it doesn't just summarize. It prioritizes tasks and suggests next steps, with the most important items shown first.
+
+**Who gets it:** Daily Brief started rolling out on May 19, 2026 to Google AI subscribers in the United States.
+
+**How to use it well:**
+
+1. **Check what it pulls from.** Daily Brief is only as good as the data it can see. If your real to-do list lives in a third-party app Gemini can't read, the brief will miss it. Keep your tasks in Google Tasks or your calendar if you want them surfaced.
+
+2. **Treat the priority order as a draft, not a verdict.** The model decides what's "most important" based on signals like deadlines and senders. It doesn't know that the short email from your biggest client matters more than the long thread from a vendor. Scan the full brief before trusting the top item.
+
+3. **Use it to replace the morning inbox crawl, not your judgment.** The realistic win here is 10-15 minutes saved each morning on triage. That's the use case Google built it for.
+
+If you like the digest pattern, it pairs well with a structured weekly review. Our colleagues at [Office Productivity Hacks](https://officeproductivityhacks.com) cover how to build that kind of system around your existing tools.
+
+## Gemini Spark: A Cloud Agent That Keeps Working When You Stop
+
+Spark is the more ambitious feature. Google describes it as a 24/7 personal AI agent. Because it runs in the cloud rather than on your device, Spark keeps working in the background even when your phone is locked. It integrates with Gmail and lets you create custom workflows inside the Gemini app.
+
+**Who gets it:** Spark is in testing. Google said at I/O that it expected to make it available to Google AI Ultra subscribers the following week, so access started in late May 2026. It's the highest subscription tier, which tells you Google sees this as a premium product for now.
+
+**What "custom workflows" means in practice:**
+
+Think of a workflow as a standing instruction. Examples that fit what Google demonstrated:
+
+- "Watch my inbox for invoices and add each one to a tracking list"
+- "Every Friday, summarize the week's unread newsletters"
+- "When a meeting gets cancelled, suggest what to do with the freed slot"
+
+This is the same direction OpenAI and Anthropic have pushed with their agent products: AI that acts on your behalf over time, instead of answering one prompt and stopping.
+
+**A caution worth taking seriously:** an agent with standing access to your email can act on a misreading of your email. Start Spark with low-stakes, read-only workflows (summaries, tracking, reminders) before letting it draft or send anything. Review its output for the first couple of weeks the way you'd review a new assistant's work.
+
+## The Redesign: Why Gemini Looks Different Now
+
+Google rebuilt the app around a design language it calls Neural Expressive: fluid animations, new typography, and haptic feedback. The more useful change is structural. Gemini's answers no longer arrive as a wall of text. Key information appears in bold at the top, and supporting detail, images, or timelines appear as you scroll.
+
+That formatting shift matters for how you prompt. If you only read the bolded summary, you're trusting the model's own judgment about what matters in its answer. For anything consequential, scroll. The caveats usually live below the fold.
+
+## Gemini Omni: The Video Model in the Same Release
+
+The same I/O announcement included Gemini Omni, a video model that combines Gemini with Google's generative media models. You can feed it audio, images, and video and get a consistent video out. Google's example prompt: "claymation explainer of protein folding." It's rolling out to Google Flow and YouTube Shorts for Google AI subscribers.
+
+## Should You Pay for Any of This?
+
+A practical way to decide:
+
+- **You live in Gmail and Google Calendar:** Daily Brief alone may justify a standard Google AI subscription if morning triage eats real time for you.
+- **You want background automation:** Spark requires the Ultra tier. Unless you have concrete workflows in mind, wait. Early-access agent features tend to improve fast, and the price of waiting is low.
+- **You mostly use ChatGPT or Claude:** nothing here is so far ahead that it forces a switch. The agent race is close, and every major lab is shipping comparable features this year.
+
+The bigger takeaway: Google is turning Gemini from a chatbot into an AI hub that reads your data and acts on it. That's where the whole industry is heading in 2026. Learning to supervise an agent, not just prompt a chatbot, is becoming the skill worth building.
+
+**Sources:**
+- [Google updates its Gemini app to take on ChatGPT and Claude at I/O 2026 (TechCrunch, May 19, 2026)](https://techcrunch.com/2026/05/19/google-updates-its-gemini-app-to-take-on-chatgpt-and-claude-at-io-2026/)
+- [Google introduces Gemini Spark, a 24/7 agentic assistant with Gmail integration (TechCrunch, May 19, 2026)](https://techcrunch.com/2026/05/19/google-introduces-gemini-spark-a-24-7-agentic-assistant-with-gmail-integration/)
+`,
+  },
+  {
     slug: 'context-windows-2026-why-one-million-tokens-changes-everything',
     title: 'Context Windows in 2026: Why 1 Million Tokens Changes Everything for AI Prompting',
     description: 'AI context windows grew 1000x in two years. Five models now handle 1M+ tokens. Learn how this shifts your prompting strategy and what you can actually do with models that remember everything.',
@@ -1994,6 +2069,147 @@ You'll see the value immediately.
 *Sources: Gartner Enterprise AI Survey 2026; IBM's Prompt Engineering Guide 2026; Lakera AI's Prompt Management Framework; Flashprompt 2026 Industry Report.*
 
 *Master your prompts. Build your library. Stay ahead of the curve.*
+    `,
+  },
+
+  {
+    slug: 'prompt-engineering-jobs-disappearing-repositioning-2026',
+    title: 'Prompt Engineering Jobs Are Disappearing: Here\'s Why It\'s Good News',
+    description: 'Job postings for "Prompt Engineer" dropped 40% from 2024 to 2025. But the skills are worth more than ever. Learn how the role is shifting, what companies actually need, and how to position yourself for the next wave.',
+    category: 'Career',
+    readTime: '7 min read',
+    publishedAt: '2026-06-05',
+    author: 'How Do I Use AI',
+    content: `# Prompt Engineering Jobs Are Disappearing: Here's Why It's Good News
+
+In 2024, "Prompt Engineer" seemed like the job of the future. Companies were hiring for the role. Universities were creating courses around it. LinkedIn saw 10,000+ job postings.
+
+By mid-2025, the market had shifted. Job postings for "Prompt Engineer" dropped 40% from 2024 to 2025.
+
+The job title is fading. But prompt engineering skills have never been more valuable.
+
+## What Happened to Prompt Engineer Jobs
+
+Three things converged to collapse the standalone "Prompt Engineer" market:
+
+**1. Prompting became easier**
+Early AI models required careful, technical prompting. You needed to know the model's quirks, its training data, its failure modes. This specialized knowledge commanded premium salaries.
+
+By 2025, frontier models (Claude Opus 4.6, GPT-4, Gemini 3.1) got dramatically better at understanding natural language. You can ask them directly what you want without careful prompt engineering. The barrier to entry dropped.
+
+**2. Every role needed to know how to prompt**
+Instead of hiring a dedicated prompt engineer, companies realized: we need everyone—our engineers, designers, product managers, writers—to know how to prompt effectively.
+
+Prompt engineering stopped being a specialist skill. It became a baseline competency, like email or spreadsheets.
+
+**3. The work converged into adjacent roles**
+The actual work prompt engineers were doing—optimization, system design, workflow automation, AI integration—didn't disappear. It moved into:
+- Product engineering roles (integrating AI into products)
+- Data engineering roles (prompt management, workflow orchestration)
+- Operations roles (AI-driven automation)
+- Solutions architect roles (designing AI systems for clients)
+
+## Where Prompt Engineers Actually Landed
+
+Don't assume these roles vanished. They merged.
+
+Glassdoor data from Q1 2026 shows that "Prompt Engineer" role openings are down 40%, but job searches for "Prompt Engineering" skills are up 78%. Companies aren't looking for standalone prompt engineers—they're looking for engineers, product managers, and operators who can prompt effectively.
+
+The shift isn't disappearance. It's integration.
+
+## The Skills That Matter Now (And They're More Valuable)
+
+If you can do the three things below, you won't struggle for work in 2026. These skills define the next generation of AI professionals.
+
+**1. Prompt Management (Not Just Prompt Crafting)**
+Standalone prompting is dead. Prompt management—building libraries, versioning them, testing variants, measuring results—is essential.
+
+Companies deploying AI at scale need systems. They need teams to build prompt frameworks that work across contexts. They need version control for prompts. They need measurement.
+
+This is harder than writing one good prompt. It pays more.
+
+**2. Workflow Design**
+Prompting is never standalone anymore. It's one step in a workflow.
+
+Can you design a workflow where:
+- Step 1: Data is retrieved or prepared
+- Step 2: An AI prompt processes it
+- Step 3: Results are validated
+- Step 4: Output goes somewhere (database, user, next step)
+- Step 5: You measure whether it worked
+
+People who can design these end-to-end workflows are rare. They command $120k-$180k+ salaries.
+
+**3. Integration and Automation**
+You need to know how prompting fits into the rest of the system. How does it integrate with your product? Your database? Your infrastructure?
+
+Companies need people who can go from "we want AI to do X" to "here's the system we built, it works, and we can measure success."
+
+## How to Position Yourself
+
+If you're worried about the "Prompt Engineer" market, here's your roadmap:
+
+**Move 1: Expand Your Technical Stack**
+Stop thinking about prompting in isolation. Learn:
+- How to integrate AI APIs (OpenAI, Anthropic, local models)
+- Basic automation (Zapier, Make, simple Python scripts)
+- Data handling (how to prepare data for AI, how to structure outputs)
+
+You don't need to be an expert engineer. You need to understand the integration layer.
+
+**Move 2: Build Systems, Not Prompts**
+Every project you do, document it as a system:
+- What was the problem?
+- How did the prompt fit in?
+- What else had to happen?
+- How did you measure success?
+- What would you do differently next time?
+
+When you interview, talk about systems, not prompts. "I designed a workflow that reduced customer support response time by 35%" beats "I wrote a really good prompt."
+
+**Move 3: Pick a Domain**
+Prompt engineering is becoming a cross-cutting skill. The real value comes from deep knowledge in a specific domain:
+- AI in healthcare (knowing HIPAA compliance, medical accuracy)
+- AI in finance (knowing regulatory needs, financial accuracy)
+- AI in sales (knowing pipeline dynamics, qualification logic)
+- AI in content (knowing brand voice, SEO, engagement metrics)
+
+Pick a domain you understand or want to understand deeply. Become the person who knows how to use AI effectively in that domain.
+
+**Move 4: Get the Integration Credential**
+If you want a concrete, marketable credential:
+- Anthropic's Prompt Engineering course (free, official, recognized)
+- Coursera's "Generative AI with Large Language Models" (more technical)
+- Internal courses from your current company on your specific AI systems
+
+These signal that you understand prompting at a technical level, not just tricks.
+
+## The Timeline
+
+The "Prompt Engineer" job title won't disappear entirely. Some companies will keep the role. But the title will be less common as demand pulls toward:
+- AI/ML Engineer
+- Solutions Architect
+- Product Engineer (AI)
+- Data Engineer
+- Platform Engineer
+
+By 2027, job postings will likely shift further toward these titles, with prompting as a core competency rather than the primary one.
+
+Your advantage: if you see this shift coming and position yourself now, you're ahead of the curve. Most prompt engineers are still hoping the specialist role comes back. You'll be ready for what's actually coming.
+
+## Action This Week
+
+1. Take one prompt you use regularly. Document the entire system around it (input, validation, output, measurement).
+2. Identify your domain (healthcare, finance, sales, content, operations). Find three companies doing interesting AI work in that domain.
+3. Start following industry people in that domain. Read how they're talking about AI integration.
+
+The job title is fading. The skills are becoming essential.
+
+---
+
+*Sources: Glassdoor Job Market Trends Q1 2026; Bureau of Labor Statistics AI Role Evolution Report; Gartner Emerging Roles in AI 2026; Indeed Job Posting Analysis June 2026; LinkedIn Skills Report 2026.*
+
+*The future isn't prompt engineers. It's engineers who can prompt effectively.*
     `,
   },
 
