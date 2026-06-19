@@ -11,6 +11,81 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'loop-engineering-from-prompting-to-loops-2026',
+    title: "From Prompting to Loops: The Skill Shift Changing How People Work With AI",
+    description: "In June 2026, engineers at Google and Anthropic started saying they don't prompt their AI agents anymore. They build loops that do the prompting for them. Here's what loop engineering means, where it came from, and what it tells you about the skill worth building next.",
+    category: 'AI Concepts',
+    readTime: '8 min read',
+    publishedAt: '2026-06-19',
+    author: 'How Do I Use AI',
+    content: `# From Prompting to Loops: The Skill Shift Changing How People Work With AI
+
+For about two years, getting good results from an AI tool meant getting good at prompting. You wrote a clear instruction, gave the model enough context, read what came back, then wrote the next instruction. You held the tool the whole time, one turn after another.
+
+In June 2026, some of the people closest to these tools started saying that era is ending. On June 7, Addy Osmani, a director at Google Cloud AI, published an essay called "Loop Engineering" that put a name to the shift. He quoted Boris Cherny, the head of Claude Code at Anthropic, who said: "I don't prompt Claude anymore. I have loops running that prompt Claude and figuring out what to do. My job is to write loops." Developer Peter Steinberger put it the same way: "You shouldn't be prompting coding agents anymore. You should be designing loops that prompt your agents."
+
+If you're still learning to write a good prompt, this can sound like the goalposts moved before you got there. They didn't. Loop engineering is built on top of prompting, not instead of it. But understanding where the field is heading helps you decide what to actually practice. Here's the plain-English version.
+
+## The Four Layers, From Words to Loops
+
+The clearest way to see this is as a stack that has grown one layer at a time.
+
+**Prompt engineering** is about the words you send. The single instruction, phrased well.
+
+**Context engineering** is about everything the model sees alongside your words. The documents, the examples, the conversation history, the data you pulled in. By 2025 this had become most of the work, because a great prompt with poor context still gives you a poor answer.
+
+**Harness engineering** is about the environment the agent runs inside. The tools it can call, the files it can read, the permissions it has. This is the setup that lets an agent do something rather than just say something.
+
+**Loop engineering** sits one floor above the harness. Instead of you running the agent over and over, you build a small system that runs it for you on a schedule, checks its own work, writes down what it finished, and decides what to do next.
+
+Osmani's own definition is worth keeping: "Loop engineering is replacing yourself as the person who prompts the agent. You design the system that does it instead." A loop is a recursive goal. You define the purpose and the AI iterates until the job is done.
+
+## What a Loop Is Actually Made Of
+
+The reason this is happening now, and not a year ago, is that the pieces ship inside the products. You used to build a loop by writing and maintaining a pile of scripts yourself. Now the building blocks come standard in tools like OpenAI's Codex app and Anthropic's Claude Code. Osmani lists five, plus one more that ties them together.
+
+1. **Automations** that run on a schedule and find the work to be done. This is the heartbeat. Without it, you have one task you ran once, not a loop.
+2. **Worktrees** that keep parallel agents from overwriting each other's files, the same way two people editing the same document need separate copies.
+3. **Skills** that write down project knowledge so the agent stops guessing the same things every session.
+4. **Plugins and connectors** that plug the agent into the tools you already use, like your inbox, your issue tracker, or a database.
+5. **Sub-agents** so the one that has the idea is not the same one that checks it.
+
+The sixth piece is memory. A plain file or a shared board that lives outside any single conversation and records what's done and what's next. It sounds too simple to matter, but models forget everything between runs, so the record has to live on disk. As Osmani puts it, "The agent forgets, the repo doesn't."
+
+## Why the Maker and the Checker Should Be Different
+
+The single most useful idea here applies even if you never build a loop. Osmani calls it keeping the maker away from the checker.
+
+A model grading its own work is too generous. It talks itself into believing the answer is right. A second agent, given different instructions and sometimes a different underlying model, catches the mistakes the first one missed. Claude Code's "goal" command does exactly this under the hood: after each turn, a separate small model decides whether the stopping condition is truly met, so the agent that wrote the code isn't the one declaring it finished.
+
+You can borrow this without any automation. When you use AI for something that matters, run the output past a fresh session with a critical prompt: "Find three things wrong with this." You'll get better results than asking the same chat "is this correct?", because the same context tends to defend itself.
+
+## What the Loop Still Won't Do for You
+
+Osmani is careful, and skeptical, about his own thesis, and that's the honest part worth repeating. Three problems get harder as loops get better, not easier.
+
+Verification stays with you. A loop running unattended is also a loop making mistakes unattended. "Done" is a claim, not a proof.
+
+Your understanding can quietly erode. The faster a system ships work you didn't do yourself, the wider the gap between what exists and what you actually understand. The only fix is to read what the loop produced.
+
+And the comfortable posture is the risky one. When the system runs itself, it's tempting to stop having an opinion and accept whatever comes back. Osmani's line lands here: "Two people can build the exact same loop and get completely opposite results. One uses it to move faster on work they understand deeply. The other uses it to avoid understanding the work at all. The loop doesn't know the difference. You do."
+
+## What This Means If You're Not an Engineer
+
+You may never write a loop in a coding tool. The pattern still reaches you, because consumer AI is moving the same direction. Background agents that run while your phone is locked, scheduled digests that assemble themselves each morning, assistants that watch your inbox and act on standing instructions: these are loops with friendlier names.
+
+So the skill worth building isn't fading. It's shifting from "how do I phrase one good prompt" to "how do I supervise a system that runs on my behalf." That means three habits: write your instructions and preferences down somewhere the tool can reuse them, check the output instead of trusting the summary, and start any automation with low-stakes, read-only tasks before you let it act.
+
+If you want a concrete place to practice the supervision habit, building a repeatable weekly review around the tools you already use is a good on-ramp. Our colleagues at [Office Productivity Hacks](https://officeproductivityhacks.com) cover how to set up that kind of system without writing a line of code.
+
+The leverage point moved up a level. The job didn't get easier, and it didn't disappear. As Osmani closes: "Build the loop. But build it like someone who intends to stay the engineer, not just the person who presses go."
+
+**Sources:**
+- [Loop Engineering by Addy Osmani (addyosmani.com, June 7, 2026)](https://addyosmani.com/blog/loop-engineering/)
+- [Agent Harness Engineering by Addy Osmani (addyosmani.com)](https://addyosmani.com/blog/agent-harness-engineering/)
+`,
+  },
+  {
     slug: 'gemini-daily-brief-spark-how-to-use-googles-new-ai-agents',
     title: "Gemini Daily Brief and Spark: What Google's New AI Agents Actually Do",
     description: "Google rebuilt the Gemini app at I/O 2026 and shipped two agent features: Daily Brief and Spark. Here's what each one does, who gets access, and how to put them to work without the marketing gloss.",
