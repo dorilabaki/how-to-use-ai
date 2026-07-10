@@ -11,6 +11,75 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: 'chatgpt-send-emails-gmail-outlook-setup-guide',
+    title: "ChatGPT Can Now Send Emails for You. Here's How to Set It Up, and Where It Falls Short.",
+    description: "In early June 2026, OpenAI quietly gave ChatGPT the ability to draft an email and send it through your Gmail or Outlook account without you opening your inbox. Here's the exact setup, how the approval flow protects you, and the three limitations you should know before relying on it.",
+    category: 'ChatGPT',
+    readTime: '7 min read',
+    publishedAt: '2026-07-10',
+    author: 'How Do I Use AI',
+    content: `# ChatGPT Can Now Send Emails for You. Here's How to Set It Up, and Where It Falls Short.
+
+For years, AI chatbots could write your emails but couldn't send them. You'd draft in the chat, copy the text, open Gmail, paste, fix the formatting, and hit send yourself. In early June 2026, OpenAI quietly closed that gap. ChatGPT can now draft a message inside the chat and send it through your connected Gmail or Outlook account, and you never have to open your inbox.
+
+TechRadar tested the feature shortly after it appeared and described the flow well: you ask, ChatGPT drafts, a dialog box shows you exactly what it's about to do, and nothing goes out until you click Allow. That approval step matters more than it sounds, and we'll come back to it.
+
+Here's how to set it up, what the experience is actually like, and the three limitations that decide whether it's useful for you yet.
+
+## What You Need Before You Start
+
+The feature has real eligibility requirements, so check these first:
+
+**A paid ChatGPT plan.** Sending email works on Plus, Pro, Business, and Enterprise plans. It's not available on the Free tier or the lower-cost Go tier.
+
+**The web version of ChatGPT.** As of this writing, sending works only at chatgpt.com in a browser. The desktop and mobile apps can draft emails but can't dispatch them.
+
+**A Gmail or Outlook account.** ChatGPT sends through OpenAI's native connectors for these two providers only. Other email services aren't supported yet. Between them, Gmail and Outlook cover most people, but if you're on Proton, Fastmail, or a custom setup, this feature isn't for you yet.
+
+**A location outside the EU and UK.** Multiple reports indicate the Gmail and Outlook connectors aren't active in the EU, EEA, Switzerland, or the UK because of data-protection requirements. If you're in those regions, the connector option won't appear.
+
+## Setting It Up in Three Steps
+
+1. **Connect your mailbox.** In ChatGPT on the web, open Settings, choose Apps, then Add more. Search for Gmail or Outlook and follow the sign-in flow to link your account. This is a standard OAuth connection, the same kind you use when you sign into a service with your Google account.
+
+2. **Ask for what you want sent.** In any chat, describe the email: who it's going to, what it should say, and anything it should reference. You can paste in context, point it at earlier parts of the conversation, or just describe the message in a sentence. ChatGPT drafts the full email inside the chat as a writing block you can edit.
+
+3. **Review and approve.** Before anything is sent, ChatGPT displays a dialog explaining the action it's about to take, with Allow and Deny buttons. Click Details to see the exact message, recipient, and subject line it plans to send. Only after you click Allow does the email go out through your account.
+
+That approval dialog is the part worth slowing down for. The email sends from your real address, and the recipient has no way of knowing an AI drafted it. Read the Details view every time. Models still get names, dates, and tone wrong, and a wrong-recipient mistake is yours, not the machine's.
+
+## The Three Limitations That Matter
+
+**No attachments.** This is the big one. You can't send a file with the message, period. TechRadar's reviewer hit this wall on their first real attempt and called it the catch that brings you back down to earth. Since sending files is one of the most common reasons people write emails at all, this rules out a large share of real-world use for now.
+
+**Web only, paid only.** If your workflow lives in the mobile app, or you're on a free plan, you're waiting on a future rollout.
+
+**One-way, per-message approval.** ChatGPT asks for your approval on each send. That's the right default for safety, but it means you can't yet tell it to send a batch of twenty personalized follow-ups and walk away. This is assisted sending, not autonomous email.
+
+## How It Compares Right Now
+
+The notable thing isn't the polish. It's that most competitors can't do this at all. When TechRadar asked Google's Gemini to send an email, it replied that it couldn't send messages directly or access accounts to do so. Gemini drafts well, especially inside Gmail itself, but the loop from request to sent message without leaving the chat is something ChatGPT does that Gemini currently doesn't.
+
+Claude takes a different approach: connected to Gmail, it's strong at reading and summarizing your inbox and drafting replies, but the send still happens in your mail client.
+
+If you're deciding whether this feature alone is worth a paid plan, it probably isn't yet. If you already pay for ChatGPT and live in a supported region, it's worth connecting your mailbox this week and folding it into your routine for simple, no-attachment messages: confirmations, intros, follow-ups, and quick scheduling notes.
+
+## A Practical Way to Use It Today
+
+The pattern that works is treating ChatGPT as the drafting and dispatch layer for low-stakes email while you keep your inbox for anything sensitive. A concrete example: after a meeting, paste your rough notes into the chat and ask for a recap email to the attendees. Review the Details view, fix anything off, click Allow. That's a five-minute task done in one.
+
+What you shouldn't do yet is route anything with legal, financial, or personnel weight through it. The approval dialog protects you from obvious errors, but subtle tone problems in sensitive messages are exactly what AI drafting still gets wrong most often.
+
+Email is also just one piece of an AI-assisted work setup. If you're building out the rest, our colleagues at [Office Productivity Hacks](https://officeproductivityhacks.com) cover practical AI integrations for Excel, Google Sheets, and the other tools these connectors are steadily reaching. And if you want your drafted emails to sound like you rather than a template, our guide to [prompt frameworks for better AI outputs](/resources/prompt-frameworks-better-ai-outputs) applies directly to email prompts.
+
+## Sources
+
+- TechRadar, "I sent an email without opening Gmail thanks to ChatGPT's new feature, then I found the catch" (June 2026)
+- OpenAI Help Center, "Outlook Email and Calendar connectors for ChatGPT"
+- TechRepublic, "ChatGPT Business Features Now Include Gmail/Outlook Connectors" (2026)
+`,
+  },
+  {
     slug: 'loop-engineering-from-prompting-to-loops-2026',
     title: "From Prompting to Loops: The Skill Shift Changing How People Work With AI",
     description: "In June 2026, engineers at Google and Anthropic started saying they don't prompt their AI agents anymore. They build loops that do the prompting for them. Here's what loop engineering means, where it came from, and what it tells you about the skill worth building next.",
