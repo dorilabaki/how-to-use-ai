@@ -11,6 +11,80 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: "chatgpt-work-agent-what-it-does-2026",
+    title: "ChatGPT Work: What OpenAI's New Agent Actually Does (and How to Put It to Use)",
+    description: "On July 9, 2026, OpenAI released ChatGPT Work, an agent that takes a goal, works across your connected apps and files for hours, and returns a finished spreadsheet, deck, document, or web app. Here's what it does, what to watch out for, and how to hand it real tasks without losing control of the result.",
+    category: "AI Agents",
+    readTime: "9 min read",
+    publishedAt: "2026-07-17",
+    author: "How Do I Use AI",
+    content: `# ChatGPT Work: What OpenAI's New Agent Actually Does (and How to Put It to Use)
+
+On July 9, 2026, OpenAI released ChatGPT Work, and the framing was different from a normal feature drop. Instead of a smarter chatbot, OpenAI described an agent that takes a goal, works across your apps and files for as long as the job needs, and hands back finished material: a spreadsheet, a slide deck, a document, or a small web app. If you have spent the last two years typing one prompt at a time and pasting the answer somewhere else, this is a genuine change in how the tool is meant to be used.
+
+This article covers what ChatGPT Work is, what it can and cannot do right now, and how to hand it real tasks without losing control of the result.
+
+## From answering prompts to finishing jobs
+
+The mental model most people still carry is a conversation: you ask, it replies, you copy the reply into a document or an email. ChatGPT Work is built for a different pattern. You state an outcome, and the agent breaks it into steps, gathers what it needs across your connected tools, and stays with the project. OpenAI has said it can run for hours on a single task rather than turning around a single answer.
+
+That last part matters. A one-shot answer is easy to check at a glance. A multi-step job that touched several of your apps and produced a finished file needs a different kind of review, and we will get to that. But the direction is clear: the unit of work is moving from the reply to the deliverable.
+
+## What it connects to
+
+An agent that only sees the text in a chat box cannot do your work. The point of ChatGPT Work is that it plugs into the places your work already lives. According to OpenAI and multiple outlets that covered the launch, it can connect through plugins to tools like Slack, Microsoft Teams, Google Drive, and SharePoint, along with email, calendars, CRM platforms, and project trackers.
+
+In practice, that means you can point it at real context instead of pasting everything in by hand. Pull the numbers from that shared drive, cross-reference the calendar, draft the summary, and put it where the team will see it. The quality of what you get back depends heavily on what you connect and how clearly you describe the goal.
+
+## Chat, Work, and Codex under one roof
+
+Alongside the agent, OpenAI reorganized the apps. The Codex coding tool is merging into a new ChatGPT desktop app that puts Chat, Work, and Codex together, and OpenAI has said those pieces are available on every plan, including Free. You try the agent through the desktop app on Mac and Windows.
+
+The rollout is staged rather than instant. Reports at launch described access reaching paid tiers first, with wider availability following over the days after. So if you open the app and do not see everything described here yet, that is expected. Features are arriving in waves.
+
+## Scheduled Tasks and Sites
+
+Two additions are worth knowing about because they change what you can set up once and forget.
+
+Scheduled Tasks let ChatGPT do something on a schedule, when an event happens, or by monitoring for changes over time, using your connected apps and the browser. That turns the agent from something you summon into something that can run a recurring job, like a Monday-morning status pull, without you starting it each time.
+
+Sites, launched in public beta, turns a piece of work or an idea into an interactive site or web app you can share with a link. OpenAI has suggested it for live dashboards, project trackers, launch calendars, prototypes, internal portals, and interactive reports. It is the difference between handing someone a static export and handing them a small working page.
+
+## Where it runs, and what the Atlas news means
+
+ChatGPT Work runs on a persistent cloud virtual machine on OpenAI's servers, so the agent is available regardless of which device you pick up. That is why a long-running task can keep going while you close your laptop.
+
+The launch also came with a retreat. OpenAI's standalone AI browser, Atlas, is being wound down, with its agentic-browsing lessons folded back into ChatGPT itself. If you followed the AI browser wave, this is a notable course correction: rather than a separate browser, the browsing ability is becoming a capability inside the assistant. For a plain-English tour of what agents like this are and how they differ from a chatbot, see our guide to [AI agents](/resources/how-to-use-ai-agents), and for why chaining steps together changed prompting, see [loop engineering](/resources/loop-engineering-from-prompting-to-loops-2026).
+
+## How to actually use it well
+
+An agent that can run for hours is powerful and easy to misuse. A few habits keep it useful.
+
+Start with a narrow, checkable task. A good first job is something you already know how to verify: reconcile two lists, build a summary table from a folder of files, or draft a recurring report. If you can spot a wrong answer quickly, you can trust the workflow before you scale it up.
+
+Describe the outcome, not just the topic. "Summarize the quarter" is vague. "Pull the four weekly reports from this Drive folder, build one table of the top three metrics per week, flag any week where signups dropped more than 10 percent, and write a three-sentence summary" gives the agent a target it can hit and you a result you can check.
+
+Connect only what the task needs. Every app you connect widens what the agent can reach. Grant access for the job in front of you rather than wiring up everything at once.
+
+Review the deliverable like a manager, not a proofreader. The risk with a finished spreadsheet is not a typo. It is a number pulled from the wrong column or a step quietly skipped. Trace the important figures back to their source before you send anything onward.
+
+## What to watch out for
+
+Two cautions apply to any agent with this reach. First, verification is on you. The output looks polished, which makes it tempting to trust, but the whole point is that it did many steps you did not watch. High-stakes numbers deserve a spot check every time. Second, access is real access. An agent connected to your email, drive, and calendar can act across all of them, so treat those connections the way you would treat handing someone the keys: deliberately, and with the minimum needed. This is the same review-before-it-touches-your-data discipline that spreadsheet users are learning with Excel's own AI review tools, covered by our sister site on [reviewing AI edits before they change your files](https://officeproductivityhacks.com/resources/excel-copilot-plan-mode-guide).
+
+## Bottom line
+
+ChatGPT Work is OpenAI's clearest bet yet that the future of these tools is delegation, not conversation. You give it an outcome, it does the intermediate steps across your apps, and you get something finished. That is genuinely useful for repetitive, multi-step work, and it raises the stakes on two old skills: writing a clear brief, and checking a result you did not personally assemble. Start small, verify hard, and expand only once you trust what comes back.
+
+## Sources
+
+- OpenAI, ChatGPT Release Notes (help.openai.com)
+- InfoWorld, "OpenAI launches ChatGPT Work as it broadens GPT-5.6 rollout" (2026)
+- VentureBeat, "OpenAI introduces ChatGPT Work, a cloud-based AI agent that manages tasks across email, Slack and calendars" (2026)
+- The Next Web, "OpenAI launches ChatGPT Work, an agent built to finish the job" (2026)
+- Fox Business, "OpenAI launches ChatGPT Work to automate workplace tasks and files" (2026)`,
+  },
+  {
     slug: 'chatgpt-send-emails-gmail-outlook-setup-guide',
     title: "ChatGPT Can Now Send Emails for You. Here's How to Set It Up, and Where It Falls Short.",
     description: "In early June 2026, OpenAI quietly gave ChatGPT the ability to draft an email and send it through your Gmail or Outlook account without you opening your inbox. Here's the exact setup, how the approval flow protects you, and the three limitations you should know before relying on it.",
