@@ -11,6 +11,99 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: "claude-cowork-web-mobile-what-people-actually-use-it-for",
+    title: "Claude Cowork Runs on Your Phone Now. The Usage Data Shows What People Actually Do With It.",
+    description: "On July 7, 2026, Anthropic brought Claude Cowork to web and mobile. It also published data from 1.2 million sessions showing that software development accounts for just 8.7% of usage. Here's what the other 91% looks like, and how to hand it work without losing control.",
+    category: "AI Agents",
+    readTime: "9 min read",
+    publishedAt: "2026-07-21",
+    author: "How Do I Use AI",
+    content: `# Claude Cowork Runs on Your Phone Now. The Usage Data Shows What People Actually Do With It.
+
+Most writing about AI agents is speculation about what people might eventually use them for. This one isn't, because Anthropic released numbers.
+
+On July 7, 2026, Anthropic brought Claude Cowork to web and mobile, in beta, starting with Max subscribers and expanding to more plans over the following weeks. Cowork had launched as a desktop app in January. Alongside the expansion, Anthropic published usage data from real sessions, and the breakdown is more interesting than the feature release.
+
+## The numbers
+
+Anthropic's study sampled 1.2 million anonymized and aggregated Cowork sessions from more than 600,000 organizations, covering the last two weeks of May 2026. Three categories stand out:
+
+- **Business process operating: 33.4%.** Pulling scattered updates into a single report, building onboarding checklists, reconciling spreadsheets. Anthropic notes these tasks are common in finance, HR, and administration.
+- **Content creation and copywriting: 16.4%.** Drafts, slide decks, social posts, proposals, and other communications work, typically from marketing and management roles.
+- **Software development: 8.7%.**
+
+That last figure is the one worth sitting with. Cowork is built on the same agentic architecture as Claude Code, a developer tool, and coding accounts for well under a tenth of what people do with it.
+
+Anthropic described the pattern as the "work around the work," the "tasks that are part of a broad swath of jobs, but are rarely a person's core responsibility." That's a precise description of a real category. Nobody's job title is "reconcile the spreadsheet and chase the four people who didn't reply," and yet that work consumes a large share of a lot of weeks.
+
+## What changed on July 7
+
+The functional change is that sessions now run remotely on Anthropic's servers rather than requiring your machine to stay awake. Practically, that means three things:
+
+**Work continues without you.** You can start a task, close your laptop, and the session keeps running. According to Anthropic's documentation, sessions and files live with your Claude account and follow you across desktop, web, and mobile.
+
+**You can steer from a different device.** Start something at your desk, check progress from your phone, answer a question the agent raises, and pick up the finished output later.
+
+**Scheduled tasks don't need a device online.** You can create tasks that run on a cadence. Anthropic's own example: set Monday's client prep for 6am so Claude works through email threads, transcripts, and recent news, builds the briefing doc, and leaves the follow-up email drafted but unsent, ready to review over coffee.
+
+The desktop app still matters. Anything touching local files, your browser, or your computer needs the desktop app open, because those things live on your machine even when the session runs remotely. Cowork is available on paid plans, which Anthropic lists as Pro, Max, Team, and Enterprise.
+
+## The permission model is the part to learn first
+
+If you use one thing from this article, make it this. Cowork has three modes controlling when it asks before acting, and picking the wrong one is how people get burned by agents.
+
+**Manual** pauses and asks for approval on actions. You review each request and choose allow or deny.
+
+**Auto** keeps working without stopping at every step, but reviews each action for safety, including checks for data exfiltration and prompt injection, and blocks anything it judges unsafe. When something is blocked, it looks for a safer route or asks you directly. Anthropic notes that auto mode consumes more of your usage limit than the other modes, because the checking itself costs compute.
+
+**Skip** doesn't pause and doesn't check. Anthropic's guidance is to use it only when you completely trust every action, connector, file, and app involved.
+
+Anthropic's own caveat is worth repeating rather than paraphrasing away: no defense is perfect and no mode replaces your judgment. For work with real consequences, meaning money, messages sent as you, or important files, stay close and review what the agent does.
+
+The sensible default for most people is Manual until you've watched a particular kind of task run correctly a few times, then Auto for that task type. Reserve Skip for genuinely low-stakes work in a folder you don't care about.
+
+## How to hand it work that actually comes back right
+
+The usage data suggests the highest-value tasks share a shape: multi-step, spread across several files or sources, and tedious rather than difficult. A few patterns that fit:
+
+**Reconciliation.** Comparing two sources that should agree and producing a list of where they don't. This is the 33.4% category in one sentence.
+
+**Synthesis from scattered inputs.** Meeting transcripts, notes, and threads into one briefing. The work is gathering, not thinking, which is exactly what delegating suits.
+
+**Deliverables with real structure.** Anthropic says Cowork can generate spreadsheets with working formulas and multiple tabs rather than CSVs you have to repair, along with slide decks and formatted documents.
+
+**Recurring prep.** Anything you do every Monday is a candidate for a scheduled task.
+
+Two things that improve results regardless of task. First, describe the outcome rather than the steps. The agent plans, and over-specifying steps you haven't thought through tends to produce worse plans than letting it propose one you then correct. Second, review the plan before it runs. Cowork surfaces what it intends to do, and catching a misunderstanding at the plan stage costs a sentence, while catching it after execution costs a rebuild.
+
+That last habit is the same one that matters with AI features inside ordinary office tools. Office Productivity Hacks covers the spreadsheet version of it in a guide to [reviewing Copilot's edits before they touch your data](https://officeproductivityhacks.com/resources/excel-copilot-plan-mode-guide), and the logic carries over exactly.
+
+## The limitations worth knowing before you rely on it
+
+Anthropic lists several gaps, and knowing them upfront saves frustration:
+
+- **Memory doesn't carry over from chat.** What Claude remembers about you in regular conversations doesn't transfer into Cowork sessions. Within Cowork, memory works in projects only.
+- **Sessions can't be shared.** Team and Enterprise plans can share live artifacts inside the organization, but not sessions themselves.
+- **Some features are desktop-only.** Live artifacts and plugins that include local MCP servers run through the desktop app.
+- **It consumes more usage than chat.** Multi-step tasks are compute-intensive. Anthropic's own advice is to batch related work into single sessions and use regular chat for simpler things that don't need file access.
+
+That last point is a real constraint, not a footnote. Using an agent for a task you could have finished in one prompt is an expensive way to do something simple.
+
+## What the 8.7% actually tells us
+
+The temptation is to read the coding number as a story about developers. The more useful reading is about everyone else.
+
+Agentic tools were built by developers, for developers, on the assumption that the hardest delegatable work was writing code. The usage data suggests the largest pool of delegatable work was never code. It was the administrative connective tissue in ordinary jobs, the work that's tedious rather than hard, that nobody was hired to do, and that quietly consumes a third of a lot of weeks.
+
+If you've been waiting to try an agent because you don't write software, that's the finding: the tool's biggest use case is closer to your job than to a developer's.
+
+**Sources:**
+- TechCrunch, "Claude Cowork expands to mobile and web," July 7, 2026: https://techcrunch.com/2026/07/07/the-coding-agent-wars-are-spilling-into-the-rest-of-the-office-claude-cowork/
+- Anthropic, "Get started with Claude Cowork," Claude Help Center: https://support.claude.com/en/articles/13345190-get-started-with-claude-cowork
+- Anthropic, Claude Cowork product page: https://www.anthropic.com/product/claude-cowork
+`,
+  },
+  {
     slug: "chatgpt-work-agent-what-it-does-2026",
     title: "ChatGPT Work: What OpenAI's New Agent Actually Does (and How to Put It to Use)",
     description: "On July 9, 2026, OpenAI released ChatGPT Work, an agent that takes a goal, works across your connected apps and files for hours, and returns a finished spreadsheet, deck, document, or web app. Here's what it does, what to watch out for, and how to hand it real tasks without losing control of the result.",
