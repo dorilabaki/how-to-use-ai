@@ -13,10 +13,32 @@ function parseInlineMarkdown(text: string): ReactNode[] {
     const boldMatch = remaining.match(/^(.*?)\*\*(.+?)\*\*(.*)/);
     if (boldMatch) {
       if (boldMatch[1]) {
-        parts.push(<Fragment key={key++}>{boldMatch[1]}</Fragment>);
+        parts.push(<Fragment key={key++}>{parseInlineMarkdown(boldMatch[1])}</Fragment>);
       }
       parts.push(<strong key={key++} className="text-text-primary font-semibold">{boldMatch[2]}</strong>);
       remaining = boldMatch[3];
+      continue;
+    }
+
+    // Match markdown links [text](url)
+    const linkMatch = remaining.match(/^(.*?)\[([^\]]+?)\]\(([^)\s]+?)\)(.*)/);
+    if (linkMatch) {
+      if (linkMatch[1]) {
+        parts.push(<Fragment key={key++}>{parseInlineMarkdown(linkMatch[1])}</Fragment>);
+      }
+      const href = linkMatch[3];
+      const external = /^https?:\/\//.test(href);
+      parts.push(
+        <a
+          key={key++}
+          href={href}
+          className="text-primary-400 underline underline-offset-2 hover:text-primary-300"
+          {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        >
+          {linkMatch[2]}
+        </a>
+      );
+      remaining = linkMatch[4];
       continue;
     }
 
@@ -24,7 +46,7 @@ function parseInlineMarkdown(text: string): ReactNode[] {
     const codeMatch = remaining.match(/^(.*?)`(.+?)`(.*)/);
     if (codeMatch) {
       if (codeMatch[1]) {
-        parts.push(<Fragment key={key++}>{codeMatch[1]}</Fragment>);
+        parts.push(<Fragment key={key++}>{parseInlineMarkdown(codeMatch[1])}</Fragment>);
       }
       parts.push(<code key={key++} className="px-1.5 py-0.5 bg-dark-700 text-primary-400 rounded text-sm font-mono">{codeMatch[2]}</code>);
       remaining = codeMatch[3];
@@ -60,6 +82,12 @@ export default function MarkdownContent({ content }: { content: string }) {
           {h2Match[1]}
         </h2>
       );
+      i++;
+      continue;
+    }
+
+    // Skip a leading H1: the page template already renders the article title as <h1>
+    if (line.startsWith('# ')) {
       i++;
       continue;
     }

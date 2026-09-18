@@ -11,6 +11,107 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: "google-home-mcp-what-your-ai-agent-can-do-with-your-house",
+    title: "Google Home Now Speaks MCP. Here's What Your AI Agent Can (and Can't) Do With Your House.",
+    description: "On September 16, 2026, Google opened early access to Home MCP, letting Claude, ChatGPT, and other agents list, monitor, and control your Google Home devices and read your camera history. Here's what it does, what it blocks, what it costs, how setup works, and how to connect it without regretting it.",
+    category: "AI Agents",
+    readTime: "8 min read",
+    publishedAt: "2026-09-18",
+    author: "How Do I Use AI",
+    content: `## Your Smart Home Just Got an API for AI Agents
+
+On September 16, 2026, Google opened early access to Home MCP, a Model Context Protocol server for the Google Home ecosystem. In plain terms: any AI agent that can call MCP tools, including Claude, ChatGPT, Google's own Antigravity, Hermes, and OpenClaw, can now list the devices in your house, check their state, control them, and read your event history. All through a chat window.
+
+If you read our explainer on [what MCP is and why it matters](/resources/what-is-mcp-model-context-protocol), this is the consumer version of the idea. Instead of connecting your agent to a database or a project tracker, you're connecting it to your thermostat, your lights, and your doorbell camera.
+
+That's a bigger deal than a new voice command, and it comes with more responsibility than most launch coverage admits. Here's what Home MCP actually does, who can get it, how setup works, and where the sharp edges are.
+
+## What the agent can actually do
+
+Google's developer documentation describes five tools the server exposes. Each maps to a concrete thing your agent can do:
+
+- **List your homes** (list_homes): find the home structures your account can access.
+- **List your devices** (list_home_resources): every device, its room, its traits, and the commands it accepts.
+- **Check live state** (list_home_states): is the porch light on, is the thermostat set to 68, is the garage camera online.
+- **Run actions** (run_home_actions): turn things off, set temperatures, and run any other supported command.
+- **Read history** (list_home_history): query past state changes and event logs over a time range.
+
+Google's suggested test prompts show the range. "How many lights do I have in my house?" exercises discovery. "Is my home secured?" reads state. "Turn off all the outside lights" runs an action. "What happened while I was out?" pulls history.
+
+The history tool is where this gets interesting. Google's announcement describes early testers asking what the kids did when they got home from school and getting a summary drawn from every camera along with the relevant clips. Other examples include using device state history to count how many loads of laundry ran in a week, checking how long lights stayed on, and having an agent send an audio message through a Google Home speaker when it finishes a background task.
+
+Those are things a voice assistant has never been able to do. A voice assistant answers a command. An agent with history access can answer a question about your house.
+
+## What it deliberately can't do
+
+Google put a warning box at the top of its own user guide, and it's worth quoting the gist: connecting a real home to an AI agent lets that agent control devices on your behalf, and depending on the agent, that "can result in unexpected or even undesired behavior."
+
+The guardrails Google documents:
+
+- **Sensitive actions are blocked.** The server enforces rate limits and safety protections. Google's stated example is that agents cannot unlock doors.
+- **Familiar face data needs separate consent.** Access to familiar-face detection results requires a structure manager to explicitly grant it through a dedicated consent link, and only works if at least one compatible Nest camera or doorbell has the feature enabled.
+- **Automations aren't supported yet.** You can't create or manage Google Home automations through MCP today. Google says that's planned for a future release.
+- **Access can be revoked any time** from the Google Home app or your Google account page.
+
+Two known issues are listed as well: some device traits are marked experimental and may not behave, and Google says you may see longer-than-expected latency while it optimizes.
+
+One more limit that isn't a bug but matters: Google advises that if other people live in the home, you should tell them your agent can control devices and access home data. It also suggests creating a separate home structure for testing rather than wiring an agent into your main one on day one. That's good advice, and we'd go further below.
+
+## Who can get it, and what it costs
+
+This is early access, and it's gated.
+
+- **Subscription:** You need Google Home Premium Advanced. Google's store lists it at $20 per month or $200 per year. The Standard tier at $10 per month does not qualify. Google's store page notes that former Nest Aware Plus subscribers are on the Advanced plan.
+- **Region and language:** US, in English, for now. TechCrunch reported that Google declined to say whether or when it would expand to other tiers or markets.
+- **Timing:** TechCrunch says the rollout started September 16 and continues over the coming weeks. Engadget's write-up characterizes it as arriving "in the coming weeks." Don't be surprised if it's not in your account yet.
+- **A Google Cloud project.** This is the part that will surprise non-technical users. Home MCP authenticates through OAuth credentials you create yourself in the Google Cloud console. There's no one-click toggle in the Google Home app.
+
+## How setup works (and what "create a Cloud project" means)
+
+The official steps, condensed from Google's user guide:
+
+1. Create a Google Cloud project at console.cloud.google.com (creating a project is free).
+2. In that project, go to APIs & Services, search for Home API, and enable it.
+3. Set up an OAuth consent screen. Choose the External audience and fill in the app name and a contact email.
+4. Create an OAuth client ID of type Web application. Add the redirect URI for your agent. For Claude, Google lists https://claude.ai/api/mcp/auth_callback. For Antigravity, it's https://antigravity.google/oauth-callback. OpenClaw uses whatever redirect your local install specifies.
+5. Copy the Client ID and Client Secret somewhere safe, then publish the app under Google Auth Platform > Audience.
+6. In your agent, add a custom connector pointing at https://home.googleapis.com/mcp with those credentials. In Claude, that's Connectors > + > Add custom connector, then Advanced settings for the ID and secret, then complete the OAuth flow in your browser and toggle home_mcp on inside a Cowork chat.
+
+It takes maybe fifteen minutes the first time, most of it clicking through Cloud console screens. Google's page also offers a paste-this-into-your-agent prompt for automated setup, but as of the page's September 15 update that prompt points at a preprod sandbox URL rather than the production server used in the manual steps. Follow the manual instructions for your client.
+
+If you already use Claude Cowork for desk work, the mechanics will feel familiar. It's the same connector model we described when we covered [Cowork's expansion to web and mobile](/resources/claude-cowork-web-mobile-what-people-actually-use-it-for). The difference is what's on the other end of the connection.
+
+## How to use it without regretting it
+
+Everything below comes from the same principle that applies to any agent with write access to something real: the cheaper the action is to undo, the more you can automate. Lights are cheap to undo. Your heating bill is not. Your camera history can't be un-shared.
+
+**Start with a test home.** Google suggests this and it's the right call. Create a second home structure in the Google Home app, move one or two low-stakes devices into it (a lamp, a plug), and connect the agent there first. You'll learn how your agent interprets requests before it can touch anything that matters.
+
+**Keep your agent in a mode that asks before acting.** Most agent clients have a permission setting. In Claude Cowork, that's the Manual and Auto modes we've described before; Manual pauses on every action. For a home connection, that's the right default until you trust the behavior. "Turn off the outside lights" is fine to auto-approve. "Adjust the thermostat schedule" is not, at least not yet, and automations aren't even supported.
+
+**Ask read-only questions first.** The history and state tools are the least risky and the most useful. "Which lights are on right now?" and "When did the front door camera last detect a person?" can't break anything, and they're the questions a normal smart home app makes you tap through four screens to answer.
+
+**Treat prompt injection as a real risk.** MCP servers give agents tools, and tools can be triggered by text the agent reads, not just text you type. Engadget's coverage flagged this directly, pointing to documented security concerns with MCP deployments. In practice: don't connect a home MCP to an agent that's also reading untrusted web pages or inbound email in the same session. Keep the home session separate.
+
+**Tell your household.** Google says so explicitly. If your partner or roommate doesn't know an agent can read the camera history, that's a problem no matter how well the agent behaves.
+
+## Why this matters beyond Google Home
+
+Google already supports MCP in Cloud, Workspace, and its developer tools. Home is the first consumer-facing surface, and it signals where the protocol is heading: away from being a developer integration standard and toward being the plug that any agent uses to reach any service you own.
+
+That's good news for people who don't want to be locked into one company's assistant. Home MCP works with Claude, with ChatGPT, with open-source agents, not only with Gemini. Whichever agent you already use for planning, writing, and organizing your work can now be the one that checks whether you left the garage open.
+
+It also raises the stakes on the boring stuff: permission modes, separate sessions, telling people what your agent can see. Those habits were nice-to-haves when the agent's worst mistake was a badly formatted spreadsheet. They're mandatory when it has a key to the house.
+
+**Sources:**
+- Google Home Developers, "Google Home MCP Server" user guide (last updated September 15, 2026): https://developers.home.google.com/mcp/home
+- Google Home & Nest Community, "Introducing Home MCP: enabling your agent to interact with your home" (September 16, 2026): https://support.google.com/googlehome/thread/467705013/introducing-home-mcp-enabling-your-agent-to-interact-with-your-home
+- TechCrunch, "Your AI agents can now control your Google Home devices," Sarah Perez (September 16, 2026): https://techcrunch.com/2026/09/16/your-ai-agents-can-now-control-your-google-home-devices/
+- Engadget, "Google Home is going agentic via integration with the MCP standard," Lawrence Bonk (September 16, 2026): https://www.engadget.com/2260280/google-home-is-going-agentic-via-integration-with-the-mcp-standard/
+- Google Store, Google Home Premium plans and pricing: https://store.google.com/product/google_home_premium
+`,
+  },
+  {
     slug: "claude-cowork-web-mobile-what-people-actually-use-it-for",
     title: "Claude Cowork Runs on Your Phone Now. The Usage Data Shows What People Actually Do With It.",
     description: "On July 7, 2026, Anthropic brought Claude Cowork to web and mobile. It also published data from 1.2 million sessions showing that software development accounts for just 8.7% of usage. Here's what the other 91% looks like, and how to hand it work without losing control.",
