@@ -11,6 +11,59 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: "gemini-notebook-google-docs-grounded-ai-prompts-2026",
+    title: "How to Ground Gemini in Your Own Sources in Google Docs",
+    description: "Since September 23, 2026, you can type @ in Google Docs, pick a Gemini Notebook, and get drafts built from its sources with inline citations. Here's how it works, who has it, and how to check the output.",
+    category: "Google Gemini",
+    readTime: "5 min read",
+    publishedAt: "2026-09-29",
+    author: "How Do I Use AI",
+    content: `## Stop Pasting Research Into Prompts
+
+Most people who use AI to draft a document do the same thing. They collect sources somewhere, copy the relevant parts into a chat window, ask for a draft, then paste the result back into the document. Each hop is a chance to lose a citation or drop a source.
+
+On September 23, 2026, Google announced a way to cut those hops in Google Docs. You can now reference an existing Gemini Notebook directly from a Doc, and Gemini drafts from that notebook's sources with inline citations. Google's Workspace Updates post says it's available now for both Rapid Release and Scheduled Release domains.
+
+## How It Works
+
+Google's steps are short:
+
+1. Open a Google Doc with the Gemini side panel or bottom bar visible.
+2. Type "@" to open the reference menu.
+3. Pick an existing Gemini Notebook from the list.
+4. Ask Gemini for what you need. It generates content grounded in that notebook's sources, with citations.
+
+The important constraint is in the last line of Google's announcement: the feature works with a notebook that already exists. It can't build a new research collection for you. The quality of the draft depends on what you put in the notebook first.
+
+## Who Can Use It
+
+Google lists these plans: Business Standard and Plus, Enterprise Standard and Plus, Education Plus, and the consumer Google AI Pro and Ultra plans, plus the Google AI Pro for Education, Teaching and Learning, and AI Expanded Access add-ons. Admins need Gemini for Workspace in Drive and Workspace Intelligence features enabled. End users need Workspace smart features turned on. If you don't see the "@" option to reference a notebook, check the plan and those settings first.
+
+## A Workflow That Fits This
+
+The feature rewards a specific habit: build the source set before you write.
+
+Start in Gemini Notebook and add only the material you'd be comfortable citing. That could be a report you've read, meeting notes, a policy PDF, or your own earlier drafts. Leaving out weak sources matters, because the draft can only be as reliable as its inputs.
+
+Then open the Doc, reference the notebook with "@", and ask for a narrow piece, such as a summary of one section or a comparison of two sources. Narrow requests are easier to check than a full first draft.
+
+Finally, verify the citations before you keep any sentence. A citation shows where a claim came from. It doesn't prove the model read the source correctly. Click through, confirm the passage says what the draft says it does, and edit anything that overreaches.
+
+## Where It Falls Short
+
+Grounding reduces one kind of error, invented facts with no source. It doesn't remove misreadings of real sources, and it doesn't check whether the sources themselves are any good. Google's post doesn't publish accuracy figures for this feature, so treat citations as a review aid, not a guarantee. Also note the plan requirements above: many free personal accounts won't have it.
+
+## Related Reading
+
+If you're working with long source sets, [context windows in 2026](/resources/context-windows-2026-why-one-million-tokens-changes-everything) explains why how much a model can hold matters. If your sheets feed the write-up, Office Productivity Hacks covers the [September 2026 Google Sheets changes to cell limits and manual calculation](https://officeproductivityhacks.com/resources/google-sheets-20-million-cells-manual-calculation-2026).
+
+## Sources
+
+- Google Workspace Updates, "Ground AI prompts in Google Docs on existing sources from Gemini Notebook," September 23, 2026
+- Google Workspace Updates, "Google Workspace Weekly Recap - September 25, 2026"
+`,
+  },
+  {
     slug: "google-home-mcp-what-your-ai-agent-can-do-with-your-house",
     title: "Google Home Now Speaks MCP. Here's What Your AI Agent Can (and Can't) Do With Your House.",
     description: "On September 16, 2026, Google opened early access to Home MCP, letting Claude, ChatGPT, and other agents list, monitor, and control your Google Home devices and read your camera history. Here's what it does, what it blocks, what it costs, how setup works, and how to connect it without regretting it.",
