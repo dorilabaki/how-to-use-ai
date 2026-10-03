@@ -120,6 +120,33 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Sister sites */}
+        <nav aria-label="Sister sites" className="mt-10 pt-6 border-t border-dark-700 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 text-sm">
+          <span className="text-text-muted font-medium">Sister sites</span>
+          <ul className="flex flex-wrap gap-x-6 gap-y-2">
+            <li>
+              <a href="https://growthmindset.academy" target="_blank" rel="noopener" className="text-text-secondary hover:text-primary-400 transition-colors" title="Personal development">
+                Growth Mindset
+              </a>
+            </li>
+            <li>
+              <a href="https://theleaderstable.xyz" target="_blank" rel="noopener" className="text-text-secondary hover:text-primary-400 transition-colors" title="Leadership">
+                The Leader&apos;s Table
+              </a>
+            </li>
+            <li>
+              <a href="https://officeproductivityhacks.com" target="_blank" rel="noopener" className="text-text-secondary hover:text-primary-400 transition-colors" title="Excel and office tools">
+                Office Productivity Hacks
+              </a>
+            </li>
+            <li>
+              <a href="https://howtofindajob.org" target="_blank" rel="noopener" className="text-text-secondary hover:text-primary-400 transition-colors" title="Job search">
+                How To Find A Job
+              </a>
+            </li>
+          </ul>
+        </nav>
+
         {/* Bottom */}
         <div className="mt-12 pt-8 border-t border-dark-700">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
