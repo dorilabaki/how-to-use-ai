@@ -11,6 +11,78 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: "gemini-skills-replace-gems-what-to-do-before-march-2027",
+    title: "Gemini Skills Are Replacing Gems. Here's What to Do Before March 2027.",
+    description: "Google announced on September 30, 2026 that skills, reusable instructions built on the open SKILL.md format, are replacing Gems. Here's the rollout schedule, who gets them, the deprecation dates, and how to prepare.",
+    category: "Google Gemini",
+    readTime: "6 min read",
+    publishedAt: "2026-10-09",
+    author: "How Do I Use AI",
+    content: `## Your Gems Have a Deadline
+
+If you've built Gems in the Gemini app, Google has now put dates on their retirement. On September 30, 2026, Google's Workspace Updates blog announced skills in the Gemini app and Workspace, and said skills are the path forward for what Gems did. Nothing breaks today. But for business and enterprise accounts, Gems are scheduled to stop working no sooner than March 1, 2027.
+
+This guide covers what Google actually said, who gets skills and when, and a short checklist for moving your useful Gems over without a scramble.
+
+## What a Skill Is
+
+Google describes skills as reusable, custom instructions you can use when prompting Gemini. Three details from the announcement matter in practice.
+
+First, skills work inline. Unlike Gems, which live in their own chat, skills function inside your normal chat threads. Second, you can stack multiple skills in one prompt. Third, they're built on the open Markdown-based SKILL.md standard, and Google says skills can be copied in from other platforms.
+
+One limit to plan around: Google states that skills don't currently sync between the Gemini app and Workspace apps. A skill you create in the Gemini app won't show up in Docs or Sheets. You'd recreate it in each place you want to use it.
+
+## Who Gets Skills and When
+
+In the Gemini app, Google says skills are available to all Google Workspace customers and to users with personal Google accounts. In Workspace apps, the listed plans are Business Starter, Standard and Plus, Enterprise Starter, Standard and Plus, plus the Google AI Pro for Education and AI Expanded Access add-ons. Skills in Workspace are available only to users over 18.
+
+The rollout dates Google gave:
+
+- Skills in Workspace, Rapid Release domains: October 5 to October 12, 2026.
+- Skills in Workspace, Scheduled Release domains: starting October 19, 2026, finishing by mid-November.
+- Skills in the Gemini app, both release tracks: starting October 13, 2026, finishing by mid-November.
+
+Admins have a setting for this, named in Google's post as "Allow people to use skills in Studio and Gemini in Workspace." If you're on a work account and don't see skills after your date, ask your admin to check it.
+
+## The Gems Timeline
+
+Here's the schedule from Google's post:
+
+- **Now:** You can keep creating and using Gems in the Gemini app. Workspace Studio flows can no longer add new "Ask a Gem" steps, though existing ones still work.
+- **November 17, 2026:** Gems move to the Settings panel of the Gemini app. You can still create, edit and use them.
+- **No sooner than March 1, 2027 (business and enterprise):** Gems can't be created, edited or used, and they disappear from Settings. Workspace Studio "Ask a Gem" flows stop working.
+- **No sooner than June 1, 2027 (education):** The same restrictions apply, and Gems are also removed from Google Classroom and supported third-party learning systems.
+
+Google also says remaining Gems in the Gemini app will be auto-migrated to draft skills, and that admins get at least 30 days' notice before that happens. Auto-migration is a safety net, not a plan. A draft you didn't review is a draft you won't trust.
+
+## How to Prepare This Month
+
+You don't need to rebuild everything. A short pass is enough.
+
+1. **List your Gems.** Open the Gemini app and write down every Gem you've made. Most people find a handful they use weekly and several they've forgotten.
+2. **Keep the useful ones.** Anything you haven't opened in a couple of months probably isn't worth migrating.
+3. **Copy the instructions out.** Paste each keeper's instructions into a document you control. That gives you a backup whatever Google does next.
+4. **Rebuild as skills and test.** Once skills reach your account, recreate each keeper and run the same three prompts you'd normally use. Compare the output with what the Gem gave you.
+5. **Split big Gems into smaller skills.** Because skills stack, a long "do everything" Gem often works better as two or three narrow skills you combine as needed.
+
+## Why the Open Format Matters
+
+SKILL.md is a plain-text format, which means your instructions aren't locked inside one product. Google says you can copy skills from other platforms. It doesn't say how closely behavior will match across them, so treat any imported skill as untested until you've run it on your own examples.
+
+## What We'd Hold Off On
+
+Don't delete your Gems the day skills appear. Keep them until the rebuilt skill has matched the old results on real tasks. And if you use Gems inside Workspace Studio flows, check those flows now, since new "Ask a Gem" steps are already blocked.
+
+## Related Reading
+
+Gemini features are changing fast across Workspace. Our guide to [grounding Gemini in your own sources in Google Docs](/resources/gemini-notebook-google-docs-grounded-ai-prompts-2026) covers another recent change, and Office Productivity Hacks shows how Gemini can [fix formula errors in Google Sheets](https://officeproductivityhacks.com/resources/gemini-fix-formula-errors-google-sheets).
+
+## Sources
+
+- Google Workspace Updates, "Introducing skills in the Gemini app and Workspace, plus what's next for Gems," September 30, 2026: https://workspaceupdates.googleblog.com/2026/09/skills-gemini-app-workspace.html
+`,
+  },
+  {
     slug: "gemini-notebook-google-docs-grounded-ai-prompts-2026",
     title: "How to Ground Gemini in Your Own Sources in Google Docs",
     description: "Since September 23, 2026, you can type @ in Google Docs, pick a Gemini Notebook, and get drafts built from its sources with inline citations. Here's how it works, who has it, and how to check the output.",
