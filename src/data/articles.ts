@@ -11,6 +11,73 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: "claude-haiku-5-5-cheap-small-model-when-to-use-it",
+    title: "Claude Haiku 5.5: What a $0.10 Model Is For, and What Catches People Out",
+    description: "Anthropic released Claude Haiku 5.5 on October 7, 2026 at $0.10 per million input tokens for prompts up to 100,000 tokens. Here's what a small, cheap model is good at, and the pricing and behavior details to check before you switch.",
+    category: "Claude",
+    readTime: "6 min read",
+    publishedAt: "2026-10-13",
+    author: "How Do I Use AI",
+    content: `## A Small Model With a Big Price Cut
+
+On October 7, 2026, Anthropic released Claude Haiku 5.5. The headline is the price. For prompts up to 100,000 tokens, it costs $0.10 per million input tokens and $0.50 per million output tokens, according to both Simon Willison's launch-day write-up and VKTR's coverage. Claude Haiku 4.5 was $1 and $5.
+
+If you only chat with Claude in the app, this release changes little for you. If you build automations, use the API, or pay for a tool that runs on Claude behind the scenes, it matters. This guide explains what a small model is good for and the details reviewers flagged that can make the real bill or behavior differ from the headline.
+
+## What Haiku Is For
+
+Anthropic positions Haiku as its smallest model. Per VKTR, the intended work is high-volume, latency-sensitive tasks such as classification, routing, extraction, and subagent work. In plain terms, that means jobs like these:
+
+- Sorting a few thousand support emails into categories.
+- Pulling names, dates, and amounts out of invoices into a table.
+- Deciding which of several tools or prompts a request should go to.
+- Acting as a fast helper inside a larger agent that a more capable model supervises.
+
+For one-off thinking tasks, such as drafting a strategy memo or untangling a hard problem, a larger model is usually the better choice. Our guide to [choosing between ChatGPT, Claude, and Gemini](/resources/chatgpt-vs-claude-vs-gemini) covers that decision from the user side.
+
+## The Numbers, and the Fine Print
+
+Here is what the two sources report, kept separate from what they don't.
+
+**Price tiers.** The $0.10 and $0.50 rates apply up to 100,000 tokens. Beyond that, Willison and VKTR both report $0.50 input and $2.50 output, a fivefold increase. VKTR notes Haiku 5.5 is the only current Claude model priced by prompt length, so long-document jobs see smaller savings.
+
+**Context and output.** VKTR reports a 1 million token context window and up to 128,000 output tokens, up from 200,000 and 64,000 on Haiku 4.5. Willison's post doesn't state a window size, so confirm against Anthropic's model documentation before building around it. Our guide to the [1M context window](/resources/claude-1m-context-window-practical-guide) explains what that much room does and doesn't buy you.
+
+**The tokenizer.** Both sources say the new model counts more tokens for the same text. Willison measured about 1.25 times as many tokens as Haiku 4.5 on a long prompt. VKTR puts it at roughly 30 percent more. Since you pay per token, that eats into the savings. VKTR estimates short-prompt workloads still come out roughly 85 to 90 percent cheaper after adjusting. That's their estimate, not an Anthropic figure. Anthropic's own launch claim, as quoted by VKTR, is about 75 percent lower cost to run than Haiku 4.5 on average.
+
+**Reasoning is on by default.** Willison reports you can't switch reasoning off and that effort defaults to medium. In his test, a maximum-effort run took 5 minutes 9 seconds and cost about 3.38 cents, while a low-effort run took 7 seconds and about 0.09 cents. Same model, wildly different cost and speed. If you use Haiku for quick classification, set effort to low and test.
+
+## What Can Break When You Migrate
+
+VKTR lists several changes that matter if you're moving existing code from Haiku 4.5:
+
+- Non-default temperature, top_p, or top_k values return errors.
+- Message arrays must end with a user turn, so assistant prefill no longer works.
+- Thinking tokens count toward the max_tokens limit, so a low limit can end a response before any visible text appears.
+- Responses can begin with a thinking block, which breaks code that assumes the first content block is the answer.
+
+If you use a no-code tool that calls Claude for you, the vendor handles these. If you wrote the integration yourself, test on a copy first.
+
+## A Sensible Way to Try It
+
+1. **Pick one narrow, repetitive job.** Classifying or extracting is ideal.
+2. **Build a test set of 50 to 100 real examples** where you already know the right answer.
+3. **Run Haiku 5.5 at low effort and a larger model on the same set.** Compare accuracy, not just cost.
+4. **Count tokens on your real prompts.** Don't assume the old token counts hold.
+5. **Check your prompt lengths.** Anything over 100,000 tokens lands in the higher price tier.
+6. **Switch only if accuracy holds.** A model that's 90 percent cheaper but wrong on 1 in 10 items may cost more in cleanup. Our piece on [checking AI outputs for wrong answers](/resources/ai-research-without-wrong-answers) shows how to spot-check systematically.
+
+## What We Don't Know
+
+We haven't tested Haiku 5.5 ourselves. Neither source in this guide reports benchmark scores, so we can't tell you how its accuracy compares with larger models. Anthropic's claim that it is its most capable small model is the company's own statement. Availability and rate limits vary by platform. Check Anthropic's documentation for the current model ID, limits, and regions.
+
+## Sources
+
+- Simon Willison, "Claude Haiku 5.5," October 7, 2026: https://simonwillison.net/2026/Oct/7/claude-haiku-5-5/ (pricing tiers, tokenizer measurement, effort timing test).
+- VKTR, "Anthropic Cuts Small-Model Pricing 90% With Claude Haiku 5.5": https://www.vktr.com/ai-platforms/anthropic-cuts-smallmodel-pricing-90-with-claude-haiku-55/ (context window, intended use, migration changes, Anthropic's quoted claims).
+`,
+  },
+  {
     slug: "gemini-skills-replace-gems-what-to-do-before-march-2027",
     title: "Gemini Skills Are Replacing Gems. Here's What to Do Before March 2027.",
     description: "Google announced on September 30, 2026 that skills, reusable instructions built on the open SKILL.md format, are replacing Gems. Here's the rollout schedule, who gets them, the deprecation dates, and how to prepare.",
