@@ -11,6 +11,64 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: "ai-job-interviews-70000-candidate-field-experiment",
+    title: "AI Job Interviews: What a 70,000-Candidate Experiment Found, and How to Prepare",
+    description: "In a randomized field experiment, applicants interviewed by an AI voice agent were 12% more likely to get a job offer than those interviewed by humans, and 78% chose the AI when given the option. Here are the results, the caveats, and how to prepare.",
+    category: "Career",
+    readTime: "5 min read",
+    publishedAt: "2026-10-16",
+    author: "How Do I Use AI",
+    content: `## An AI Interviewer Is Not Science Fiction
+
+If you've applied for a job recently, you may have been offered an interview with an AI voice agent instead of a person. A 2025 working paper tested exactly this in a real hiring process. The results are more interesting, and more mixed, than the headlines suggest.
+
+## The Study
+
+Luca Henkel (Erasmus School of Economics) and Brian Jabarian (University of Chicago Booth School of Business) ran a natural field experiment inside the hiring process of a major recruitment company. About 70,000 candidates were randomly assigned to one of three options: an interview with a human recruiter, an interview with a generative-AI voice agent, or a choice between the two.
+
+## What They Found
+
+- Applicants interviewed by the AI were 12% more likely to receive a job offer than those interviewed by humans.
+- They were also more likely to still be employed after one month. The summary we reviewed gives no exact figure.
+- The AI interviews produced more hiring-relevant information about each applicant.
+- Satisfaction was similar across groups, and most applicants rated both the interview and the recruiters well.
+- Offer acceptance showed no large differences.
+- When given the choice, 78% of applicants picked the AI interviewer.
+
+## The Fine Print
+
+- **It's a working paper,** not a peer-reviewed publication.
+- **About 7% of AI-led interviews had technical difficulties.**
+- **Humans still made the decisions.** Recruiters rated applicants higher in AI-led interviews but then leaned more on standardized test results when deciding. So the 12% reflects the AI interview plus how people used its output, not the AI judging candidates alone.
+- **The researchers describe the result as applying when the system is thoughtfully designed.** A poorly built interviewer may do worse.
+- **One company's process isn't every employer's process.**
+
+## What This Means If You Face an AI Interview
+
+You can't control the tool, but you can prepare for how it works. These tips are our practical suggestions, not findings from the study.
+
+1. **Test your setup first.** With roughly 1 in 14 AI interviews hitting technical problems in this study, check your microphone, connection, and quiet space beforehand.
+2. **Answer fully and specifically.** The study found AI interviews captured more hiring-relevant information. Concrete examples with context, action, and result give that system more to work with.
+3. **Practice out loud.** Use a chatbot's voice mode to run through common questions, then listen to your own answers. Treat the feedback as a rough guide, and don't rely on it to predict how any employer scores you.
+4. **Ask what happens next.** It's reasonable to ask the recruiter whether a person reviews the interview and what role test results play.
+
+## What This Means If You Hire
+
+If you're considering one of these tools, the study suggests it can work, but note how it was run: structured, with human decision-makers and standardized tests alongside. Pilot it, track technical failures, and give candidates a choice, as the study did.
+
+## Using AI to Prepare
+
+For the job-search side of this topic, including how to keep resumes and applications sounding like you, see our sister site [How To Find A Job](https://howtofindajob.org), which covers a related randomized study on resume writing help.
+
+If you want a refresher on how to get steadier results from any AI tool, start with our [prompt engineering guide](/guides/prompt-engineering-101).
+
+## The Takeaway
+
+In a randomized test at scale, AI-led interviews didn't hurt candidates and produced more offers, and most people chose them when given the option. But the paper is early, one company's process, and humans still made the final call. Treat it as a promising result, not a settled one.
+
+*Sources: Henkel and Jabarian, "Voice AI in Firms: A Natural Field Experiment on Automated Job Interviews" (SSRN 5395709 / CESifo Working Paper 12984), as summarized by Erasmus University Rotterdam ("Study finds AI matches humans in conducting job interviews," eur.nl).*`,
+  },
+  {
     slug: "claude-haiku-5-5-cheap-small-model-when-to-use-it",
     title: "Claude Haiku 5.5: What a $0.10 Model Is For, and What Catches People Out",
     description: "Anthropic released Claude Haiku 5.5 on October 7, 2026 at $0.10 per million input tokens for prompts up to 100,000 tokens. Here's what a small, cheap model is good at, and the pricing and behavior details to check before you switch.",
