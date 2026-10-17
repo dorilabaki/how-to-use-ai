@@ -148,6 +148,18 @@ export default async function ArticlePage({ params }: PageProps) {
               <MarkdownContent content={article.content} />
             </div>
 
+            {/* Free starter kit CTA */}
+            <div className="mt-12 rounded-2xl border border-primary-500/20 bg-dark-800 p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+              <div className="min-w-0">
+                <p className="text-xs font-semibold uppercase tracking-wide text-primary-400 mb-1">Free download</p>
+                <h2 className="text-xl font-bold text-text-primary mb-1">The AI Starter Kit</h2>
+                <p className="text-sm text-text-muted">50 ready-to-use prompts for writing, analysis, creativity, productivity and learning.</p>
+              </div>
+              <Button href="/starter-kit" className="flex-shrink-0 whitespace-nowrap">
+                Get the free kit
+              </Button>
+            </div>
+
             {/* Share & CTA */}
             <div className="mt-12 pt-8 border-t border-dark-700">
               <div className="flex flex-col sm:flex-row gap-4 justify-between items-center">
