@@ -11,6 +11,64 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: "efficiency-gain-illusion-ai-easy-tasks-stanford-study",
+    title: "The Efficiency-Gain Illusion: A Study Found AI Made Easy Tasks Slower",
+    description: "A pre-registered study of 2,691 US adults found people use AI more than they predict and expect bigger time savings than they get. On easy tasks, AI was about 10 seconds slower. Here's what that means for when to reach for a chatbot.",
+    category: "Productivity",
+    readTime: "6 min read",
+    publishedAt: "2026-10-20",
+    author: "How Do I Use AI",
+    content: `## You Probably Overestimate How Much AI Saves You
+
+Most of us believe a chatbot saves time on small jobs. A May 2026 preprint from researchers at Stanford, NYU, MIT and Princeton tested that belief directly and found a gap between what people expect and what happens.
+
+## The Study
+
+Sunny Yu, Myra Cheng, Ahmad Jabbar, Ilia Sucholutsky, Katherine Collins, Dan Jurafsky and Robert Hawkins posted "The efficiency-gain illusion: People underestimate the rate of AI use and overestimate its benefits on simple tasks" to arXiv on 21 May 2026 (2605.22687). It reports three pre-registered studies with 2,691 participants in total, recruited on Prolific as a representative sample of US adults.
+
+Participants did short tasks drawn from 24 tasks across four categories: finding information, processing and summarizing, following procedures, and creating or transforming content. Every task had an easy and a harder variant. An easy one was naming one Olympic medalist or adding 27 and 56. A harder one was naming five or adding a longer sum. Each task could be done alone in under five minutes, and participants could use an embedded GPT-4o chatbot if they wanted.
+
+## What They Found
+
+- **People used AI more than predicted.** Actual use was 47%, against 33% predicted by a separate group. On easy tasks it was 38% actual versus 20% predicted.
+- **The predicted time savings mostly didn't appear.** Participants predicted AI would save 55.7 seconds per task. The measured saving was 7.5 seconds.
+- **On easy tasks, AI was slower.** Working alone took 60.2 seconds. Using AI took 70.2 seconds, about 10 seconds longer.
+- **Where the time went.** Writing the prompt averaged 48.7 seconds and reading the response 37.6 seconds. About 41% of prompts were copied and pasted straight from the task instructions.
+- **Effort did fall a little.** Self-reported effort on a 7-point scale was 1.74 with AI against 2.36 alone in one study, close to the reduction people expected (0.62 points actual versus 0.90 predicted).
+- **Using AI once made people use it again.** After doing two tasks with AI, 44.5% used it on later easy tasks, versus 27.7% after doing the tasks alone. Those who had used AI also agreed less that doing the task alone was faster.
+
+## The Fine Print
+
+This is a preprint, so it hasn't been peer reviewed, though the studies were pre-registered. The authors list several limits:
+
+- Tasks were short and simple, so the study can't say where the break-even point is for longer work.
+- Only GPT-4o was tested, and models change quickly.
+- Crowdworkers' incentives weren't controlled.
+- "Used AI" meant at least one prompt, which is a rough measure.
+- The follow-up use was measured right after exposure, so long-term habits are unknown.
+
+Nothing here says AI is slow at hard work. Treat this study as evidence about trivial jobs only.
+
+## A Practical Rule From the Results
+
+These are our suggestions, not findings from the paper.
+
+1. **Skip the chatbot for jobs you can finish in a minute.** Typing a prompt and reading the answer took about 86 seconds combined in this study. If you already know the answer or the formula, just do it.
+2. **Use AI when the task is long, unfamiliar, or tedious.** That's where the prompt overhead is small compared with the work.
+3. **Time yourself once.** Do a routine task both ways for a week and compare. Your numbers beat anyone's averages.
+4. **Write prompts that earn their time.** Copying the instructions in verbatim was common. Adding context and a clear format usually costs a few seconds more and saves rework. Our [prompt engineering basics](/guides/prompt-engineering-101) cover how.
+5. **Watch for autopilot.** The carryover result suggests one AI-assisted task nudges you toward using it again. Decide on purpose.
+
+## The Spreadsheet Version
+
+The same logic applies in Excel and Sheets. Asking an assistant to write a SUM or a simple lookup can take longer than typing it. Our sister site covers where built-in assistants do help, such as [Gemini fixing formula errors in Google Sheets](https://officeproductivityhacks.com/resources/gemini-fix-formula-errors-google-sheets).
+
+## Sources
+
+- Yu, S., Cheng, M., Jabbar, A., Sucholutsky, I., Collins, K. M., Jurafsky, D., Hawkins, R. D. "The efficiency-gain illusion: People underestimate the rate of AI use and overestimate its benefits on simple tasks." arXiv:2605.22687, 21 May 2026 (arxiv.org/abs/2605.22687). Preprint.
+`,
+  },
+  {
     slug: "ai-job-interviews-70000-candidate-field-experiment",
     title: "AI Job Interviews: What a 70,000-Candidate Experiment Found, and How to Prepare",
     description: "In a randomized field experiment, applicants interviewed by an AI voice agent were 12% more likely to get a job offer than those interviewed by humans, and 78% chose the AI when given the option. Here are the results, the caveats, and how to prepare.",
