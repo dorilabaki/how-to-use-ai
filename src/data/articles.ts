@@ -2933,6 +2933,87 @@ The job title is fading. The skills are becoming essential.
     `,
   },
 
+
+  {
+    slug: 'prompt-claude-long-documents-anthropic-guide',
+    title: "How to Prompt Claude With Long Documents: Four Rules From Anthropic's Own Guide",
+    description: 'Anthropic\'s official prompting guide has specific rules for long documents: put them first, ask last, label sources, and request quotes before answers. Here is what it says and a template.',
+    category: 'Prompting',
+    readTime: '6 min read',
+    publishedAt: '2026-10-23',
+    author: 'How Do I Use AI',
+    content: `# How to Prompt Claude With Long Documents: Four Rules From Anthropic's Own Guide
+
+Pasting a 40-page report into an AI and typing "summarize this" works often enough to feel reliable. Then it misses the clause that mattered, or it blends two documents together.
+
+Anthropic's official prompting best practices include a section on long inputs. It's short and specific, and most of it applies to other assistants too. Here are the four rules, what the guide actually says, and a template you can reuse.
+
+## Rule 1: Put the Long Material First
+
+Anthropic's guidance for inputs of about 20,000 tokens and up: "Place your long documents and inputs near the top of your prompt, above your query, instructions, and examples."
+
+Rough sizing: 20,000 tokens is on the order of 15,000 words, though the ratio varies by text. The guide says this "improves performance across all models."
+
+In practice, most people type their question first and paste the document underneath. Flip it. Paste the document, then ask.
+
+## Rule 2: Put the Question at the End
+
+The same section says "queries at the end can improve response quality by up to 30 percent in tests, especially with complex, multidocument inputs."
+
+Read that figure carefully. It's "up to 30 percent," and the guide doesn't publish the baseline, test set, or model behind it. Treat it as a direction, not a promise. The sensible takeaway: document first, question last, and test it on your own material.
+
+## Rule 3: Label Each Document
+
+When you're giving the AI more than one file, Anthropic suggests wrapping each in its own tags: "wrap each document in document tags with document_content and source (and other metadata) subtags for clarity."
+
+The broader guidance on structure explains why: tags "help Claude parse complex prompts unambiguously, especially when your prompt mixes instructions, context, examples, and variable inputs." Two tips from the guide: use consistent, descriptive tag names, and nest tags when the content has a natural hierarchy.
+
+You don't need real XML. Even plain labels like "DOCUMENT 1 (source: Q3 contract.pdf)" help the model keep sources apart, which is the point.
+
+## Rule 4: Ask for Quotes Before Answers
+
+This is the most useful one for accuracy. The guide says: "For long document tasks, ask Claude to quote relevant parts of the documents first before carrying out its task. This helps Claude focus on the relevant content and ignore the rest of the document."
+
+It also gives you something checkable. If the quote isn't in the document, you've caught a problem before it reached your answer. This pairs well with the habits in our guide on [using AI for research without getting wrong answers](/resources/ai-research-without-wrong-answers).
+
+## A Reusable Template
+
+Here's a layout that follows all four rules. Swap in your own material.
+
+- Documents first, each labeled with a name and source.
+- Then your instructions: "First, quote the passages that relate to the question. Then answer using only those quotes."
+- Then the question, last.
+
+Written out, it looks like this:
+
+\`DOCUMENT 1 (source: vendor_contract.pdf): [paste text]\`
+
+\`DOCUMENT 2 (source: our_requirements.docx): [paste text]\`
+
+\`INSTRUCTIONS: Quote the passages from both documents that relate to the question. Then answer using only those quotes. If the documents don't say, state that.\`
+
+\`QUESTION: Does the vendor's termination clause conflict with our 60-day notice requirement?\`
+
+## One More Rule From the Same Guide: Use Examples
+
+If you want a specific output format, the guide says examples are "one of the most reliable ways to steer" output format, tone, and structure. It recommends 3 to 5 examples, and says they should be relevant, diverse, and structured (wrapped in example tags so they're distinguishable from instructions).
+
+## When to Be Careful
+
+- **Check the quotes.** A quote can still be misread or pulled out of context. Open the source for anything that drives a decision.
+- **Don't paste confidential documents into tools your organization hasn't approved.** Check your workplace policy first.
+- **Longer isn't always better.** Our piece on [Claude's 1M context window](/resources/claude-1m-context-window-practical-guide) covers when more context stops helping.
+- **The 30 percent figure is Anthropic's own and unpublished in detail.** Run a side-by-side test on one real document before you change a workflow.
+
+## Try It Today
+
+Take one long document you'd normally summarize. Run it twice: once with your question first, once with the document first, a quote request, and the question last. Compare which answer you could verify faster. If you build spreadsheets from what you extract, [Office Productivity Hacks](https://officeproductivityhacks.com) has Excel and Sheets guides for the next step.
+
+---
+
+*Sources: Anthropic, "Prompting best practices," Claude Platform documentation (platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices), sections on long context prompting, structuring prompts with XML tags, and using examples. Token-to-word conversion is an approximation. Verify details against the current documentation, which Anthropic updates.*
+`,
+  },
 ];
 
 export function getArticle(slug: string): Article | undefined {
