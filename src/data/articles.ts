@@ -2244,6 +2244,8 @@ A week later, prompt 6 runs in fifteen minutes. A month later, prompt 6 runs aga
 
 That is the version of AI-assisted learning that works. The summarisation workflow is faster, but it is not learning. It is information passing through.
 
+The habit underneath all six prompts is deliberate practice, and Growth Mindset covers that in depth in [The Practical Guide to Deliberate Practice](https://growthmindset.academy/resources/deliberate-practice-skill-building-guide-2026).
+
 ---
 
 *Sources: Roediger and Karpicke, "Test-Enhanced Learning," Psychological Science (2006); Karpicke and Blunt, "Retrieval Practice Produces More Learning Than Elaborative Studying with Concept Mapping," Science (2011); Hermann Ebbinghaus, "Memory: A Contribution to Experimental Psychology" (1885); Dunning and Kruger, "Unskilled and Unaware of It," Journal of Personality and Social Psychology (1999); Cepeda et al. meta-analysis on the spacing effect, Psychological Bulletin (2006). For the Feynman technique, see Richard Feynman, "Surely You're Joking, Mr. Feynman!" (1985).*
@@ -2647,6 +2649,8 @@ The best approach isn't "let AI write it." It's "use AI to write what you alread
 6. **Post and measure reach**
 
 The posts that work aren't the generic ones. They're the ones that only you could write, even if AI helped you write them.
+
+If you're polishing your profile as well as your posts, our sister site How To Find A Job covers [the LinkedIn About section recruiters actually read](https://howtofindajob.org/resources/linkedin-about-section-that-recruiters-read).
 
 ---
 
