@@ -48,7 +48,7 @@ Requirements:
 Tone: Professional but personable
 Length: 150-200 words`,
     variables: ['TOPIC'],
-    tips: 'The first line appears in the preview—make it count!'
+    tips: 'The first line appears in the preview, make it count!'
   },
   {
     id: 'blog-outline',
@@ -92,7 +92,7 @@ Create a summary including:
 
 Format for easy sharing via email. Keep it under 250 words.`,
     variables: ['PASTE NOTES HERE'],
-    tips: 'Even rough, messy notes work—the AI will organize them.'
+    tips: 'Even rough, messy notes work, the AI will organize them.'
   },
   {
     id: 'task-prioritization',
@@ -179,7 +179,7 @@ Provide:
 4. Potential compromises or alternatives
 5. Recommendation based on the analysis
 
-Be balanced—don't favor either option unless the evidence is clear.`,
+Be balanced, don't favor either option unless the evidence is clear.`,
     variables: ['DECISION', 'RELEVANT CONTEXT'],
     tips: 'Include your constraints and what matters most to you for tailored analysis.'
   },
@@ -201,7 +201,7 @@ Provide:
 
 Summary length: [SHORT (~100 words) / MEDIUM (~200 words) / DETAILED (~400 words)]`,
     variables: ['PASTE DOCUMENT', 'SHORT / MEDIUM / DETAILED'],
-    tips: 'Works for reports, articles, emails—anything text-based.'
+    tips: 'Works for reports, articles, emails, anything text-based.'
   },
   // Coding
   {

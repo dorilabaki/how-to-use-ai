@@ -87,7 +87,7 @@ const categories = [
 ];
 
 const benefits = [
-  'Copy-paste ready — no setup, no learning curve',
+  'Copy-paste ready, no setup, no learning curve',
   'Tested across ChatGPT, Claude, and Gemini',
   'Organized by use case so you find what you need fast',
   'Works for beginners and experienced AI users alike',
@@ -177,7 +177,7 @@ export default function StarterKitContent() {
               transition={{ delay: 0.2 }}
               className="text-lg sm:text-xl text-text-secondary mb-10 max-w-2xl mx-auto"
             >
-              Stop staring at a blank chat box. Get 50 proven prompts — organized by use case —
+              Stop staring at a blank chat box. Get 50 proven prompts, organized by use case , 
               so you can put AI to work immediately, even if you&apos;re just getting started.
             </motion.p>
 
@@ -239,7 +239,7 @@ export default function StarterKitContent() {
               50 Prompts Across 6 Categories
             </h2>
             <p className="text-lg text-text-secondary max-w-2xl mx-auto">
-              Every prompt is designed to be immediately useful — just fill in the brackets and go.
+              Every prompt is designed to be immediately useful, just fill in the brackets and go.
             </p>
           </motion.div>
 

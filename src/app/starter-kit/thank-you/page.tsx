@@ -27,7 +27,7 @@ const samplePrompts = [
     categoryBg: 'bg-purple-500/10',
     title: '10-Idea Brainstorm Sprint',
     prompt:
-      'Generate 10 distinct ideas for [topic or goal]. For each idea: give it a short name, write a one-sentence description, and note its single biggest advantage. Push for variety — include at least two unconventional or contrarian ideas.',
+      'Generate 10 distinct ideas for [topic or goal]. For each idea: give it a short name, write a one-sentence description, and note its single biggest advantage. Push for variety, include at least two unconventional or contrarian ideas.',
   },
   {
     category: 'Productivity & Planning',
@@ -67,7 +67,7 @@ const samplePrompts = [
     categoryBg: 'bg-rose-500/10',
     title: 'LinkedIn Post Writer',
     prompt:
-      'Write a LinkedIn post about [topic, insight, or achievement]. Tone: professional but conversational — it should sound like a person, not a press release. Structure: hook in the first line, 3-4 short paragraphs with one key insight each, and close with a question that invites comments. Target length: 150-200 words.',
+      'Write a LinkedIn post about [topic, insight, or achievement]. Tone: professional but conversational, it should sound like a person, not a press release. Structure: hook in the first line, 3-4 short paragraphs with one key insight each, and close with a question that invites comments. Target length: 150-200 words.',
   },
 ];
 
@@ -108,7 +108,7 @@ export default function ThankYouPage() {
               The AI Starter Kit is on its way to your inbox.
             </p>
             <p className="text-text-muted">
-              While you wait, here&apos;s a preview of 8 prompts from the kit — start using them right now.
+              While you wait, here&apos;s a preview of 8 prompts from the kit, start using them right now.
             </p>
           </motion.div>
         </div>
@@ -127,7 +127,7 @@ export default function ThankYouPage() {
               Sneak Peek
             </span>
             <h2 className="text-2xl md:text-3xl font-bold text-text-primary">
-              8 Prompts From the Kit — Copy &amp; Use Now
+              8 Prompts From the Kit, Copy &amp; Use Now
             </h2>
           </motion.div>
 
@@ -177,7 +177,7 @@ export default function ThankYouPage() {
               Ready to go deeper?
             </h2>
             <p className="text-text-secondary mb-8">
-              The prompts are your starting point. Our guides walk you through how to use them — and build the
+              The prompts are your starting point. Our guides walk you through how to use them, and build the
               intuition to write your own.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

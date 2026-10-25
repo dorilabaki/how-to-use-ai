@@ -92,7 +92,7 @@ The best AI results come from conversation, not commands.`,
 
 No code. No designer. No back-and-forth with IT.
 
-Just clear prompts and the right context — and I had two fully functional dashboards ready to share.
+Just clear prompts and the right context, and I had two fully functional dashboards ready to share.
 
 The tools are here. It's time to use them.`,
     likes: 26,

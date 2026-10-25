@@ -43,7 +43,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="mt-4 text-sm text-text-muted max-w-xs">
-              Helping beginners and professionals unlock the power of artificial intelligence through tutorials, tips, and guides.
+              Helping beginners and professionals use artificial intelligence with confidence through tutorials, tips, and guides.
             </p>
             <div className="mt-6 flex gap-4">
               <a

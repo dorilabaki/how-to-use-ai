@@ -94,7 +94,7 @@ export default function RootLayout({
     url: "https://howdoiuse.ai",
     logo: "https://howdoiuse.ai/logo.jpeg",
     description:
-      "How Do I Use AI helps beginners and professionals unlock the power of artificial intelligence through tutorials, tips, and guides on ChatGPT, AI tools, and prompt engineering.",
+      "How Do I Use AI helps beginners and professionals use artificial intelligence with confidence through tutorials, tips, and guides on ChatGPT, AI tools, and prompt engineering.",
     sameAs: ["https://www.linkedin.com/company/how-do-i-use-ai"],
     foundingDate: "2023",
     numberOfEmployees: {

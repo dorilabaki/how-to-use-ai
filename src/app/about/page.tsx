@@ -5,7 +5,7 @@ import Button from '@/components/Button';
 
 export const metadata: Metadata = {
   title: 'About Us',
-  description: 'How Do I Use AI helps beginners and professionals unlock the power of artificial intelligence through tutorials, tips, and guides on ChatGPT, AI tools, and prompt engineering.',
+  description: 'How Do I Use AI helps beginners and professionals use artificial intelligence with confidence through tutorials, tips, and guides on ChatGPT, AI tools, and prompt engineering.',
   openGraph: {
     title: 'About How Do I Use AI',
     description: 'Learn about our mission to make AI education accessible to everyone.',
@@ -60,7 +60,7 @@ export default function AboutPage() {
     mainEntity: {
       '@type': 'Organization',
       name: 'How Do I Use AI',
-      description: 'How Do I Use AI helps beginners and professionals unlock the power of artificial intelligence through tutorials, tips, and guides.',
+      description: 'How Do I Use AI helps beginners and professionals use artificial intelligence with confidence through tutorials, tips, and guides.',
       url: 'https://howdoiuse.ai',
       sameAs: ['https://www.linkedin.com/company/how-do-i-use-ai'],
     },

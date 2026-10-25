@@ -33,7 +33,7 @@ ChatGPT is an AI chatbot developed by OpenAI that can understand and generate hu
 
 ### How ChatGPT Works
 
-ChatGPT is built on a Large Language Model (LLM) trained on vast amounts of text from the internet. It doesn't actually "know" things—it predicts what text should come next based on patterns learned during training.
+ChatGPT is built on a Large Language Model (LLM) trained on vast amounts of text from the internet. It doesn't actually "know" things, it predicts what text should come next based on patterns learned during training.
 
 Key things to understand:
 
@@ -221,7 +221,7 @@ ChatGPT sometimes generates plausible-sounding but incorrect information. It mig
 
 ### Lack of True Understanding
 
-ChatGPT predicts likely text—it doesn't truly understand concepts. This means:
+ChatGPT predicts likely text, it doesn't truly understand concepts. This means:
 
 - It might miss nuance or context you assume is obvious
 - Logic can fail on novel problems
@@ -312,7 +312,7 @@ Welcome to the world of AI assistance. Use it wisely.
 
 Prompt engineering is the discipline of designing inputs to get optimal outputs from large language models (LLMs). It's part art, part science, and increasingly part of every knowledge worker's toolkit.
 
-The term "engineering" is intentional—this isn't about random trial and error. It's about systematic approaches that produce reliable, repeatable results.
+The term "engineering" is intentional, this isn't about random trial and error. It's about systematic approaches that produce reliable, repeatable results.
 
 ### Why It Matters
 
@@ -701,7 +701,7 @@ The single largest improvement you can make to AI research output is to reframe 
 
 Weak framing: "Tell me about customer retention strategies."
 
-Stronger framing: "I work in B2B SaaS. I'm trying to reduce involuntary churn specifically — customers who leave because of payment failures, not because of dissatisfaction. Give me the frameworks and tactics that specifically address involuntary churn, with concrete examples of what different companies have done. Focus on mid-market SaaS, not consumer or enterprise."
+Stronger framing: "I work in B2B SaaS. I'm trying to reduce involuntary churn specifically, customers who leave because of payment failures, not because of dissatisfaction. Give me the frameworks and tactics that specifically address involuntary churn, with concrete examples of what different companies have done. Focus on mid-market SaaS, not consumer or enterprise."
 
 The stronger framing includes four things the weaker one omits: the industry context, the specific sub-problem, the type of answer wanted (frameworks and tactics with examples), and the scope constraint (mid-market, not consumer or enterprise).
 
@@ -717,7 +717,7 @@ A research session of any substance benefits from a lightweight structure. Not a
 
 **List what you already know.** Fifteen seconds of reflection on your current understanding tells you where to focus. AI outputs are more useful when they build on your existing knowledge rather than explaining the basics you already have.
 
-**Draft the open questions.** Three to seven specific questions the research needs to answer. This becomes your checklist — you know you're done when each question has an answer you're confident in.
+**Draft the open questions.** Three to seven specific questions the research needs to answer. This becomes your checklist, you know you're done when each question has an answer you're confident in.
 
 **Pick the tool.** General chatbot, search-enabled assistant, deep research, or domain-specific. Match the tool to the question type.
 
@@ -765,7 +765,7 @@ The important thing to understand is that hallucinations are not random. They oc
 
 Practical rules of thumb:
 
-For any claim that will matter in your output — a specific number, a person's name, a study title, a quote — verify it at a primary source. The AI's confidence level is not a reliable signal of truth.
+For any claim that will matter in your output, a specific number, a person's name, a study title, a quote, verify it at a primary source. The AI's confidence level is not a reliable signal of truth.
 
 If the AI can't give you a citable source when asked, treat the claim as unverified regardless of how plausible it sounds.
 
@@ -773,7 +773,7 @@ When in doubt, ask the AI directly: "How confident are you in this claim? What m
 
 ## Synthesis and Writing {#synthesis-and-writing}
 
-Once you have verified research material, synthesising it into your deliverable is where AI provides enormous leverage — and where a handful of failure modes still apply.
+Once you have verified research material, synthesising it into your deliverable is where AI provides enormous leverage, and where a handful of failure modes still apply.
 
 The core technique is to separate research from synthesis. Use one chat or session to gather and verify information. Use a different chat or session, with the verified information pasted in, to produce the output. This prevents the output AI from inventing new facts during synthesis.
 
@@ -807,7 +807,7 @@ Each of these workflows can be turned into a reusable prompt template. Save them
 
 AI research is a skill that compounds. The first month of serious use produces incremental improvements. The sixth month produces workflows that are genuinely different from how you researched before. The second year produces habits of verification, structuring, and synthesis that carry over to work even when you're not using AI.
 
-The trap is assuming the tools are doing the work for you. The tools are doing part of the work — a large part — but the parts that still require you are the parts that matter most: framing the question, judging the sources, and producing the output that actually ships. Those parts are the job. The AI just makes them easier.
+The trap is assuming the tools are doing the work for you. The tools are doing part of the work, a large part, but the parts that still require you are the parts that matter most: framing the question, judging the sources, and producing the output that actually ships. Those parts are the job. The AI just makes them easier.
 
 For a companion piece on applying these techniques at the desk, see our article on [how to build custom GPTs that actually save you time](/resources/how-to-build-custom-gpts-that-save-time). And for the broader context of making AI part of a productive workday, [Office Productivity Hacks](https://officeproductivityhacks.com) covers the tools and workflows that sit around AI in the everyday office.
 

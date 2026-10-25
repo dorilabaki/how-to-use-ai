@@ -18,7 +18,7 @@ Artificial Intelligence (AI) refers to computer systems designed to perform task
 ## Types of AI
 
 ### Narrow AI (Weak AI)
-AI designed for specific tasks—like ChatGPT for conversation, or image recognition systems. This is what exists today.
+AI designed for specific tasks, like ChatGPT for conversation, or image recognition systems. This is what exists today.
 
 ### General AI (Strong AI)
 Theoretical AI that could perform any intellectual task a human can. This doesn't yet exist.
@@ -28,7 +28,7 @@ Hypothetical AI surpassing human intelligence in all areas. Currently science fi
 
 ## How AI Works
 
-Modern AI typically uses machine learning—algorithms that improve through exposure to data. Rather than being explicitly programmed with rules, AI systems learn patterns from examples.
+Modern AI typically uses machine learning, algorithms that improve through exposure to data. Rather than being explicitly programmed with rules, AI systems learn patterns from examples.
 
 The most capable current AI systems use deep learning, which employs neural networks with many layers to process information in sophisticated ways.
 
@@ -225,7 +225,7 @@ LLMs are characterized by:
 ## How LLMs Work
 
 ### Training Phase
-The model reads massive amounts of text and learns patterns—which words tend to follow which, how sentences are structured, what topics are related.
+The model reads massive amounts of text and learns patterns, which words tend to follow which, how sentences are structured, what topics are related.
 
 ### Prediction
 When given text, the model predicts what should come next based on learned patterns. It's essentially very sophisticated autocomplete.
@@ -254,7 +254,7 @@ LLMs can:
 
 ## Limitations
 
-- Don't truly "understand"—predict likely text
+- Don't truly "understand", predict likely text
 - Can generate false information confidently
 - Training data has cutoff dates
 - Can reflect biases in training data
@@ -269,9 +269,9 @@ LLMs represent a step-change in AI capability. For the first time, AI can engage
   {
     slug: 'generative-ai',
     term: 'Generative AI',
-    shortDefinition: 'Artificial intelligence systems that can create new content—text, images, audio, video, or code—rather than just analyzing or classifying existing content.',
+    shortDefinition: 'Artificial intelligence systems that can create new content, text, images, audio, video, or code, rather than just analyzing or classifying existing content.',
     fullDefinition: `
-Generative AI refers to artificial intelligence systems that create new content—text, images, music, video, code, and more—rather than just analyzing or categorizing existing data.
+Generative AI refers to artificial intelligence systems that create new content, text, images, music, video, code, and more, rather than just analyzing or categorizing existing data.
 
 ## What Makes It "Generative"
 
@@ -340,7 +340,7 @@ The technology is evolving rapidly, with new capabilities emerging regularly.
   {
     slug: 'token',
     term: 'Token',
-    shortDefinition: 'A unit of text that AI language models process—roughly equivalent to about 4 characters or 0.75 words in English. Tokens determine context limits and pricing.',
+    shortDefinition: 'A unit of text that AI language models process, roughly equivalent to about 4 characters or 0.75 words in English. Tokens determine context limits and pricing.',
     fullDefinition: `
 In the context of AI language models, a token is a unit of text that the model processes. Understanding tokens is essential for working with AI effectively and managing costs.
 
@@ -402,13 +402,13 @@ Tools exist to count tokens before sending to an API, helping you stay within li
   {
     slug: 'hallucination',
     term: 'Hallucination',
-    shortDefinition: 'When an AI generates information that sounds plausible but is actually incorrect, fabricated, or nonsensical—stating false facts with apparent confidence.',
+    shortDefinition: 'When an AI generates information that sounds plausible but is actually incorrect, fabricated, or nonsensical, stating false facts with apparent confidence.',
     fullDefinition: `
 In AI, hallucination refers to when a model generates plausible-sounding but incorrect or fabricated information. The AI presents false claims with the same confidence as true ones.
 
 ## Why AI Hallucinates
 
-AI language models don't actually "know" facts—they predict likely text based on patterns. When the patterns suggest something plausible, the AI may generate it even if it's false.
+AI language models don't actually "know" facts, they predict likely text based on patterns. When the patterns suggest something plausible, the AI may generate it even if it's false.
 
 ### Common Types of Hallucinations
 

@@ -162,7 +162,7 @@ export default function MarkdownContent({ content }: { content: string }) {
       continue;
     }
 
-    // Handle tables — collect all consecutive table lines
+    // Handle tables, collect all consecutive table lines
     if (line.startsWith('| ')) {
       const tableLines: string[] = [];
       while (i < lines.length && lines[i].startsWith('| ')) {

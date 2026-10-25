@@ -24,7 +24,7 @@ export const faqs: FAQ[] = [
   {
     category: 'Getting Started',
     question: 'How is AI different from regular software?',
-    answer: 'Traditional software follows explicit rules programmed by developers—if X happens, do Y. AI systems learn patterns from data and can handle situations they weren\'t explicitly programmed for. This makes AI more flexible but also less predictable. AI excels at language, images, and pattern recognition but may make unexpected errors.'
+    answer: 'Traditional software follows explicit rules programmed by developers, if X happens, do Y. AI systems learn patterns from data and can handle situations they weren\'t explicitly programmed for. This makes AI more flexible but also less predictable. AI excels at language, images, and pattern recognition but may make unexpected errors.'
   },
   {
     category: 'Getting Started',
@@ -40,7 +40,7 @@ export const faqs: FAQ[] = [
   {
     category: 'Using AI Effectively',
     question: 'How can I get better responses from AI?',
-    answer: 'To get better responses: 1) Be specific—vague prompts get vague answers 2) Provide context about your situation 3) Give examples of what you want 4) Specify the format (bullet points, table, etc.) 5) Iterate—follow up to refine responses 6) Assign a role like "Act as a teacher explaining to a beginner"'
+    answer: 'To get better responses: 1) Be specific, vague prompts get vague answers 2) Provide context about your situation 3) Give examples of what you want 4) Specify the format (bullet points, table, etc.) 5) Iterate, follow up to refine responses 6) Assign a role like "Act as a teacher explaining to a beginner"'
   },
   {
     category: 'Using AI Effectively',
@@ -50,7 +50,7 @@ export const faqs: FAQ[] = [
   {
     category: 'Using AI Effectively',
     question: 'Can AI write my emails and documents?',
-    answer: 'Yes, AI can draft emails, reports, and other documents. For best results: 1) Provide the context (who, what, why) 2) Specify the tone (formal, casual, friendly) 3) Include key points you want covered 4) Always review and edit—AI drafts are starting points, not finished products. Use AI to overcome blank page syndrome, then refine with your voice.'
+    answer: 'Yes, AI can draft emails, reports, and other documents. For best results: 1) Provide the context (who, what, why) 2) Specify the tone (formal, casual, friendly) 3) Include key points you want covered 4) Always review and edit, AI drafts are starting points, not finished products. Use AI to overcome blank page syndrome, then refine with your voice.'
   },
   {
     category: 'Using AI Effectively',
@@ -61,7 +61,7 @@ export const faqs: FAQ[] = [
   {
     category: 'AI Limitations and Safety',
     question: 'Can I trust what AI tells me?',
-    answer: 'Not blindly. AI can "hallucinate"—generating plausible-sounding but false information. Always verify important facts, especially statistics, quotes, and historical claims. AI is most reliable for well-established information and less reliable for recent events, niche topics, or claims requiring sources. Use it as a starting point, not a final authority.'
+    answer: 'Not blindly. AI can "hallucinate", generating plausible-sounding but false information. Always verify important facts, especially statistics, quotes, and historical claims. AI is most reliable for well-established information and less reliable for recent events, niche topics, or claims requiring sources. Use it as a starting point, not a final authority.'
   },
   {
     category: 'AI Limitations and Safety',
@@ -76,7 +76,7 @@ export const faqs: FAQ[] = [
   {
     category: 'AI Limitations and Safety',
     question: 'What are AI\'s biggest limitations?',
-    answer: 'Key limitations: 1) Hallucinations—making up facts 2) Knowledge cutoffs—not knowing recent events 3) No real-time information (without tools) 4) Can\'t learn from your conversations 5) May reflect biases from training data 6) Often makes math errors 7) Doesn\'t truly understand—it predicts likely text. Understanding these limitations is key to using AI effectively.'
+    answer: 'Key limitations: 1) Hallucinations, making up facts 2) Knowledge cutoffs, not knowing recent events 3) No real-time information (without tools) 4) Can\'t learn from your conversations 5) May reflect biases from training data 6) Often makes math errors 7) Doesn\'t truly understand, it predicts likely text. Understanding these limitations is key to using AI effectively.'
   },
   {
     category: 'AI Limitations and Safety',

@@ -3,7 +3,7 @@ import { prompts } from '@/data/prompts';
 import PromptsContent from './PromptsContent';
 
 export const metadata: Metadata = {
-  title: 'AI Prompt Library — 50+ Ready-to-Use Prompts',
+  title: 'AI Prompt Library, 50+ Ready-to-Use Prompts',
   description: 'Browse and copy 50+ AI prompts for writing, analysis, creativity, productivity, and learning. Works with ChatGPT, Claude, and all major AI tools.',
   openGraph: {
     title: 'AI Prompt Library | How Do I Use AI',

@@ -3,7 +3,7 @@ import { getFAQsByCategory } from '@/data/faq';
 import FaqContent from './FaqContent';
 
 export const metadata: Metadata = {
-  title: 'FAQ — AI Questions Answered',
+  title: 'FAQ, AI Questions Answered',
   description: 'Answers to the most common questions about AI, ChatGPT, prompt engineering, and how to get started. Clear, beginner-friendly explanations.',
   openGraph: {
     title: 'AI FAQ | How Do I Use AI',
