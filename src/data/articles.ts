@@ -11,6 +11,75 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: "chatgpt-vs-reasoning-training-novices-rct-bocconi-openai-2026",
+    title: "ChatGPT or Reasoning Training? What a 1,053-Student Experiment Found",
+    description: "A preregistered trial gave business students ChatGPT, a 12-question causal reasoning game, both, or neither. ChatGPT raised the quality score. The training changed how students reasoned. Here are the numbers and the caveats.",
+    category: "Productivity",
+    readTime: "6 min read",
+    publishedAt: "2026-10-27",
+    author: "How Do I Use AI",
+    content: `## Should You Learn to Think First, or Just Use the Chatbot?
+
+It's a fair question for anyone starting a new kind of work. Does a beginner get more from AI assistance, or from training in how to reason about the problem? An August 2026 paper tested both, and both together, in a classroom.
+
+One thing to know up front: several authors are affiliated with OpenAI, and the tool tested was ChatGPT. That doesn't make the results wrong, but it's the kind of detail you should weigh. The authors also include researchers from Bocconi University and SDA Bocconi, and one from UC Berkeley who was a paid contractor for OpenAI.
+
+## The Study
+
+The paper is titled "Training novices to think, or giving them LLMs? Evidence from an RCT." It describes a preregistered 2x2 randomized trial run in November 2025 during regular class time.
+
+- Participants: 1,053 first-year undergraduates in 13 classes across three bachelor programs (economics and management, economics and finance, and management).
+- Randomization: at the classroom level within each program.
+- Four arms: Control (249 students), Causal training (256), GPT access (197), and Causal training plus GPT (351). The combined group was deliberately oversampled to give the study more power to detect an interaction.
+- The causal training: a 12-question "business game" on causal thinking, coherent logic, falsifiability and mechanisms, with feedback. Controls played a placebo game without scaffolding or feedback.
+- The AI condition: ChatGPT Edu (GPT-4o) during the task.
+- The task: a 45-minute merchandising case. Students wrote a recommendation of up to 180 words on how to increase alumni awareness and usage of a product.
+
+The authors report that 90.5% of students with GPT access declared that they complied with using it.
+
+## What They Found
+
+On the overall quality score of the recommendations (a 1 to 5 scale, with a sample mean of 2.6), controls averaged 2.09. Access to ChatGPT raised the score by about 0.83 points without controls and about 0.86 with balance controls, both statistically significant at the 1% level. Causal training alone had a slightly negative effect on that score, and the authors found no statistically meaningful evidence that combining the two added an effect beyond using each alone.
+
+Two other results from the paper:
+
+- Similarity to expert solutions. The authors compared student answers with three expert solutions. GPT was the only significant factor across all three comparisons.
+- Number of ideas. GPT raised the number of core ideas by more than 0.5 standard deviations.
+
+But the training did change something. In the paper's LLM-scored measures of reasoning, the causal game raised the mechanisms measure by about 0.55 standard deviations and the falsifiability measure by about 0.85. It also raised the diversity of ideas within each student's own solution by about 0.5 standard deviations. For coherent logic, the effect was about 0.45 standard deviations for GPT and about 0.15 for the training alone, with a further interaction of about 0.48 when the two were combined.
+
+The authors read the pattern as complementary: students who had the training and ChatGPT still showed the trained reasoning, which suggests they used the skill instead of handing it off.
+
+## The Fine Print
+
+The paper is a dated August 2026 manuscript hosted by OpenAI, and we found no journal or peer-review status on it. The authors list real limits:
+
+- One case, one university, one model version (GPT-4o), one 45-minute task.
+- Reasoning was scored by GPT-5 using a rubric. The authors call those scores proxies that capture only what is visible in the text.
+- The quality rubric penalizes answers that stray from the typical solution. That may understate the value of the training, which pushed students toward more varied answers.
+- Agreement between raters was moderate. The overall intraclass correlation was 0.544, and it was lowest in the control group (0.275).
+- About half of the ChatGPT effect remained after controlling for text and content features, and the authors say plainly that they cannot tell whether the content-based part reflects knowledge students acquired or output they obtained without learning anything.
+- The study did not trace the cognitive process, so the "skill is still used" reading is an interpretation.
+
+We'd add one of our own: it measured one short, written answer. It says nothing about what the students retained a month later.
+
+## What This Means for How You Use AI
+
+Treat these as our takeaways, not the authors' conclusions.
+
+1. For a quick first draft on a new type of problem, AI help moved scores up more than a short reasoning exercise did. That matches what many beginners already experience.
+2. Adding the training to ChatGPT did not add a measurable score gain, but the trained reasoning still showed up in the answers. If you care about being able to defend a recommendation yourself, build the thinking habit alongside the tool.
+3. Ask the model for mechanisms and counterarguments, not just an answer. The trained students were practicing falsifiability and mechanisms, so prompts such as "What would prove this wrong?" and "Explain the mechanism by which this works" borrow the same ideas. Our [prompt engineering guide](/guides/prompt-engineering-101) covers how to structure those requests.
+4. Check your own work after the AI drafts it. Our piece on [AI research without wrong answers](/resources/ai-research-without-wrong-answers) shows how.
+
+A related result worth pairing with this one: a separate study found AI made easy tasks slower for some users. We cover it in [the efficiency-gain illusion](/resources/efficiency-gain-illusion-ai-easy-tasks-stanford-study). Read together, they point the same way: AI seems to help more on unfamiliar tasks than on ones you could already do quickly yourself. That is our reading, not a finding of either study.
+
+## Sources
+
+- Asirvatham, H., Betti, C., Brown, R., Camuffo, A., Chatterji, A., Fumagalli, C., Gambardella, A., Mariani, M., Pandey, A., Ramos, S., Salvucci, G., Simic, V. "Training novices to think, or giving them LLMs? Evidence from an RCT." August 2026 manuscript (cdn.openai.com/pdf/novices-and-llm-august-2026.pdf).
+`,
+  },
+  {
     slug: "efficiency-gain-illusion-ai-easy-tasks-stanford-study",
     title: "The Efficiency-Gain Illusion: A Study Found AI Made Easy Tasks Slower",
     description: "A pre-registered study of 2,691 US adults found people use AI more than they predict and expect bigger time savings than they get. On easy tasks, AI was about 10 seconds slower. Here's what that means for when to reach for a chatbot.",
