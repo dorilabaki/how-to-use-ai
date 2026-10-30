@@ -3087,6 +3087,85 @@ Take one long document you'd normally summarize. Run it twice: once with your qu
 *Sources: Anthropic, "Prompting best practices," Claude Platform documentation (platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices), sections on long context prompting, structuring prompts with XML tags, and using examples. Token-to-word conversion is an approximation. Verify details against the current documentation, which Anthropic updates.*
 `,
   },
+  {
+    slug: 'stop-telling-ai-what-not-to-do-anthropic-prompting-guide',
+    title: "Stop Telling AI What Not to Do: Three Instruction Rules From Anthropic's Prompting Guide",
+    description: "Anthropic's prompting guide says to be explicit, give the reason behind a rule, and describe what you want instead of what to avoid. Here are the three rules with before-and-after examples you can copy.",
+    category: 'Prompting',
+    readTime: '5 min read',
+    publishedAt: '2026-10-30',
+    author: 'How Do I Use AI',
+    content: `# Stop Telling AI What Not to Do: Three Instruction Rules From Anthropic's Prompting Guide
+
+Most people write prompts as a list of restrictions. "Don't be too long." "No jargon." "Don't use bullet points." It feels precise. The result is often a response that follows the letter of the rule and misses the point.
+
+Anthropic's official prompting best practices page has a few short passages on exactly this. They apply to Claude, and most of them carry over to other assistants. Here are three rules from the guide, what it actually says, and examples you can reuse.
+
+## Rule 1: Be Explicit About What You Want
+
+The guide says: "Claude responds well to clear, explicit instructions." It adds that if you want more than the task strictly requires, you should "explicitly request it rather than relying on the model to infer this from vague prompts."
+
+It also offers a simple check. Show your prompt to a colleague with minimal context on the task and ask them to follow it. In the guide's words, "If they'd be confused, Claude will be too."
+
+The guide's own example compares two requests:
+
+- Less effective: "Create an analytics dashboard"
+- More effective: "Create an analytics dashboard. Include as many relevant features and interactions as possible. Go beyond the basics to create a fully-featured implementation."
+
+The takeaway isn't to write longer prompts. It's to say the part you were assuming. If you want three options, say three. If you want it ready to send, say so.
+
+## Rule 2: Give the Reason Behind the Rule
+
+The guide says that explaining why a behavior matters "can give Claude more information about your goals and help it deliver more targeted responses." It also notes that "Claude can generalize from the explanation."
+
+The example it uses:
+
+- Less effective: "NEVER use ellipses"
+- More effective: "Your response will be read aloud by a text-to-speech engine, so never use ellipses since the text-to-speech engine will not know how to pronounce them."
+
+With the reason, the assistant can also avoid other things a speech engine would stumble on. A bare rule only covers the one thing you named.
+
+A work version: instead of "Don't use jargon," try "This email goes to customers who have never used our product, so avoid technical terms and explain anything they might not know."
+
+## Rule 3: Say What to Do, Not What to Avoid
+
+Under formatting, the guide lists this as the first technique: "Tell Claude what to do instead of what not to do."
+
+Its example:
+
+- Instead of: "Do not use markdown in your response"
+- Try: "Your response should be composed of smoothly flowing prose paragraphs."
+
+The guide also says that "removing markdown from your prompt can reduce the volume of markdown in the output." In other words, the style of your prompt influences the style of the answer. A prompt full of bullets and bold text tends to get bullets and bold text back.
+
+Everyday versions of the swap:
+
+| Instead of | Try |
+|---|---|
+| "Don't write a long answer" | "Answer in three sentences" |
+| "No bullet points" | "Write in short paragraphs" |
+| "Don't be vague" | "Give one concrete example for each point" |
+| "Don't sound like AI" | "Write the way a colleague would in a quick email, using contractions" |
+
+## A Caveat on Evidence
+
+The guide gives before-and-after examples, but it does not publish measured results for these three rules. Treat them as recommendations from the people who build the model, not proven numbers. That's why we'd suggest testing them on your own work.
+
+## Try It in Five Minutes
+
+1. Pick a prompt you reuse, such as a weekly summary or a customer reply.
+2. Underline every "don't," "never," and "avoid."
+3. Rewrite each one as a positive instruction, and add one sentence on why it matters.
+4. Run the old and new versions on the same input.
+5. Keep whichever you'd actually send. If you like the old one better, keep it. This is a test, not a rule.
+
+If you want a fuller toolkit, our guides to [prompt frameworks](/resources/prompt-frameworks-better-ai-outputs) and [advanced prompt techniques](/resources/advanced-prompt-techniques-2026) cover structure and examples. For long inputs, see [how to prompt Claude with long documents](/resources/prompt-claude-long-documents-anthropic-guide).
+
+---
+
+*Sources: Anthropic, "Prompting best practices," Claude Platform documentation (platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices), sections "Be clear and direct," "Add context to improve performance," and "Control the format of responses." Quotations are from that page. Page content changes over time, so check the current version.*
+`,
+  },
 ];
 
 export function getArticle(slug: string): Article | undefined {
