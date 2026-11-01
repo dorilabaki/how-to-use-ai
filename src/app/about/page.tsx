@@ -142,7 +142,7 @@ export default function AboutPage() {
                 started feels overwhelming. That&apos;s where we come in.
               </p>
               <p className="text-text-secondary mb-4">
-                We believe everyone should be able to harness the power of AI, regardless
+                Anyone can learn to use AI well, regardless
                 of their technical background. Our tutorials, guides, and resources are
                 designed to take you from complete beginner to confident AI user.
               </p>
