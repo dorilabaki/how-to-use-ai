@@ -11,6 +11,83 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: "ai-chatbots-earnings-hours-denmark-nber-humlum-vestergaard-2026",
+    title: "Do Workplace AI Chatbots Change Pay or Hours? What 25,000 Danish Workers Show",
+    description: "An NBER working paper links worker surveys to Danish government records. Chatbot use is common and workers report time savings, but pay and hours haven't measurably moved. Here are the numbers and the limits.",
+    category: "AI Concepts",
+    readTime: "7 min read",
+    publishedAt: "2026-11-03",
+    author: "How Do I Use AI",
+    content: `# Do Workplace AI Chatbots Change Pay or Hours? What 25,000 Danish Workers Show
+
+Most of the evidence on AI at work comes from experiments: give people a tool, time a task, compare. Those studies tell you what the tool can do. They don't tell you what happens to jobs, hours, and pay once a whole workplace starts using it.
+
+An NBER working paper by economists Anders Humlum and Emilie Vestergaard tries to answer that second question with national data. It links worker surveys to Danish government records on earnings and hours. The paper was first circulated in May 2025 under the title "Large Language Models, Small Labor Market Effects" and revised in March 2026 as "Still Waters, Rapid Currents." Here's what it measured, what it found, and what it can't tell you.
+
+## What the Researchers Did
+
+The authors surveyed workers in 11 occupations that are exposed to AI chatbots: accountants, customer support specialists, financial advisors, HR professionals, IT support specialists, journalists, legal professionals, marketing professionals, office clerks, software developers, and teachers.
+
+According to the paper, each survey round (November to December 2023, then again in the same months of 2024) went to 115,000 workers and drew about 25,000 valid responses. The 2024 round covers workers at about 7,000 workplaces. The authors then matched responses to monthly administrative records from Statistics Denmark, which run from 2008 through December 2024. They used ChatGPT's launch in November 2022 as the reference point and compared adopters with non-adopters before and after (a difference-in-differences design).
+
+## How Much Chatbot Use There Is
+
+Without any employer push, the paper reports that about 41% of workers in these occupations have used a chatbot at work, and about 7% use one daily. Employers matter a lot:
+
+- About 43% of employers encourage chatbot use, 21% allow it, and about 6% prohibit it.
+- Among employers who encourage use, 61% provide an enterprise chatbot, 39% provide training, and 29% provide both.
+- In the most supportive setting (encouragement, an enterprise chatbot, and training), 93% of workers have used chatbots and 28% use them daily.
+- In that same setting, 19% of workers report saving more than one hour per day, and 85% of users say they moved the saved time to other tasks.
+
+Those time savings are self-reported. The authors flag that self-reported benefits may be inflated.
+
+## The Headline Result: No Measurable Change in Pay or Hours
+
+Using Danish administrative records, the authors find what they call precise null effects on earnings and recorded hours, at both the worker and workplace level. Their pooled estimates rule out effects larger than 2%. Their dynamic (year-by-year) estimates rule out changes larger than 3%.
+
+A "null" here doesn't mean "no effect at all." It means that if AI chatbots changed average pay or hours in these occupations, the change was too small to detect within those bounds, roughly two years after ChatGPT's launch. The paper reports the same pattern for wages, hours, and employment. It also rules out larger shifts in early-career employment share (more than a third of a percentage point) and in monthly job churn (more than 0.5% of employment).
+
+Workers see it the same way. According to the paper, 97.7% of adopters and 99.5% of non-adopters report that chatbots had no effect on their earnings.
+
+## Where the Change Shows Up: Tasks
+
+If pay and hours didn't move, what did? The authors point to the work itself. Employers reorganized tasks around the tools.
+
+- Without employer initiatives, roughly 8 to 12% of chatbot users report new workloads. With active initiatives, that rises to about 17 to 18%. (The paper's introduction and its detailed section give slightly different figures, so treat these as approximate ranges.)
+- The new tasks fall into three groups: content generation (about 42%), quality review and ethics (about 35%), and AI integration (about 26%). These shares add up to more than 100%, so the categories overlap.
+- Between 53% and 91% of new tasks, depending on the occupation, are directly linked to AI use.
+
+For anyone using AI at work, the practical reading is that a share of your saved time may come back as checking, correcting, and integrating. That's worth planning for. If you use Copilot in spreadsheets, reviewing its edits before they land is a real task, and our guide to [Plan Mode in Excel Copilot](https://officeproductivityhacks.com/resources/excel-copilot-plan-mode-guide) at Office Productivity Hacks shows one way to build that check into your workflow.
+
+## Job Moves
+
+The authors also report that adopters tend to move into higher-paying occupations where chatbots are more relevant. By December 2024, adopters had added about 4% of a full-time equivalent to their most recent occupation. Workers who switched saw earnings grow about 12 percentage points faster than other employed workers. The shift was too small to change average earnings across the group.
+
+## What the Paper Can't Tell You
+
+The authors list several limits, and they matter:
+
+- **It's one country and 11 occupations.** Results for Danish workers may not match your country or job.
+- **It's a working paper.** It has not been peer-reviewed.
+- **It measures differences between adopters and non-adopters.** It can't directly identify effects on workers who never used chatbots, such as changes in demand for their skills.
+- **Self-selection isn't fully separated out.** People who adopt early may differ from those who don't.
+- **Effects may take time.** The survey doesn't record when each worker started using chatbots, and two years may be too early to see changes in pay.
+- **Occupation-level estimates have wide confidence bands.** The pooled result is more reliable than any single job's result.
+
+## What to Do With This
+
+Three takeaways hold up under those limits.
+
+1. **Don't expect a raise or a shorter week from AI alone.** At least in this data, adoption on its own didn't move either.
+2. **Employer support changes use a lot.** Daily use was 7% without any employer initiative and 28% with encouragement, a chatbot, and training. If you want your team to benefit, training and an approved tool matter more than permission alone.
+3. **Track where your saved time goes.** If an hour saved becomes an hour of review, you haven't saved it. Write down what AI work you do in a week and what new checking it created. Our look at [why prompt engineering jobs are changing shape](/resources/prompt-engineering-jobs-disappearing-repositioning-2026) covers the same shift from the hiring side.
+
+---
+
+*Sources: Anders Humlum and Emilie Vestergaard, "Still Waters, Rapid Currents: Early Labor Market Transformation under Generative AI," NBER Working Paper 33777 (first issued May 2025 as "Large Language Models, Small Labor Market Effects"; revised March 2026), nber.org/papers/w33777 and the full working paper PDF. All figures above are from the paper and were read from the paper's text. The paper has not been peer-reviewed.*
+`,
+  },
+  {
     slug: "chatgpt-vs-reasoning-training-novices-rct-bocconi-openai-2026",
     title: "ChatGPT or Reasoning Training? What a 1,053-Student Experiment Found",
     description: "A preregistered trial gave business students ChatGPT, a 12-question causal reasoning game, both, or neither. ChatGPT raised the quality score. The training changed how students reasoned. Here are the numbers and the caveats.",
