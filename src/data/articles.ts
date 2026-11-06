@@ -11,6 +11,87 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: "anthropic-economic-index-learning-curves-experienced-claude-users-succeed-more-2026",
+    title: "Do Experienced Claude Users Get Better Results? What Anthropic's Learning Curves Report Shows",
+    description: "Anthropic's March 2026 Economic Index report found that people who signed up at least six months earlier had higher success rates, by about 3 to 5 percentage points. Here are the numbers, the caveats Anthropic lists itself, and how to test it on your own work.",
+    category: "Claude",
+    readTime: "7 min read",
+    publishedAt: "2026-11-06",
+    author: "How Do I Use AI",
+    content: `# Do Experienced Claude Users Get Better Results? What Anthropic's Learning Curves Report Shows
+
+"Just keep practicing" is the standard advice for getting better at AI. It sounds right. It's also hard to prove, because the people who stick with a tool are usually the ones who were already good at it.
+
+Anthropic's Economics team took a run at the question in its March 2026 Economic Index report, titled "Learning curves." The authors are Maxim Massenkoff, Eva Lyubich, and Peter McCrory (lead authors), with Ruth Appel and Ryan Heller. The report was published on March 24, 2026. This post covers what it measured, what it found, and the limits the authors state themselves.
+
+## What Anthropic Measured
+
+The data window is February 5 to February 12, 2026. Anthropic sampled 1 million conversations from Claude.ai and 1 million from its first-party API, and analyzed them with a privacy-preserving system called Clio. The report builds on a January 2026 edition that used November 2025 data.
+
+To compare newer and more experienced users, the authors split people into two groups. "High-tenure" users signed up at least six months before the data pull. Everyone else is "low-tenure."
+
+One detail matters for everything below: "success" here is Claude's own assessment of whether a conversation went well. It isn't a user rating or an outside audit. The method is described in the January report.
+
+## The Headline Finding: A Small, Consistent Gap
+
+The report says long-tenure users were about 5 percentage points more likely to have a successful conversation in the simplest comparison. When the authors compared users doing the same kind of task, using O*NET task and request-cluster fixed effects, the gap shrank to closer to 3 percentage points. With full controls for model, use case, country, and language, it was a 4-percentage-point higher success rate.
+
+So the range across the report's three specifications is roughly 3 to 5 percentage points. The report's summary also states the result as a "10% higher success rate." That's a relative figure, not the same thing as the 4 to 5 point gaps, and the page doesn't reconcile the two in one line. We'd use the percentage-point numbers, and treat the 10% as a differently expressed summary.
+
+The report doesn't print absolute success rates for either group, only the differences. So we can't tell you what share of conversations succeed overall.
+
+## How Experienced Users Differ
+
+Beyond the success gap, the report describes some behavioral differences:
+
+- **More work, less personal use.** High-tenure users were 7 percentage points more likely to use Claude for work. Personal use was 38% for people who signed up a year ago, versus 44% for the newest users.
+- **Harder tasks over time.** The report says the years of schooling needed to understand a user's requests rises by almost 1 year for every additional year of Claude usage.
+- **Different topics.** The request clusters most associated with high tenure include AI research, git operations, revising manuscripts, and startup fundraising. The clusters most associated with new users include writing haikus, checking sports scores, and suggesting food for a party.
+- **Slightly less concentrated.** The top 10 tasks made up 20.7% of high-tenure users' conversations and 22.2% of low-tenure users'.
+
+## What Else the Report Found About How People Use Claude
+
+The tenure analysis sits inside a broader update on usage:
+
+- Use on Claude.ai diversified. The top 10 tasks made up 19% of traffic in February 2026, down from 24% in November 2025.
+- Computer and mathematical tasks, the category that includes coding, were still the largest at 35% of Claude.ai conversations.
+- Personal use rose from 35% to 42% of conversations, while coursework fell from 19% to 12%. Anthropic attributes part of the coursework drop to school calendars, since the sample included winter break periods.
+- On the API side, the top 10 tasks were 33% of traffic, up from 28%, which fits the report's point that coding has been moving toward the API.
+
+## The Caveats Anthropic Lists Itself
+
+This is the part that matters most if you're deciding how much weight to put on the 3 to 5 point gap. The authors flag these limits:
+
+- **Self-selection.** The report says the high-tenure users are self-selected. Early adopters may be more technical to begin with.
+- **Survivorship bias.** In the authors' words, they don't observe people who signed up a year ago but are no longer using Claude. If people who struggled quit, the long-tenure group will look better than learning alone would explain.
+- **Not a clean learning effect.** The controlled comparisons rule out simple versions of this confounding, according to the authors, but they say they'll need more time to separate cohort effects and survivorship bias from learning by doing.
+- **Success is machine-judged.** As noted, the outcome is Claude's own assessment of the conversation.
+- **Sampling quirks.** The sampling window overlapped with Super Bowl ads that brought in first-time users, which can push the new-user group toward casual use.
+
+Put simply, the report shows that people who've used Claude longer do somewhat better by this measure. It doesn't prove that using it longer is what made them better.
+
+## What To Do With This
+
+The report doesn't tell you how to practice, and we won't pretend it does. What follows is our suggestion, not Anthropic's.
+
+1. **Pick one work task you repeat weekly.** A report summary, a client email, a meeting recap.
+2. **Save your first prompt and its output.** Don't edit them. That's your baseline.
+3. **Change one thing per week.** Add context, give an example, or state the reason behind a constraint. Our guides to [prompt frameworks](/resources/prompt-frameworks-better-ai-outputs) and [advanced prompt techniques](/resources/advanced-prompt-techniques-2026) list options to try.
+4. **Judge the output yourself.** Ask whether you could send it with fewer edits than the baseline. That's a better test than the model's own view of whether it succeeded.
+5. **Keep a note of what worked.** If a change doesn't help, drop it.
+
+For a look at what people are actually doing with agent-style tools, see our breakdown of [what people use Claude Cowork for](/resources/claude-cowork-web-mobile-what-people-actually-use-it-for). And if the output of your AI work ends up in spreadsheets, our sister site [Office Productivity Hacks](https://officeproductivityhacks.com) covers the Excel and Google Sheets side.
+
+## The Bottom Line
+
+Anthropic's own data shows a modest gap, about 3 to 5 percentage points, favoring people who've used Claude for six months or more. The authors themselves say it can't yet be separated from self-selection and survivorship bias. Treat it as a reasonable sign that experience helps, and a reason to run your own small tests, not as a promise.
+
+---
+
+*Sources: Anthropic Economics team (Maxim Massenkoff, Eva Lyubich, Peter McCrory, Ruth Appel, Ryan Heller), "Anthropic Economic Index report: Learning curves," published March 24, 2026: https://www.anthropic.com/research/economic-index-march-2026-report. Figures are quoted from the report's main text. The appendix PDF was not reviewed. Next-step suggestions are our own and are not from the report.*
+`,
+  },
+  {
     slug: "ai-chatbots-earnings-hours-denmark-nber-humlum-vestergaard-2026",
     title: "Do Workplace AI Chatbots Change Pay or Hours? What 25,000 Danish Workers Show",
     description: "An NBER working paper links worker surveys to Danish government records. Chatbot use is common and workers report time savings, but pay and hours haven't measurably moved. Here are the numbers and the limits.",
