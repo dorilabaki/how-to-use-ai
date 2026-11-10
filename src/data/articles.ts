@@ -11,6 +11,105 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: "claude-agent-skills-skill-md-how-to-write-one-anthropic-docs-2026",
+    title: "How to Write a Claude Skill: What Anthropic's Docs Say About SKILL.md, Descriptions, and Safety",
+    description: "A Skill is a folder with a SKILL.md file that Claude loads on demand. Here are the name and description limits, the three loading levels and their token costs, Anthropic's authoring rules, and its warning about untrusted Skills.",
+    category: "Claude",
+    readTime: "7 min read",
+    publishedAt: "2026-11-10",
+    author: "How Do I Use AI",
+    content: `# How to Write a Claude Skill: What Anthropic's Docs Say About SKILL.md, Descriptions, and Safety
+
+You've probably typed the same instructions into Claude more than once. How you want reports formatted. Which checks to run on a spreadsheet. The steps for turning meeting notes into a summary. Skills are Anthropic's answer to that repetition: you write the instructions once, in a file, and Claude loads them when a task calls for them.
+
+This guide covers what Anthropic's documentation says a Skill is, the rules for writing one, and the security warning you should read before installing someone else's. Everything below comes from the Agent Skills overview and best-practices pages on Anthropic's platform docs, except where we label it as our own suggestion.
+
+## What a Skill Is
+
+Anthropic describes a Skill as a reusable, filesystem-based package of instructions, metadata, and optional resources such as scripts and templates. Claude uses it automatically when it's relevant. The docs compare a Skill to an onboarding guide for a new team member.
+
+The practical difference from a prompt is that Skills load on demand. You don't paste the guidance into every conversation, and it doesn't sit in context until the task needs it.
+
+## The File You Write
+
+Every Skill is a folder with a file named SKILL.md. The file starts with YAML frontmatter, followed by Markdown instructions. The frontmatter requires two fields, with these limits from the docs:
+
+- **name:** up to 64 characters, lowercase letters, numbers, and hyphens only, no XML tags, and it can't contain the reserved words "anthropic" or "claude".
+- **description:** not empty, up to 1,024 characters, no XML tags. It should say what the Skill does and when to use it.
+
+Here's a minimal example we wrote to show the shape. It isn't from Anthropic's docs:
+
+\`\`\`
+---
+name: summarizing-meeting-notes
+description: Turns raw meeting notes into a summary with decisions, owners, and deadlines. Use when the user pastes meeting notes or a transcript and asks for a summary or action items.
+---
+\`\`\`
+
+Then the body: the steps you want Claude to follow, an example of the output format, and anything Claude wouldn't know on its own.
+
+Bigger Skills can bundle extra files, such as a reference document or a scripts folder. Anthropic's example layout includes optional FORMS.md, REFERENCE.md and EXAMPLES.md files alongside SKILL.md.
+
+## How Skills Load, and What It Costs
+
+This is the part that explains why you can install many Skills without clogging Claude's context. The docs describe three levels:
+
+1. **Metadata (name and description).** Always loaded at startup. Anthropic puts the cost at about 100 tokens per Skill.
+2. **Instructions (the SKILL.md body).** Loaded only when the Skill is triggered. Anthropic says under 5,000 tokens.
+3. **Resources and code (bundled files and scripts).** Loaded only as needed. Script source code never enters context. Only the script's output does.
+
+The consequence: your description is doing the most important job. It's the only part Claude sees before deciding whether to open the rest.
+
+## Rules for Writing a Good One
+
+The best-practices page is long. These are the rules most worth knowing.
+
+**Write a specific description, in the third person.** The description is injected into the system prompt, so Anthropic says to write it in the third person. State what the Skill does and when to use it, with the key terms a user would actually say. Vague descriptions such as "Helps with documents" give Claude nothing to match on.
+
+**Be concise.** The context window is shared with the system prompt, the conversation, other Skills' metadata, and your request. Add only what Claude doesn't already know. Every sentence in SKILL.md should earn its place.
+
+**Match how strict the instructions are to how fragile the task is.** Anthropic calls this degrees of freedom. When many approaches work, give text guidance and leave room. When you have a preferred pattern, use a template or a parameterized script. When an operation is fragile or order-sensitive, such as a database migration, give exact steps and don't let Claude improvise. The docs use a "narrow bridge versus open field" comparison.
+
+**Name Skills clearly.** Anthropic suggests gerund names such as processing-pdfs, and says to avoid vague names like helper or utils.
+
+**Test on every model you plan to use.** The docs note that a Skill that works on one model may need adjusting on another. Their guidance is that Haiku may need more explicit instructions, Sonnet is balanced, and Opus should avoid over-explaining.
+
+**Build evaluations first.** Anthropic's suggested process: identify where Claude struggles without a Skill, write three test scenarios, measure the baseline without the Skill, write the minimum instructions that close the gap, then iterate. The docs state there's no built-in evaluation runner, so you'll test by hand or build your own.
+
+**Use two Claude instances to iterate.** One helps you write the Skill. A fresh one tests it on real tasks. You watch where the fresh instance goes wrong and refine.
+
+## Where Skills Work
+
+According to the overview page:
+
+- **Claude API:** pre-built Skills for PowerPoint, Excel, Word and PDF files, plus custom Skills, used alongside the code execution tool. The API environment has no network access and no runtime package installation.
+- **Claude Code:** custom Skills only, stored as folders in a personal or project skills directory. It has full network access.
+- **Claude.ai:** pre-built Skills run when you create documents. Custom Skills are uploaded as zip files on Pro, Max, Ultra, Team and Enterprise plans with code execution enabled.
+
+One thing catches people out: custom Skills don't sync across these surfaces. A Skill you upload to Claude.ai isn't automatically available in Claude Code or the API.
+
+## The Security Warning
+
+Anthropic is direct about this one. Use Skills only from sources you trust, meaning your own or Anthropic's. The docs say a malicious Skill can direct Claude to call tools or run code in ways that don't match its stated purpose. The listed risks include data exfiltration, unauthorized system access, tool misuse and data exposure.
+
+Their advice is to treat installing a Skill like installing software, and to audit every bundled file for unexpected network calls, file access, or operations unrelated to what the Skill claims to do. Skills that fetch external URLs carry extra risk, because fetched content can contain malicious instructions, and a trusted Skill can become unsafe if an external dependency changes. For organizations, the docs note that Claude Enterprise can scan custom Skills uploaded in Claude.ai and Claude Cowork. That scanning doesn't cover the Skills API or the Claude Console.
+
+## Skills Are Spreading Beyond Claude
+
+The same idea is showing up in other tools. Microsoft's Copilot in Excel now has skills too, including a skill builder that turns a described workflow into a reusable one. We covered the spreadsheet side in [Copilot in Excel Can Now Learn Your Recurring Finance Workflows](https://officeproductivityhacks.com/resources/excel-copilot-finance-skills-guide-2026) at Office Productivity Hacks. Google's Gemini has a version as well, which we covered in [Gemini Skills Replace Gems](/resources/gemini-skills-replace-gems-what-to-do-before-march-2027). Details differ by product, so check each vendor's documentation.
+
+## Where to Start
+
+Pick one task you've explained to an AI at least three times. Write the description first, in the third person, naming the situations that should trigger it. Then write the shortest set of steps that gets a good result, and test it on a fresh conversation. If the result is wrong, change the instructions, not the test.
+
+**Sources:**
+- [Anthropic: Agent Skills overview](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)
+- [Anthropic: Skill authoring best practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices)
+
+*Figures and rules above are from Anthropic's documentation as read in November 2026. Part of the best-practices page was only available to us in summarized form, so we've limited this guide to rules we could confirm. The example Skill and the closing advice are our own.*
+`,
+  },
+  {
     slug: "anthropic-economic-index-learning-curves-experienced-claude-users-succeed-more-2026",
     title: "Do Experienced Claude Users Get Better Results? What Anthropic's Learning Curves Report Shows",
     description: "Anthropic's March 2026 Economic Index report found that people who signed up at least six months earlier had higher success rates, by about 3 to 5 percentage points. Here are the numbers, the caveats Anthropic lists itself, and how to test it on your own work.",
