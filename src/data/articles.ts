@@ -11,6 +11,119 @@ export interface Article {
 
 export const articles: Article[] = [
   {
+    slug: "claude-meetings-google-meet-beta-how-to-set-up-2026",
+    title: "Claude Meetings Joins Your Google Meet Calls. Here's How to Set It Up, and What to Check First.",
+    description: "Anthropic launched Claude Meetings in beta on November 12, 2026. Claude joins Google Meet as a visible participant, takes notes, answers questions in the chat, and builds docs during the call. Here's who can use it, the four setup steps, what it stores, and the consent and pricing details to read before you turn on auto-join.",
+    category: "Claude",
+    readTime: "7 min read",
+    publishedAt: "2026-11-13",
+    author: "How Do I Use AI",
+    content: `# Claude Meetings Joins Your Google Meet Calls. Here's How to Set It Up, and What to Check First.
+
+Most AI notetakers sit quietly in a call and send you a summary afterwards. Claude Meetings, which Anthropic released in beta on November 12, 2026, goes further. Claude joins the call as a participant you can see, and you can ask it questions or have it build things while the meeting is still running.
+
+This guide covers what it does, who can use it, how to set it up, and the privacy and cost details worth reading before you switch on auto-join. Everything below comes from Anthropic's announcement and its Help Center article "Use Claude Meetings," except where we say it's our own suggestion.
+
+## What It Does
+
+According to Anthropic, Claude joins a Google Meet call as a "visible participant." During the call it can:
+
+- **Take notes** and write up action items.
+- **Answer questions.** You say "Claude" out loud or type in the Meet chat. By default it answers in writing, in the chat.
+- **Build artifacts** such as docs, whiteboards and slides while people are still talking.
+- **Use connected tools**, for example sending a Slack message, but only with each person's permission. Claude asks the first time, and a yes applies from then on.
+
+After the call, there's a meeting page on Claude with the notes, summary, action items, transcript, and anything Claude built. Members of your organization who were on the invite get a recap email.
+
+## Who Can Use It
+
+This is the first thing to check, because it rules a lot of people out.
+
+- **Plans:** Team and Enterprise only, in Claude on the web and the desktop app. It's rolling out in beta, so it may not show up for everyone at once.
+- **Platform:** Google Meet only. Anthropic says support for other video platforms is "coming soon." Its pages don't mention Zoom or Teams.
+- **Excluded setups:** organizations using zero data retention, a HIPAA-ready configuration, or customer-managed encryption keys can't use it during the beta.
+
+If you're on a Free, Pro or Max plan, or your company runs on Zoom, it isn't available to you yet.
+
+## How to Set It Up
+
+The Help Center lists four steps:
+
+1. Open **Meetings** in Claude (claude.ai/meetings).
+2. **Connect Google Calendar.** An organization owner has to enable the Google Calendar connector first.
+3. **Select a meeting** from your calendar.
+4. Click **Add Claude**.
+
+Claude usually joins without needing approval. If the host is asked to let it in, they can admit it like any guest. If they decline, Claude won't try again unless someone adds it a second time.
+
+**Auto-join** is in Settings, then Capabilities, then Meetings. You can have Claude join all your meetings, or all except one-on-ones. Owners can't switch auto-join on for other people. Each person sets it for themselves.
+
+## What It Stores, and Who Sees What
+
+Anthropic says Claude saves the transcript, the summary and descriptions of what's shared on screen, "not audio."
+
+Two visibility details are easy to miss:
+
+- **Anything Claude posts in the Meet chat is visible to everyone on the call.** If you ask it something sensitive there, the whole room sees the answer.
+- **The chat on the meeting page afterwards is internal** to your organization.
+
+## Consent and Outside Guests
+
+The Help Center is direct about consent: "Before you add Claude or turn on auto-join, make sure everyone on your call is okay with being transcribed." When Claude joins, it appears in the participant list and posts a notice in the call chat.
+
+The default for external guests is cautious. If someone from outside your organization is invited, Claude stays out. If an outsider joins after Claude, it leaves. Anthropic says that includes another company's notetaker bot. An admin can change this to allow meetings with guests. In that case, what guests say goes into the notes and transcript, but guests don't get the meeting page or the recap email.
+
+There's one more safeguard for spoken requests. When someone asks Claude something out loud, Claude asks each time to confirm who's speaking.
+
+Our suggestion: if you turn on auto-join, choose the "all except one-on-ones" option at first, and say at the start of each call that Claude is taking notes. A notice in the chat is easy to miss, and Anthropic puts the responsibility for consent on the person who adds Claude.
+
+## What It Costs During the Beta
+
+Per Anthropic's Help Center:
+
+- **Notes, transcripts and answers are free** on Team and Enterprise during the beta.
+- **The exception:** answers that use a connected tool count toward your usage and can lead to charges for your organization.
+- **Docs, whiteboards and other artifacts** made during a call are free through February 10, 2027.
+
+Anthropic's pages don't give a price for after the beta.
+
+## Admin Controls
+
+Owners and Primary Owners manage it under Organization settings, then Products, then Claude Meetings (beta). The defaults differ by plan:
+
+- **Team:** on for everyone by default, and meetings with external guests are allowed by default. An owner can turn either off.
+- **Enterprise:** off by default, and internal-only by default. Owners can turn it on for everyone or for specific custom roles.
+
+There's also a setting that controls whether Claude can use members' connected tools inside meetings.
+
+If you're the admin on a Team plan, note those defaults. The feature is on, and guest meetings are allowed, until you change them.
+
+## Limits to Know
+
+- Claude can stay in a call for up to eight hours, and warns before it leaves.
+- Answers are written by default, not spoken.
+- Sending transcripts to other tools isn't available yet. Anthropic says integrations with partners including Gong, Granola, Fireflies.ai and Otter are coming "soon."
+
+## Related: Whiteboards and Sheets
+
+Two days earlier, on November 10, Anthropic launched Whiteboards and Sheets in beta for all paid plans. Whiteboards is a shared board you brainstorm on with Claude. Sheets is a spreadsheet Claude builds and edits, with tabs, formulas, formatting and drop-downs. Anthropic calls it "simple spreadsheet functionality" and suggests exporting to .xlsx or CSV when you need Excel's full feature set. If that's where you end up, our sister site Office Productivity Hacks has a guide to [Excel conditional formatting with formulas](https://officeproductivityhacks.com/resources/excel-conditional-formatting-formula-highlight-entire-row-2026).
+
+## Where to Start
+
+If you're on a Team or Enterprise plan and use Google Meet, try it on one internal meeting before turning on auto-join. Ask Claude a question in the chat partway through, so you see how visible its answers are. After the call, check the meeting page and compare the action items to your own notes. That one test tells you more than the feature list.
+
+For a broader look at how AI agents act on your behalf, and where they still need supervision, see our guide to [using AI agents for everyday tasks](/resources/how-to-use-ai-agents).
+
+**Sources:**
+- [Anthropic: Introducing Claude Meetings, now in beta](https://claude.com/resources/articles/claude-meetings) (November 12, 2026)
+- [Claude Help Center: Use Claude Meetings](https://support.claude.com/en/articles/18325154-use-claude-meetings)
+- [Claude Help Center: Release notes](https://support.claude.com/en/articles/12138966-release-notes)
+- [Anthropic: Whiteboards, Sheets and Claude Data](https://claude.com/resources/articles/sheets-whiteboards-data) (November 10, 2026)
+
+*Details are from Anthropic's pages as read on November 13, 2026. Claude Meetings is in beta, so features, availability and pricing may change. The setup suggestions marked as ours are not Anthropic guidance.*
+`,
+  },
+  {
     slug: "claude-agent-skills-skill-md-how-to-write-one-anthropic-docs-2026",
     title: "How to Write a Claude Skill: What Anthropic's Docs Say About SKILL.md, Descriptions, and Safety",
     description: "A Skill is a folder with a SKILL.md file that Claude loads on demand. Here are the name and description limits, the three loading levels and their token costs, Anthropic's authoring rules, and its warning about untrusted Skills.",
